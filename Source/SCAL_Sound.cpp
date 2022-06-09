@@ -46,6 +46,11 @@ namespace scal
 
 		bool SetFilter(XAUDIO2_FILTER_TYPE type, float frequency, float danping);
 
+		void Terminate(void);
+
+		IXAudio2SourceVoice*& GetVoiceAddress(void);
+
+
 		WAVEFORMATEX waveFormat_;
 		XAUDIO2_BUFFER buffer_;
 		IXAudio2SourceVoice* sourceVoice_ = nullptr;
@@ -67,6 +72,23 @@ namespace scal
 	Sound::Sound_Impl::Sound_Impl(const std::string& filepath)
 	{
 		Load(filepath);
+	}
+
+	void Sound::Sound_Impl::Terminate()
+	{
+		for (auto& o : output_)
+		{
+			o->RemoveInputSound(interface_, false);
+		}
+
+		send_.clear();
+		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
+		sourceVoice_->SetOutputVoices(&snd);
+
+		if (sourceVoice_ != nullptr)
+		{
+			sourceVoice_->DestroyVoice();
+		}
 	}
 
 	bool Sound::Sound_Impl::Load(const std::string& filepath)
@@ -146,17 +168,33 @@ namespace scal
 		{
 			node->AddInputSound(interface_, false);
 		}
+
+		send_.emplace_back(XAUDIO2_SEND_DESCRIPTOR{ 0, node->GetVoiceAddress() });
+
+		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
+		sourceVoice_->SetOutputVoices(&snd);
 	}
 
 	void Sound::Sound_Impl::RemoveOutputNode(Node* node, bool system_value_isCallingAnotherFunc)
 	{
 		auto&& it = std::remove_if(output_.begin(), output_.end(), [&node](Node* n) { return node == n; });
-		output_.erase(it, output_.end());
 
-		if (system_value_isCallingAnotherFunc)
+		if (system_value_isCallingAnotherFunc && it != output_.end())
 		{
 			node->RemoveInputSound(interface_, false);
 		}
+		output_.erase(it, output_.end());
+
+		auto&& it2 = std::remove_if(send_.begin(), send_.end(),
+			[&node](const XAUDIO2_SEND_DESCRIPTOR& n) { return n.pOutputVoice == node->GetVoiceAddress(); });
+		send_.erase(it2, send_.end());
+
+		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
+		if (snd.SendCount == 0)
+		{
+			snd.pSends = nullptr;
+		}
+		sourceVoice_->SetOutputVoices(&snd);
 	}
 
 	bool Sound::Sound_Impl::Stop(void)
@@ -250,7 +288,10 @@ namespace scal
 		result = sourceVoice_->SetEffectChain(nullptr);
 		if (FAILED(result)) { return false; }
 
-		result = sourceVoice_->SetEffectChain(&chain);
+		if (efkDesc_.size() != 0)
+		{
+			result = sourceVoice_->SetEffectChain(&chain);
+		}
 		return SUCCEEDED(result);
 	}
 
@@ -305,6 +346,11 @@ namespace scal
 
 		result = sourceVoice_->SetFilterParameters(&filter_);
 		return SUCCEEDED(result);
+	}
+
+	IXAudio2SourceVoice*& Sound::Sound_Impl::GetVoiceAddress(void)
+	{
+		return sourceVoice_;
 	}
 
 	void Sound::Sound_Impl::SetReverbParameter(const XAUDIO2FX_REVERB_I3DL2_PARAMETERS& param, int effectIndex)
@@ -435,7 +481,11 @@ namespace scal
 		impl_->interface_ = this;
 	}
 
-	Sound::~Sound() = default;
+	Sound::~Sound()
+	{
+		impl_->Terminate();
+		impl_.reset();
+	}
 
 	bool Sound::Load(const std::string & filepath)
 	{
@@ -558,6 +608,11 @@ namespace scal
 	void Sound::Destroy(void)
 	{
 		impl_->Destroy();
+	}
+
+	IXAudio2SourceVoice*& Sound::GetVoiceAddress(void)
+	{
+		return impl_->GetVoiceAddress();
 	}
 
 }

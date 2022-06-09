@@ -49,6 +49,8 @@ namespace scal
 
 		void Destroy(void);
 
+		IXAudio2SubmixVoice*& GetVoiceAddress(void);
+
 		bool IsActivated(void) { return activated_; }
 	private:
 		class Node_Impl;

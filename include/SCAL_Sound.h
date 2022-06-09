@@ -54,6 +54,8 @@ namespace scal
 		bool Stop(void);
 		void Destroy(void);
 
+		IXAudio2SourceVoice*& GetVoiceAddress(void);
+
 		bool IsActivated(void) { return activated_; }
 	private:
 		class Sound_Impl;

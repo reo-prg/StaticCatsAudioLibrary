@@ -39,6 +39,10 @@ namespace scal
 
 		bool SetFilter(XAUDIO2_FILTER_TYPE type, float frequency, float danping);
 
+		void Terminate(void);
+
+		IXAudio2SubmixVoice*& GetVoiceAddress(void);
+
 		IXAudio2SubmixVoice* submixVoice_ = nullptr;
 
 		std::vector<XAUDIO2_SEND_DESCRIPTOR> send_;
@@ -59,6 +63,31 @@ namespace scal
 		Node* interface_ = nullptr;
 	};
 
+	void Node::Node_Impl::Terminate()
+	{
+		for (auto& i : input_)
+		{
+			i->RemoveOutputNode(interface_);
+		}
+		for (auto& o : output_)
+		{
+			this->RemoveOutputNode(o);
+		}
+		for (auto& s : sources_)
+		{
+			this->RemoveInputSound(s, true);
+		}
+
+		send_.clear();
+		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
+		submixVoice_->SetOutputVoices(&snd);
+
+		if (submixVoice_ != nullptr)
+		{
+			submixVoice_->DestroyVoice();
+		}
+	}
+
 	void Node::Node_Impl::SetVolume(float volume)
 	{
 		submixVoice_->SetVolume(volume);
@@ -71,6 +100,11 @@ namespace scal
 		node->impl_->AddInputNode(interface_);
 
 		stage_ = min(stage_, node->impl_->stage_);
+
+		send_.emplace_back(XAUDIO2_SEND_DESCRIPTOR{ 0, node->GetVoiceAddress()});
+
+		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
+		submixVoice_->SetOutputVoices(&snd);
 	}
 
 	void Node::Node_Impl::AddInputNode(Node* node)
@@ -81,9 +115,22 @@ namespace scal
 	void Node::Node_Impl::RemoveOutputNode(Node* node)
 	{
 		auto&& it = std::remove_if(output_.begin(), output_.end(), [&node](Node* n) { return node == n; });
-		(*it)->impl_->RemoveInputNode(interface_);
-		
+		if (it != output_.end())
+		{
+			(*it)->impl_->RemoveInputNode(interface_);
+		}
 		output_.erase(it, output_.end());
+
+		auto&& it2 = std::remove_if(send_.begin(), send_.end(), 
+			[&node](const XAUDIO2_SEND_DESCRIPTOR& n) { return n.pOutputVoice == node->GetVoiceAddress(); });
+		send_.erase(it2, send_.end());
+
+		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
+		if (snd.SendCount == 0)
+		{
+			snd.pSends = nullptr;
+		}
+		submixVoice_->SetOutputVoices(&snd);
 	}
 
 	void Node::Node_Impl::RemoveInputNode(Node* node)
@@ -104,7 +151,7 @@ namespace scal
 	void Node::Node_Impl::RemoveInputSound(Sound* sound, bool system_value_isCallingAnotherFunc)
 	{
 		auto&& it = std::remove_if(sources_.begin(), sources_.end(), [&sound](Sound* s) { return sound == s; });
-		if (system_value_isCallingAnotherFunc)
+		if (system_value_isCallingAnotherFunc && it != sources_.end())
 		{
 			(*it)->RemoveOutputNode(interface_);
 		}
@@ -201,8 +248,10 @@ namespace scal
 		result = submixVoice_->SetEffectChain(nullptr);
 		if (FAILED(result)) { return false; }
 
-		result = submixVoice_->SetEffectChain(&chain);
-
+		if (efkDesc_.size() != 0)
+		{
+			result = submixVoice_->SetEffectChain(&chain);
+		}
 		return SUCCEEDED(result);
 	}
 
@@ -373,6 +422,11 @@ namespace scal
 		return SUCCEEDED(result);
 	}
 
+	IXAudio2SubmixVoice*& Node::Node_Impl::GetVoiceAddress(void)
+	{
+		return submixVoice_;
+	}
+
 
 	scal::Node::Node()
 	{
@@ -380,7 +434,11 @@ namespace scal
 		impl_->interface_ = this;
 	}
 
-	scal::Node::~Node() = default;
+	scal::Node::~Node()
+	{
+		impl_->Terminate();
+		impl_.reset();
+	}
 
 	void Node::SetVolume(float volume)
 	{
@@ -463,5 +521,9 @@ namespace scal
 	void Node::Destroy(void)
 	{
 		impl_->Destroy();
+	}
+	IXAudio2SubmixVoice*& Node::GetVoiceAddress(void)
+	{
+		return impl_->GetVoiceAddress();
 	}
 }

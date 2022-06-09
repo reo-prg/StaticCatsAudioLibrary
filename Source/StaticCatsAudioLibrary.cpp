@@ -51,6 +51,7 @@ namespace scal
 				XAUDIO2_DEFAULT_SAMPLERATE, 0, 0, nullptr);
 			FAIL_RETURN_FALSE(result);
 
+			masterVoice_->GetVoiceDetails(&masterVoiceDetails_);
 
 			return true;
 		}
