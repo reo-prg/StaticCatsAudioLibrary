@@ -1,3 +1,5 @@
 lib
 .vs
 *.vcxproj.user
+x64
+x32
