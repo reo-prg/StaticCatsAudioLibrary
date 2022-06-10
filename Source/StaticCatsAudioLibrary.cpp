@@ -19,7 +19,7 @@ namespace scal
 
 	struct SystemSetting
 	{
-		bool use3DSound_ = true;
+		bool use3DSound_ = false;
 		float soundSpeed_ = defaultSoundSpeed;
 	};
 

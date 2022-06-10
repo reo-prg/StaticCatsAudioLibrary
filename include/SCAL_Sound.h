@@ -10,6 +10,10 @@ namespace scal
 {
 	class Node;
 
+	/// <summary>
+	/// Soundクラス
+	/// 音を再生したりできるクラスです
+	/// </summary>
 	class Sound
 	{
 	public:
