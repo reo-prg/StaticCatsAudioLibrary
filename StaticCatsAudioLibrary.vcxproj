@@ -163,6 +163,8 @@
   <ItemGroup>
     <ClInclude Include="include\SCAL_Defines.h" />
     <ClInclude Include="include\SCAL_Effect.h" />
+    <ClInclude Include="include\SCAL_Listener.h" />
+    <ClInclude Include="include\SCAL_Math.h" />
     <ClInclude Include="include\SCAL_Node.h" />
     <ClInclude Include="include\SCAL_Sound.h" />
     <ClInclude Include="include\StaticCatsAudioLibrary.h" />
@@ -170,7 +172,9 @@
     <ClInclude Include="include\SCAL_Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\SCAL_Listener.cpp" />
     <ClCompile Include="Source\SCAL_Effect.cpp" />
+    <ClCompile Include="Source\SCAL_Math.cpp" />
     <ClCompile Include="Source\SCAL_Node.cpp" />
     <ClCompile Include="Source\SCAL_Sound.cpp" />
     <ClCompile Include="Source\StaticCatsAudioLibrary.cpp" />

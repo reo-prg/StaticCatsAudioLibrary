@@ -14,6 +14,7 @@ namespace scal
 		Sound_Impl(){};
 		Sound_Impl(const std::string& filepath);
 
+		// Sound Functions ----------------------------------------------------------
 		bool Load(const std::string& filepath);
 		bool Play(void);
 		void SetPlaySegment(float begin, float length);
@@ -43,12 +44,15 @@ namespace scal
 
 		int FindEffectIndex(AudioEffectType type);
 
-
 		bool SetFilter(XAUDIO2_FILTER_TYPE type, float frequency, float danping);
 
 		void Terminate(void);
 
 		IXAudio2SourceVoice*& GetVoiceAddress(void);
+		
+		// Emitter Functions ----------------------------------------------------------
+
+
 
 
 		WAVEFORMATEX waveFormat_;
@@ -226,10 +230,10 @@ namespace scal
 
 	float Sound::Sound_Impl::GetProgress(void)
 	{
-		XAUDIO2_VOICE_STATE state;
-		sourceVoice_->GetState(&state, 0);
+		XAUDIO2_VOICE_STATE sys_state;
+		sourceVoice_->GetState(&sys_state, 0);
 
-		return (static_cast<float>(state.SamplesPlayed) / static_cast<float>(waveFormat_.nSamplesPerSec))
+		return (static_cast<float>(sys_state.SamplesPlayed) / static_cast<float>(waveFormat_.nSamplesPerSec))
 			/ (static_cast<float>(buffer_.AudioBytes) / static_cast<float>(waveFormat_.nAvgBytesPerSec));
 	}
 
@@ -613,6 +617,22 @@ namespace scal
 	IXAudio2SourceVoice*& Sound::GetVoiceAddress(void)
 	{
 		return impl_->GetVoiceAddress();
+	}
+
+
+	// Emitter---------------------------------------------------------------------------------
+
+	SoundEmitter::SoundEmitter()
+	{
+	}
+
+	SoundEmitter::SoundEmitter(const std::string& filepath)
+		: Sound(filepath)
+	{
+	}
+
+	SoundEmitter::~SoundEmitter()
+	{
 	}
 
 }

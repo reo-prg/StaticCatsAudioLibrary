@@ -8,9 +8,12 @@ namespace scal
 
 	WAVLoader::~WAVLoader()
 	{
-		for (auto& w : wav_)
+		if (!wav_.empty())
 		{
-			delete[] w.second.data_;
+			for (auto& w : wav_)
+			{
+				delete[] w.second.data_;
+			}
 		}
 	}
 
@@ -145,5 +148,12 @@ namespace scal
 		delete[] wav_.at(filename).data_;
 
 		wav_.erase(filename);
+	}
+	void WAVLoader::Terminate(void)
+	{
+		for (auto& w : wav_)
+		{
+			delete[] w.second.data_;
+		}
 	}
 }

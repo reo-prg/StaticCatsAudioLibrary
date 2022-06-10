@@ -26,6 +26,10 @@ namespace scal
 
 
 	bool Initialize(void);
+	void Terminate(void);
+
+	void SetUse3DSound(bool using3DSound);
+
 
 	bool LoadSoundFile(const std::string& filepath);
 	SoundData GetSoundData(const std::string& filepath);

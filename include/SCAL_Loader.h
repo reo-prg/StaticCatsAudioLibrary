@@ -30,9 +30,12 @@ namespace scal
 	public:
 		WAVLoader();
 		~WAVLoader();
+
 		bool LoadWAVFile(const std::string& filename);
 		WAVData* GetWAVFile(const std::string& filename);
 		void DestroyWAVFile(const std::string& filename);
+
+		void Terminate(void);
 	private:
 		std::unordered_map<std::string, WAVData> wav_;
 

@@ -15,7 +15,7 @@ namespace scal
 	public:
 		Sound();
 		Sound(const std::string& filepath);
-		~Sound();
+		virtual ~Sound();
 		
 		bool Load(const std::string& filepath);
 
@@ -57,10 +57,26 @@ namespace scal
 		IXAudio2SourceVoice*& GetVoiceAddress(void);
 
 		bool IsActivated(void) { return activated_; }
-	private:
+
+	protected:
 		class Sound_Impl;
 		std::unique_ptr<Sound_Impl> impl_;
 
 		bool activated_ = false;
 	};
+
+
+	class SoundEmitter
+		: public Sound
+	{
+	public:
+		SoundEmitter();
+		SoundEmitter(const std::string& filepath);
+		~SoundEmitter();
+
+
+	private:
+		
+	};
+
 }
