@@ -9,6 +9,7 @@
 namespace scal
 {
 	class Node;
+	class SoundEmitter;
 
 	/// <summary>
 	/// SoundƒNƒ‰ƒX
@@ -62,25 +63,30 @@ namespace scal
 
 		bool IsActivated(void) { return activated_; }
 
-	protected:
 		class Sound_Impl;
+	protected:
 		std::unique_ptr<Sound_Impl> impl_;
 
 		bool activated_ = false;
+	public:
+
+		void GetSoundInnerData(SoundEmitter* emitter);
 	};
 
 
 	class SoundEmitter
-		: public Sound
 	{
 	public:
 		SoundEmitter();
-		SoundEmitter(const std::string& filepath);
+		SoundEmitter(Sound* sound);
 		~SoundEmitter();
 
+		void SetSound(Sound* sound);
 
+		void SetSoundInnerData(Sound::Sound_Impl* data);
 	private:
-		
+		class Emitter_Impl;
+		std::unique_ptr<Emitter_Impl> impl_;
 	};
 
 }

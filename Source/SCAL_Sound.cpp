@@ -2,9 +2,13 @@
 #include "../include/StaticCatsAudioLibrary.h"
 #include "../include/SCAL_Effect.h"
 #include "../include/SCAL_Node.h"
+#include "../include/SCAL_Math.h"
 #include <xaudio2.h>
+#include <x3daudio.h>
 #include <algorithm>
 #include <vector>
+
+using namespace DirectX;
 
 namespace scal
 {
@@ -14,7 +18,7 @@ namespace scal
 		Sound_Impl(){};
 		Sound_Impl(const std::string& filepath);
 
-		// Sound Functions ----------------------------------------------------------
+		// Sound ----------------------------------------------------------
 		bool Load(const std::string& filepath);
 		bool Play(void);
 		void SetPlaySegment(float begin, float length);
@@ -49,10 +53,6 @@ namespace scal
 		void Terminate(void);
 
 		IXAudio2SourceVoice*& GetVoiceAddress(void);
-		
-		// Emitter Functions ----------------------------------------------------------
-
-
 
 
 		WAVEFORMATEX waveFormat_;
@@ -619,20 +619,154 @@ namespace scal
 		return impl_->GetVoiceAddress();
 	}
 
+	void Sound::GetSoundInnerData(SoundEmitter* emitter)
+	{
+		emitter->SetSoundInnerData(impl_.get());
+	}
+
 
 	// Emitter---------------------------------------------------------------------------------
 
-	SoundEmitter::SoundEmitter()
+	class SoundEmitter::Emitter_Impl
+	{
+	public:
+		Emitter_Impl() = default;
+		Emitter_Impl(Sound* sound);
+		~Emitter_Impl();
+
+		void SetSound(Sound* sound);
+
+		void SetPosition(const Vector3& pos);
+
+		void SetDefaultDirection(const Vector3& front, const Vector3& up);
+
+		void SetRotate(const Vector3& axis, float rot);
+		void SetRotate(float x, float y, float z);
+		void AddRotate(const Vector3& axis, float rot);
+
+		void SetSoundInnerData(Sound::Sound_Impl* data);
+
+		Sound* sound_ = nullptr;
+		Sound::Sound_Impl* soundData_ = nullptr;
+		SoundEmitter* interface_;
+
+		X3DAUDIO_EMITTER emitter_;
+
+
+		XMFLOAT4 defaultFrontVector_;
+		XMFLOAT4 defaultUpVector_;
+
+		XMVECTOR rotate_;
+
+	private:
+		void Apply(void);
+	private:
+		void Initialize(void);
+	};
+
+	SoundEmitter::Emitter_Impl::Emitter_Impl(Sound* sound)
+		:sound_(sound)
+	{
+		Initialize();
+	}
+
+	SoundEmitter::Emitter_Impl::~Emitter_Impl()
 	{
 	}
 
-	SoundEmitter::SoundEmitter(const std::string& filepath)
-		: Sound(filepath)
+	void SoundEmitter::Emitter_Impl::SetSound(Sound* sound)
 	{
+		sound_ = sound;
+	}
+
+	void SoundEmitter::Emitter_Impl::SetPosition(const Vector3& pos)
+	{
+		emitter_.Position = { pos.x_, pos.y_, pos.z_ };
+	}
+
+	void SoundEmitter::Emitter_Impl::SetDefaultDirection(const Vector3& front, const Vector3& up)
+	{
+		defaultFrontVector_ = { front.x_, front.y_, front.z_, 1.0f };
+		defaultUpVector_ = { up.x_, up.y_, up.z_, 1.0f };
+
+		Apply();
+	}
+
+	void SoundEmitter::Emitter_Impl::SetRotate(const Vector3& axis, float rot)
+	{
+		rotate_ = XMQuaternionRotationAxis({ axis.x_, axis.y_, axis.z_ }, rot);
+
+		Apply();
+	}
+
+	void SoundEmitter::Emitter_Impl::SetRotate(float x, float y, float z)
+	{
+		rotate_ = XMQuaternionRotationRollPitchYaw(y, z, x);
+
+		Apply();
+	}
+
+	void SoundEmitter::Emitter_Impl::AddRotate(const Vector3& axis, float rot)
+	{
+		auto&& q = XMQuaternionRotationAxis({ axis.x_, axis.y_, axis.z_ }, rot);
+
+		rotate_ = XMQuaternionMultiply(rotate_, q);
+
+		Apply();
+	}
+
+	void SoundEmitter::Emitter_Impl::SetSoundInnerData(Sound::Sound_Impl* data)
+	{
+		soundData_ = data;
+	}
+
+	void SoundEmitter::Emitter_Impl::Apply(void)
+	{
+		auto&& m = XMMatrixRotationQuaternion(rotate_);
+
+		auto&& f = XMVector4Transform(XMLoadFloat4(&defaultFrontVector_), m);
+		auto&& u = XMVector4Transform(XMLoadFloat4(&defaultUpVector_), m);
+
+
+		emitter_.OrientFront = { f.m128_f32[0], f.m128_f32[1], f.m128_f32[2] };
+		emitter_.OrientTop = { u.m128_f32[0], u.m128_f32[1], u.m128_f32[2] };
+	}
+
+	void SoundEmitter::Emitter_Impl::Initialize(void)
+	{
+		sound_->GetSoundInnerData(interface_);
+
+		emitter_ = { 0 };
+
+		emitter_.ChannelCount = soundData_->waveFormat_.nChannels;
+		emitter_.CurveDistanceScaler = FLT_MIN;
+	}
+
+
+	SoundEmitter::SoundEmitter()
+	{
+		impl_ = std::make_unique<Emitter_Impl>();
+		impl_->interface_ = this;
+	}
+
+	SoundEmitter::SoundEmitter(Sound* sound)
+	{
+		impl_ = std::make_unique<Emitter_Impl>(sound);
+		impl_->interface_ = this;
 	}
 
 	SoundEmitter::~SoundEmitter()
 	{
 	}
 
+	void SoundEmitter::SetSound(Sound* sound)
+	{
+		impl_->SetSound(sound);
+		Initialize();
+	}
+
+	void SoundEmitter::SetSoundInnerData(Sound::Sound_Impl* data)
+	{
+		impl_->SetSoundInnerData(data);
+	}
 }
