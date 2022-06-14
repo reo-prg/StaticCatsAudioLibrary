@@ -642,7 +642,13 @@ namespace scal
 
 		void SetRotate(const Vector3& axis, float rot);
 		void SetRotate(float x, float y, float z);
+		void SetRotateAsQuaternion(const XMVECTOR& quat);
 		void AddRotate(const Vector3& axis, float rot);
+		void AddRotateAsQuaternion(const XMVECTOR& quat);
+
+		void EnableVelocity(bool enable = true);
+
+		void UpdateVelocity(void);
 
 		void SetSoundInnerData(Sound::Sound_Impl* data);
 
@@ -656,11 +662,16 @@ namespace scal
 		XMFLOAT4 defaultFrontVector_;
 		XMFLOAT4 defaultUpVector_;
 
+		XMFLOAT3 lastpos_;
+
 		XMVECTOR rotate_;
 
+		bool isVelocityEnable_ = false;
 	private:
 		void Apply(void);
-	private:
+
+		bool isPositionUpdated_ = false;
+
 		void Initialize(void);
 	};
 
@@ -677,6 +688,7 @@ namespace scal
 	void SoundEmitter::Emitter_Impl::SetSound(Sound* sound)
 	{
 		sound_ = sound;
+		Initialize();
 	}
 
 	void SoundEmitter::Emitter_Impl::SetPosition(const Vector3& pos)
@@ -706,6 +718,12 @@ namespace scal
 		Apply();
 	}
 
+	void SoundEmitter::Emitter_Impl::SetRotateAsQuaternion(const XMVECTOR& quat)
+	{
+		rotate_ = quat;
+		Apply();
+	}
+
 	void SoundEmitter::Emitter_Impl::AddRotate(const Vector3& axis, float rot)
 	{
 		auto&& q = XMQuaternionRotationAxis({ axis.x_, axis.y_, axis.z_ }, rot);
@@ -713,6 +731,26 @@ namespace scal
 		rotate_ = XMQuaternionMultiply(rotate_, q);
 
 		Apply();
+	}
+
+	void SoundEmitter::Emitter_Impl::AddRotateAsQuaternion(const XMVECTOR& quat)
+	{
+		rotate_ = XMQuaternionMultiply(rotate_, quat);
+		Apply();
+	}
+
+	void SoundEmitter::Emitter_Impl::EnableVelocity(bool enable)
+	{
+		isVelocityEnable_ = enable;
+	}
+
+	void SoundEmitter::Emitter_Impl::UpdateVelocity(void)
+	{
+		if (!isVelocityEnable_) { return; }
+
+		emitter_.Velocity = emitter_.Position - lastpos_;
+
+		lastpos_ = emitter_.Position;
 	}
 
 	void SoundEmitter::Emitter_Impl::SetSoundInnerData(Sound::Sound_Impl* data)
@@ -738,6 +776,7 @@ namespace scal
 
 		emitter_ = { 0 };
 
+		auto&& d = GetMasterDetails();
 		emitter_.ChannelCount = soundData_->waveFormat_.nChannels;
 		emitter_.CurveDistanceScaler = FLT_MIN;
 	}
@@ -763,6 +802,51 @@ namespace scal
 	{
 		impl_->SetSound(sound);
 		Initialize();
+	}
+
+	void SoundEmitter::SetPosition(const Vector3& pos)
+	{
+		impl_->SetPosition(pos);
+	}
+
+	void SoundEmitter::SetDefaultDirection(const Vector3& front, const Vector3& up)
+	{
+		impl_->SetDefaultDirection(front, up);
+	}
+
+	void SoundEmitter::SetRotate(const Vector3& axis, float rot)
+	{
+		impl_->SetRotate(axis, rot);
+	}
+
+	void SoundEmitter::SetRotate(float x, float y, float z)
+	{
+		impl_->SetRotate(x, y, z);
+	}
+
+	void SoundEmitter::SetRotateAsQuaternion(const DirectX::XMVECTOR& quat)
+	{
+		impl_->SetRotateAsQuaternion(quat);
+	}
+
+	void SoundEmitter::AddRotate(const Vector3& axis, float rot)
+	{
+		impl_->AddRotate(axis, rot);
+	}
+
+	void SoundEmitter::AddRotateAsQuaternion(const DirectX::XMVECTOR& quat)
+	{
+		impl_->AddRotateAsQuaternion(quat);
+	}
+
+	void SoundEmitter::EnableVelocity(bool enable)
+	{
+		impl_->EnableVelocity(enable);
+	}
+
+	void SoundEmitter::UpdateVelocity(void)
+	{
+		impl_->UpdateVelocity();
 	}
 
 	void SoundEmitter::SetSoundInnerData(Sound::Sound_Impl* data)

@@ -35,6 +35,8 @@ namespace scal
 	float Length(const Vector3& val);
 	float SquareLength(const Vector3& val);
 
+	float Distance(const Vector3& val1, const Vector3& val2);
+	float SquareDistance(const Vector3& val1, const Vector3& val2);
 
 	class Matrix
 	{
@@ -68,4 +70,15 @@ namespace scal
 	public:
 		float x_, y_, z_, w_;
 	};
+
+
+	DirectX::XMFLOAT3 operator+(const DirectX::XMFLOAT3& val1, const DirectX::XMFLOAT3& val2)
+	{
+		return { val1.x + val2.x, val1.y + val2.y, val1.z + val2.z };
+	}
+
+	DirectX::XMFLOAT3 operator-(const DirectX::XMFLOAT3& val1, const DirectX::XMFLOAT3& val2)
+	{
+		return { val1.x - val2.x, val1.y - val2.y, val1.z - val2.z };
+	}
 }

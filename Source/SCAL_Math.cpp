@@ -55,6 +55,16 @@ namespace scal
 	{
 		return Dot(val, val);
 	}
+
+	float Distance(const Vector3& val1, const Vector3& val2)
+	{
+		return Length(val2 - val1);
+	}
+
+	float SquareDistance(const Vector3& val1, const Vector3& val2)
+	{
+		return SquareLength(val2 - val1);
+	}
 	
 	Matrix::Matrix(float v00, float v01, float v02, float v03,
 		float v10, float v11, float v12, float v13,

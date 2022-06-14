@@ -1,10 +1,12 @@
 #pragma once
 #include "SCAL_Defines.h"
+#include <DirectXMath.h>
 #include <xaudio2.h>
 #include <xaudio2fx.h>
 #include <xapofx.h>
 #include <memory>
 #include <string>
+#include "SCAL_Math.h"
 
 namespace scal
 {
@@ -82,6 +84,21 @@ namespace scal
 		~SoundEmitter();
 
 		void SetSound(Sound* sound);
+
+		void SetPosition(const Vector3& pos);
+
+		void SetDefaultDirection(const Vector3& front, const Vector3& up);
+
+		void SetRotate(const Vector3& axis, float rot);
+		void SetRotate(float x, float y, float z);
+		void SetRotateAsQuaternion(const DirectX::XMVECTOR& quat);
+		void AddRotate(const Vector3& axis, float rot);
+		void AddRotateAsQuaternion(const DirectX::XMVECTOR& quat);
+		void EnableVelocity(bool enable = true);
+
+		void UpdateVelocity(void);
+
+
 
 		void SetSoundInnerData(Sound::Sound_Impl* data);
 	private:
