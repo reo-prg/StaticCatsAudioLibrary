@@ -40,7 +40,7 @@ namespace scal
 
 		void SetReverbParameter(const XAUDIO2FX_REVERB_I3DL2_PARAMETERS& param, int effectIndex = -1);
 		void SetReverbParameter(const XAUDIO2FX_REVERB_PARAMETERS& param, int effectIndex = -1);
-		void SetEchoParameter(float strength, float delay, float reverb, int effectIndex = -1);
+		void SetEchoParameter(float feedbackVolume, float delay, float effectStrength, int effectIndex = -1);
 		void SetEqualizerParameter(const FXEQ_PARAMETERS& param, int effectIndex = -1);
 		void SetMasteringLimiterParameter(UINT32 release, UINT32 loudness, int effectIndex = -1);
 		void SetFXReverbParameter(float diffuse, float roomsize, int effectIndex = -1);
@@ -378,7 +378,7 @@ namespace scal
 		if (FAILED(result)) { OutputDebugStringA("SetEffectParameter is failed\n"); }
 	}
 
-	void Sound::Sound_Impl::SetEchoParameter(float strength, float delay, float reverb, int effectIndex)
+	void Sound::Sound_Impl::SetEchoParameter(float feedbackVolume, float delay, float effectStrength, int effectIndex)
 	{
 		if (effectIndex < 0)
 		{
@@ -388,7 +388,7 @@ namespace scal
 
 		HRESULT result;
 
-		FXECHO_PARAMETERS param = { strength, delay, reverb };
+		FXECHO_PARAMETERS param = { effectStrength, feedbackVolume, delay };
 		result = sourceVoice_->SetEffectParameters(effectIndex, &param, sizeof(param));
 		if (FAILED(result)) { OutputDebugStringA("SetEffectParameter is failed\n"); }
 	}
@@ -570,9 +570,9 @@ namespace scal
 	{
 		impl_->SetReverbParameter(param, effectIndex);
 	}
-	void Sound::SetEchoParameter(float strength, float delay, float reverb, int effectIndex)
+	void Sound::SetEchoParameter(float feedbackVolume, float delay, float effectStrength, int effectIndex)
 	{
-		impl_->SetEchoParameter(strength, delay, reverb, effectIndex);
+		impl_->SetEchoParameter(feedbackVolume, delay, effectStrength, effectIndex);
 	}
 	void Sound::SetEqualizerParameter(const FXEQ_PARAMETERS& param, int effectIndex)
 	{

@@ -201,6 +201,12 @@ namespace scal
 		if (ext == "wav")
 		{
 			auto&& d = wavLoader.GetWAVFile(filepath);
+			if (!d) 
+			{ 
+				wavLoader.LoadWAVFile(filepath); 
+				d = wavLoader.GetWAVFile(filepath);
+			}
+
 			data.dataSize_ = d->dataSize_;
 			data.data_ = d->data_;
 			data.fileSize_ = d->fileSize_;
@@ -209,7 +215,13 @@ namespace scal
 		}
 		else if (ext.empty())
 		{
-			auto&& d = wavLoader.GetWAVFile(filepath + ".wav");
+			auto&& d = wavLoader.GetWAVFile(filepath + "wav");
+			if (!d)
+			{
+				wavLoader.LoadWAVFile(filepath + "wav");
+				d = wavLoader.GetWAVFile(filepath + "wav");
+			}
+
 			data.dataSize_ = d->dataSize_;
 			data.data_ = d->data_;
 			data.fileSize_ = d->fileSize_;
