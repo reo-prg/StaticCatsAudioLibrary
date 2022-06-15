@@ -1,6 +1,6 @@
 #pragma once
-#include "SCAL_Defines.h"
 #include <Windows.h>
+#include "SCAL_Defines.h"
 #include <xaudio2fx.h>
 
 #pragma comment(lib,"xapobase.lib")

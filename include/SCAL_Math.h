@@ -1,4 +1,5 @@
 #pragma once
+#include <DirectXMath.h>
 
 namespace scal
 {
@@ -60,7 +61,7 @@ namespace scal
 	Matrix RotationMatrixAxisZ(float z);
 
 
-	Matrix TranslationMatrix(float x, float y);
+	Matrix TranslationMatrix(float x, float y, float z);
 
 	Matrix IdentityMatrix(void);
 
