@@ -12,6 +12,8 @@ using namespace DirectX;
 
 namespace scal
 {
+	using namespace xm_operator;
+
 	class Sound::Sound_Impl
 	{
 	public:

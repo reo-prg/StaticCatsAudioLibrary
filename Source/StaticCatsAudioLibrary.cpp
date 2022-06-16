@@ -215,11 +215,11 @@ namespace scal
 		}
 		else if (ext.empty())
 		{
-			auto&& d = wavLoader.GetWAVFile(filepath + "wav");
+			auto&& d = wavLoader.GetWAVFile(filepath + ".wav");
 			if (!d)
 			{
-				wavLoader.LoadWAVFile(filepath + "wav");
-				d = wavLoader.GetWAVFile(filepath + "wav");
+				wavLoader.LoadWAVFile(filepath + ".wav");
+				d = wavLoader.GetWAVFile(filepath + ".wav");
 			}
 
 			data.dataSize_ = d->dataSize_;

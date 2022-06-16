@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_map>
+#include <Windows.h>
 #include <xaudio2.h>
 #include <string>
 

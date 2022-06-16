@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <Windows.h>
 #include <DirectXMath.h>
 #include "../include/SCAL_Math.h"
 

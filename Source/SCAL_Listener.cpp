@@ -5,6 +5,8 @@ using namespace DirectX;
 
 namespace scal
 {
+	using namespace xm_operator;
+
 	class Listener::Listener_Impl
 	{
 	public:

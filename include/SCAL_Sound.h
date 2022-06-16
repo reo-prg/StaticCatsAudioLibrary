@@ -1,5 +1,6 @@
 #pragma once
 #include "SCAL_Defines.h"
+#include <Windows.h>
 #include <DirectXMath.h>
 #include <xaudio2.h>
 #include <xaudio2fx.h>

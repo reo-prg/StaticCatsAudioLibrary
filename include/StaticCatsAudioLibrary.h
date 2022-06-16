@@ -1,4 +1,5 @@
 #pragma once
+#include <Windows.h>
 #include <xaudio2.h>
 #include <string>
 #include "SCAL_Loader.h"

@@ -72,14 +72,16 @@ namespace scal
 		float x_, y_, z_, w_;
 	};
 
-
-	DirectX::XMFLOAT3 operator+(const DirectX::XMFLOAT3& val1, const DirectX::XMFLOAT3& val2)
+	namespace xm_operator
 	{
-		return { val1.x + val2.x, val1.y + val2.y, val1.z + val2.z };
-	}
+		inline DirectX::XMFLOAT3 operator+(const DirectX::XMFLOAT3& val1, const DirectX::XMFLOAT3& val2)
+		{
+			return { val1.x + val2.x, val1.y + val2.y, val1.z + val2.z };
+		}
 
-	DirectX::XMFLOAT3 operator-(const DirectX::XMFLOAT3& val1, const DirectX::XMFLOAT3& val2)
-	{
-		return { val1.x - val2.x, val1.y - val2.y, val1.z - val2.z };
+		inline DirectX::XMFLOAT3 operator-(const DirectX::XMFLOAT3& val1, const DirectX::XMFLOAT3& val2)
+		{
+			return { val1.x - val2.x, val1.y - val2.y, val1.z - val2.z };
+		}
 	}
 }
