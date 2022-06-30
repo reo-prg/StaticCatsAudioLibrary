@@ -27,6 +27,17 @@ namespace scal
 		unsigned char* data_;
 	};
 
+
+	enum class EulerOrder
+	{
+		XYZ,
+		XZY,
+		YXZ,
+		YZX,
+		ZXY,
+		ZYX
+	};
+
 	class AudioManager;
 	class WAVLoader;
 
@@ -101,4 +112,8 @@ namespace scal
 	/// </summary>
 	/// <returns>マスタリングボイスの情報</returns>
 	XAUDIO2_VOICE_DETAILS GetMasterDetails(void);
+
+	void SetEulerOrder(EulerOrder order);
+
+	EulerOrder GetEulerOrder(void);
 }

@@ -21,6 +21,8 @@ namespace scal
 	{
 		bool use3DSound_ = false;
 		float soundSpeed_ = defaultSoundSpeed;
+
+		EulerOrder order_ = EulerOrder::XYZ;
 	};
 
 	struct SystemState
@@ -267,5 +269,14 @@ namespace scal
 	XAUDIO2_VOICE_DETAILS GetMasterDetails(void)
 	{
 		return manager.masterVoiceDetails_;
+	}
+	void SetEulerOrder(EulerOrder order)
+	{
+		sys_setting.order_ = order;
+	}
+
+	EulerOrder GetEulerOrder(void)
+	{
+		return sys_setting.order_;
 	}
 }

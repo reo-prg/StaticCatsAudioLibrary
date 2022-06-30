@@ -1,47 +1,48 @@
 #include "../include/SCAL_Math.h"
 #include <cmath>
+#include "../include/StaticCatsAudioLibrary.h"
 
 namespace scal
 {
 	Vector3 operator+(const Vector3& val1, const Vector3& val2)
 	{
-		return { val1.x_ + val2.x_, val1.y_ + val2.y_, val1.z_ + val2.z_ };
+		return { val1.x + val2.x, val1.y + val2.y, val1.z + val2.z };
 	}
 
 	Vector3 operator-(const Vector3& val1, const Vector3& val2)
 	{
-		return { val1.x_ - val2.x_, val1.y_ - val2.y_, val1.z_ - val2.z_ };
+		return { val1.x - val2.x, val1.y - val2.y, val1.z - val2.z };
 	}
 
 	Vector3 operator*(const Vector3& val1, const Vector3& val2)
 	{
-		return { val1.x_ * val2.x_, val1.y_ * val2.y_, val1.z_ * val2.z_ };
+		return { val1.x * val2.x, val1.y * val2.y, val1.z * val2.z };
 	}
 
 	Vector3 operator*(const Vector3& val1, float val2)
 	{
-		return { val1.x_ * val2, val1.y_ * val2, val1.z_ * val2 };
+		return { val1.x * val2, val1.y * val2, val1.z * val2 };
 	}
 
 	Vector3 operator/(const Vector3& val1, const Vector3& val2)
 	{
-		return { val1.x_ / val2.x_, val1.y_ / val2.y_, val1.z_ / val2.z_ };
+		return { val1.x / val2.x, val1.y / val2.y, val1.z / val2.z };
 	}
 
 	Vector3 operator/(const Vector3& val1, float val2)
 	{
-		return { val1.x_ / val2, val1.y_ / val2, val1.z_ / val2 };
+		return { val1.x / val2, val1.y / val2, val1.z / val2 };
 	}
 
 	float Dot(const Vector3& val1, const Vector3& val2)
 	{
-		return val1.x_ * val2.x_ + val1.y_ * val2.y_ + val1.z_ * val2.z_;
+		return val1.x * val2.x + val1.y * val2.y + val1.z * val2.z;
 	}
 	Vector3 Cross(const Vector3& val1, const Vector3& val2)
 	{
-		return { val1.y_ * val2.z_ - val1.z_ * val2.y_,
-			val1.z_* val2.x_ - val1.x_ * val2.z_, 
-			val1.x_* val2.y_ - val1.y_ * val2.x_, };
+		return { val1.y * val2.z - val1.z * val2.y,
+			val1.z* val2.x - val1.x * val2.z, 
+			val1.x* val2.y - val1.y * val2.x, };
 	}
 	Vector3 Normalize(const Vector3& val)
 	{
@@ -64,6 +65,11 @@ namespace scal
 	float SquareDistance(const Vector3& val1, const Vector3& val2)
 	{
 		return SquareLength(val2 - val1);
+	}
+
+	DirectX::XMFLOAT3 GetFloat3(const Vector3& val)
+	{
+		return { val.x, val.y, val.z };
 	}
 	
 	Matrix::Matrix(float v00, float v01, float v02, float v03,
@@ -114,6 +120,11 @@ namespace scal
 		return RotationMatrixAxisZ(z) * (RotationMatrixAxisY(y) * RotationMatrixAxisX(x));
 	}
 
+	Matrix RotationMatrix(const Vector3& vec)
+	{
+		return RotationMatrix(vec.x, vec.y, vec.z);
+	}
+
 	Matrix RotationMatrixAxisX(float x)
 	{
 		Matrix m = IdentityMatrix();
@@ -157,11 +168,179 @@ namespace scal
 			0.0f, 0.0f, 1.0f, z,
 			0.0f, 0.0f, 0.0f, 1.0f);
 	}
+	Matrix TranslationMatrix(const Vector3& vec)
+	{
+		return TranslationMatrix(vec.x, vec.y, vec.z);
+	}
 	Matrix IdentityMatrix(void)
 	{
 		return Matrix(1.0f, 0.0f, 0.0f, 0.0f,
 			0.0f, 1.0f, 0.0f, 0.0f,
 			0.0f, 0.0f, 1.0f, 0.0f,
 			0.0f, 0.0f, 0.0f, 1.0f);
+	}
+
+	Quaternion Quaternion::Inverse(void)
+	{
+		return Quaternion(-x, -y, -z, w);
+	}
+
+	Quaternion Quaternion::RotateAxis(const Vector3 axis, float rotateAngle)
+	{
+		return Quaternion(axis.x * sinf(rotateAngle / 2.0f), axis.y * sinf(rotateAngle / 2.0f),
+			axis.z * sinf(rotateAngle / 2.0f), cosf(rotateAngle / 2.0f));
+	}
+
+	Quaternion Quaternion::EulerAngle(float angx, float angy, float angz)
+	{
+		Quaternion quat;
+		quat.SetRotationEulerAngle(angx, angy, angz);
+		return quat;
+	}
+
+	Vector3 Quaternion::RotateVector(const Vector3& vec)
+	{
+		Quaternion v = Quaternion(vec.x, vec.y, vec.z, 0.0f);
+		Quaternion i = Inverse();
+		Quaternion res = *this * v * i;
+		return Vector3(res.x, res.y, res.z);
+	}
+
+	Matrix Quaternion::GetRotationMatrix(void)
+	{
+		Matrix ret = IdentityMatrix();
+
+		ret.matrix_[0][0] = 1.0f - 2.0f * y * y - 2.0f * z * z;
+		ret.matrix_[0][1] = 2.0f * x * y + 2.0f * z * w;
+		ret.matrix_[0][2] = 2.0f * x * z - 2.0f * y * w;
+		ret.matrix_[1][0] = 2.0f * x * y - 2.0f * z * w;
+		ret.matrix_[1][1] = 1.0f - 2.0f * x * x - 2.0f * z * z;
+		ret.matrix_[1][2] = 2.0f * y * z + 2.0f * x * w;
+		ret.matrix_[2][0] = 2.0f * x * z + 2.0f * y * w;
+		ret.matrix_[2][1] = 2.0f * y * z - 2.0f * x * w;
+		ret.matrix_[2][2] = 1.0f - 2.0f * x * x - 2.0f * y * y;
+
+		return ret;
+	}
+
+	void Quaternion::SetRotationMatrix(const Matrix& mat)
+	{
+		float calc[4];
+		calc[0] = mat.matrix_[0][0] - mat.matrix_[1][1] - mat.matrix_[2][2] + 1.0f;
+		calc[1] = -mat.matrix_[0][0] + mat.matrix_[1][1] - mat.matrix_[2][2] + 1.0f;
+		calc[2] = -mat.matrix_[0][0] - mat.matrix_[1][1] + mat.matrix_[2][2] + 1.0f;
+		calc[3] = mat.matrix_[0][0] + mat.matrix_[1][1] + mat.matrix_[2][2] + 1.0f;
+
+		int bigIdx = 0;
+		for (int i = 1; i < 4; i++)
+		{
+			if (calc[i] > calc[bigIdx])
+			{
+				bigIdx = i;
+			}
+		}
+
+		if (calc[bigIdx] < 0.0f) { return; }
+
+		float val = sqrtf(calc[bigIdx]) * 0.5f;
+		float m = 0.25f / val;
+		calc[bigIdx] = m;
+
+		switch (bigIdx)
+		{
+		case 0:
+			calc[1] = (mat.matrix_[0][1] + mat.matrix_[1][0]) * m;
+			calc[2] = (mat.matrix_[0][2] + mat.matrix_[2][0]) * m;
+			calc[3] = (mat.matrix_[1][2] - mat.matrix_[2][1]) * m;
+			break;
+		case 1:
+			calc[0] = (mat.matrix_[0][1] + mat.matrix_[1][0]) * m;
+			calc[2] = (mat.matrix_[1][2] + mat.matrix_[2][1]) * m;
+			calc[3] = (mat.matrix_[2][0] - mat.matrix_[0][2]) * m;
+			break;
+		case 2:
+			calc[0] = (mat.matrix_[0][2] + mat.matrix_[2][0]) * m;
+			calc[1] = (mat.matrix_[1][2] + mat.matrix_[2][1]) * m;
+			calc[3] = (mat.matrix_[0][1] - mat.matrix_[1][0]) * m;
+			break;
+		case 3:
+			calc[0] = (mat.matrix_[1][2] - mat.matrix_[2][1]) * m;
+			calc[1] = (mat.matrix_[2][0] - mat.matrix_[0][2]) * m;
+			calc[2] = (mat.matrix_[0][1] - mat.matrix_[1][0]) * m;
+			break;
+		}
+
+		x = calc[0];
+		y = calc[1];
+		z = calc[2];
+		w = calc[3];
+	}
+
+	void Quaternion::SetRotationEulerAngle(const Vector3& angle)
+	{
+		SetRotationEulerAngle(angle.x, angle.y, angle.z);
+	}
+
+	void Quaternion::SetRotationEulerAngle(float angx, float angy, float angz)
+	{
+		EulerOrder order = GetEulerOrder();
+
+		float sx, sy, sz, cx, cy, cz;
+
+		sx = sinf(angx * 0.5f);
+		sy = sinf(angy * 0.5f);
+		sz = sinf(angz * 0.5f);
+		cx = cosf(angx * 0.5f);
+		cy = cosf(angy * 0.5f);
+		cz = cosf(angz * 0.5f);
+
+
+		switch (order)
+		{
+		case EulerOrder::XYZ:
+			x = cx * sy * sz + sx * cy * cz;
+			y = -sx * cy * sz + cx * sy * cz;
+			z = cx * cy * sz + sx * sy * cz;
+			w = -sx * sy * sz + cx * cy * cz;
+			break;
+		case EulerOrder::XZY:
+			x = -cx * sy * sz + sx * cy * cz;
+			y = cx * sy * cz - sx * cy * sz;
+			z = sx * sy * cz + cx * cy * sz;
+			w = sx * sy * sz + cx * cy * cz;
+			break;
+		case EulerOrder::YXZ:
+			x = cx * sy * sz + sx * cy * cz;
+			y = -sx * cy * sz + cx * sy * cz;
+			z = cx * cy * sz + sx * sy * cz;
+			w = sx * sy * sz + cx * cy * cz;
+			break;
+		case EulerOrder::YZX:
+			x = sx * cy * cz + cx * sy * sz;
+			y = sx * cy * sz + cx * sy * cz;
+			z = -sx * sy * cz + cx * cy * sz;
+			w = -sx * sy * sz + cx * cy * cz;
+			break;
+		case EulerOrder::ZXY:
+			x = -cx * sy * sz + sx * cy * cz;
+			y = cx * sy * cz + sx * cy * sz;
+			z = sx * sy * cz + cx * cy * sz;
+			w = -sx * sy * sz + cx * cy * cz;
+			break;
+		case EulerOrder::ZYX:
+			x = sx * cy * cz - cx * sy * sz;
+			y = sx * cy * sz + cx * sy * cz;
+			z = -sx * sy * cz + cx * cy * sz;
+			w = sx * sy * sz + cx * cy * cz;
+			break;
+		}
+	}
+
+	void Quaternion::SetRotationAxis(const Vector3 axis, float rotateAngle)
+	{
+		x = axis.x * sinf(rotateAngle / 2.0f);
+		y = axis.y * sinf(rotateAngle / 2.0f);
+		z = axis.z * sinf(rotateAngle / 2.0f);
+		w = cosf(rotateAngle / 2.0f);
 	}
 }

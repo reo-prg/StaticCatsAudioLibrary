@@ -644,9 +644,11 @@ namespace scal
 
 		void SetRotate(const Vector3& axis, float rot);
 		void SetRotate(float x, float y, float z);
-		void SetRotateAsQuaternion(const XMVECTOR& quat);
+		void SetRotateAsQuaternion(const Quaternion& quat);
 		void AddRotate(const Vector3& axis, float rot);
-		void AddRotateAsQuaternion(const XMVECTOR& quat);
+		void AddRotateAsQuaternion(const Quaternion& quat);
+
+		Quaternion& GetRotateQuaternionRef(void);
 
 		void EnableVelocity(bool enable = true);
 
@@ -659,14 +661,14 @@ namespace scal
 		SoundEmitter* interface_;
 
 		X3DAUDIO_EMITTER emitter_;
+		X3DAUDIO_DSP_SETTINGS dsp_;
 
+		Vector3 defaultFrontVector_;
+		Vector3 defaultUpVector_;
 
-		XMFLOAT4 defaultFrontVector_;
-		XMFLOAT4 defaultUpVector_;
+		Vector3 lastpos_;
 
-		XMFLOAT3 lastpos_;
-
-		XMVECTOR rotate_;
+		Quaternion rotate_;
 
 		bool isVelocityEnable_ = false;
 	private:
@@ -695,32 +697,32 @@ namespace scal
 
 	void SoundEmitter::Emitter_Impl::SetPosition(const Vector3& pos)
 	{
-		emitter_.Position = { pos.x_, pos.y_, pos.z_ };
+		emitter_.Position = { pos.x, pos.y, pos.z };
 	}
 
 	void SoundEmitter::Emitter_Impl::SetDefaultDirection(const Vector3& front, const Vector3& up)
 	{
-		defaultFrontVector_ = { front.x_, front.y_, front.z_, 1.0f };
-		defaultUpVector_ = { up.x_, up.y_, up.z_, 1.0f };
+		defaultFrontVector_ = front;
+		defaultUpVector_ = up;
 
 		Apply();
 	}
 
 	void SoundEmitter::Emitter_Impl::SetRotate(const Vector3& axis, float rot)
 	{
-		rotate_ = XMQuaternionRotationAxis({ axis.x_, axis.y_, axis.z_ }, rot);
+		rotate_.SetRotationAxis(axis, rot);
 
 		Apply();
 	}
 
 	void SoundEmitter::Emitter_Impl::SetRotate(float x, float y, float z)
 	{
-		rotate_ = XMQuaternionRotationRollPitchYaw(y, z, x);
+		rotate_.SetRotationEulerAngle(x, y, z);
 
 		Apply();
 	}
 
-	void SoundEmitter::Emitter_Impl::SetRotateAsQuaternion(const XMVECTOR& quat)
+	void SoundEmitter::Emitter_Impl::SetRotateAsQuaternion(const Quaternion& quat)
 	{
 		rotate_ = quat;
 		Apply();
@@ -728,17 +730,22 @@ namespace scal
 
 	void SoundEmitter::Emitter_Impl::AddRotate(const Vector3& axis, float rot)
 	{
-		auto&& q = XMQuaternionRotationAxis({ axis.x_, axis.y_, axis.z_ }, rot);
+		auto&& q = Quaternion::RotateAxis(axis, rot);
 
-		rotate_ = XMQuaternionMultiply(rotate_, q);
+		rotate_ = rotate_ * q;
 
 		Apply();
 	}
 
-	void SoundEmitter::Emitter_Impl::AddRotateAsQuaternion(const XMVECTOR& quat)
+	void SoundEmitter::Emitter_Impl::AddRotateAsQuaternion(const Quaternion& quat)
 	{
-		rotate_ = XMQuaternionMultiply(rotate_, quat);
+		rotate_ = rotate_ * quat;
 		Apply();
+	}
+
+	Quaternion& SoundEmitter::Emitter_Impl::GetRotateQuaternionRef(void)
+	{
+		return rotate_;
 	}
 
 	void SoundEmitter::Emitter_Impl::EnableVelocity(bool enable)
@@ -750,7 +757,7 @@ namespace scal
 	{
 		if (!isVelocityEnable_) { return; }
 
-		emitter_.Velocity = emitter_.Position - lastpos_;
+		emitter_.Velocity = GetFloat3(emitter_.Position - lastpos_);
 
 		lastpos_ = emitter_.Position;
 	}
@@ -762,14 +769,14 @@ namespace scal
 
 	void SoundEmitter::Emitter_Impl::Apply(void)
 	{
-		auto&& m = XMMatrixRotationQuaternion(rotate_);
+		auto&& m = rotate_.GetRotationMatrix();
 
-		auto&& f = XMVector4Transform(XMLoadFloat4(&defaultFrontVector_), m);
-		auto&& u = XMVector4Transform(XMLoadFloat4(&defaultUpVector_), m);
+		auto&& f = TranslationMatrix(defaultFrontVector_);
+		auto&& u = TranslationMatrix(defaultUpVector_);
 
 
-		emitter_.OrientFront = { f.m128_f32[0], f.m128_f32[1], f.m128_f32[2] };
-		emitter_.OrientTop = { u.m128_f32[0], u.m128_f32[1], u.m128_f32[2] };
+		emitter_.OrientFront = { f.matrix_[0][3], f.matrix_[1][3], f.matrix_[2][3] };
+		emitter_.OrientTop = { u.matrix_[0][3], u.matrix_[1][3], u.matrix_[2][3] };
 	}
 
 	void SoundEmitter::Emitter_Impl::Initialize(void)
@@ -826,7 +833,7 @@ namespace scal
 		impl_->SetRotate(x, y, z);
 	}
 
-	void SoundEmitter::SetRotateAsQuaternion(const DirectX::XMVECTOR& quat)
+	void SoundEmitter::SetRotateAsQuaternion(const Quaternion& quat)
 	{
 		impl_->SetRotateAsQuaternion(quat);
 	}
@@ -836,9 +843,14 @@ namespace scal
 		impl_->AddRotate(axis, rot);
 	}
 
-	void SoundEmitter::AddRotateAsQuaternion(const DirectX::XMVECTOR& quat)
+	void SoundEmitter::AddRotateAsQuaternion(const Quaternion& quat)
 	{
 		impl_->AddRotateAsQuaternion(quat);
+	}
+
+	Quaternion& SoundEmitter::GetRotateQuaternionRef(void)
+	{
+		return impl_->GetRotateQuaternionRef();
 	}
 
 	void SoundEmitter::EnableVelocity(bool enable)

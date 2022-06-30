@@ -18,9 +18,11 @@ namespace scal
 
 		void SetRotate(const Vector3& axis, float rot);
 		void SetRotate(float x, float y, float z);
-		void SetRotateAsQuaternion(const DirectX::XMVECTOR& quat);
+		void SetRotateAsQuaternion(const Quaternion& quat);
 		void AddRotate(const Vector3& axis, float rot);
-		void AddRotateAsQuaternion(const DirectX::XMVECTOR& quat);
+		void AddRotateAsQuaternion(const Quaternion& quat);
+
+		Quaternion& GetRotateQuaternionRef(void);
 
 		void EnableVelocity(bool enable = true);
 
