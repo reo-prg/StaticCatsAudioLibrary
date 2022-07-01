@@ -640,6 +640,13 @@ namespace scal
 
 		void SetPosition(const Vector3& pos);
 
+		void EnableSoundCone(bool flag);
+		void SetSoundCone(const X3DAUDIO_CONE& cone);
+
+		void Enable3DDoppler(bool flag);
+
+		void Enable3DReverb(bool flag);
+
 		void SetDefaultDirection(const Vector3& front, const Vector3& up);
 
 		void SetRotate(const Vector3& axis, float rot);
@@ -656,12 +663,16 @@ namespace scal
 
 		void SetSoundInnerData(Sound::Sound_Impl* data);
 
+		void Calculate(const X3DAUDIO_HANDLE& handle, X3DAUDIO_LISTENER* listener);
+
 		Sound* sound_ = nullptr;
 		Sound::Sound_Impl* soundData_ = nullptr;
 		SoundEmitter* interface_;
 
 		X3DAUDIO_EMITTER emitter_;
+		X3DAUDIO_CONE* cone_;
 		X3DAUDIO_DSP_SETTINGS dsp_;
+		UINT32 flag_;
 
 		Vector3 defaultFrontVector_;
 		Vector3 defaultUpVector_;
@@ -687,6 +698,22 @@ namespace scal
 
 	SoundEmitter::Emitter_Impl::~Emitter_Impl()
 	{
+		if (dsp_.pMatrixCoefficients)
+		{
+			delete[] dsp_.pMatrixCoefficients;
+		}
+		if (dsp_.pDelayTimes)
+		{
+			delete[] dsp_.pDelayTimes;
+		}
+		if (cone_)
+		{
+			delete cone_;
+		}
+		if (sound_)
+		{
+			delete sound_;
+		}
 	}
 
 	void SoundEmitter::Emitter_Impl::SetSound(Sound* sound)
@@ -698,6 +725,53 @@ namespace scal
 	void SoundEmitter::Emitter_Impl::SetPosition(const Vector3& pos)
 	{
 		emitter_.Position = { pos.x, pos.y, pos.z };
+	}
+
+	void SoundEmitter::Emitter_Impl::EnableSoundCone(bool flag)
+	{
+		if (flag)
+		{
+			emitter_.pCone = cone_;
+			flag_ = flag_ | X3DAUDIO_CALCULATE_EMITTER_ANGLE;
+		}
+		else
+		{
+			emitter_.pCone = nullptr;
+			flag_ = flag_ - X3DAUDIO_CALCULATE_EMITTER_ANGLE;
+		}
+	}
+
+	void SoundEmitter::Emitter_Impl::SetSoundCone(const X3DAUDIO_CONE& cone)
+	{
+		*cone_ = cone;
+	}
+
+	void SoundEmitter::Emitter_Impl::Enable3DDoppler(bool flag)
+	{
+		if (flag)
+		{
+			emitter_.pCone = cone_;
+			flag_ = flag_ | X3DAUDIO_CALCULATE_DOPPLER;
+		}
+		else
+		{
+			emitter_.pCone = nullptr;
+			flag_ = flag_ - (X3DAUDIO_CALCULATE_DOPPLER;
+		}
+	}
+
+	void SoundEmitter::Emitter_Impl::Enable3DReverb(bool flag)
+	{
+		if (flag)
+		{
+			emitter_.pCone = cone_;
+			flag_ = flag_ | X3DAUDIO_CALCULATE_REVERB;
+		}
+		else
+		{
+			emitter_.pCone = nullptr;
+			flag_ = flag_ - (X3DAUDIO_CALCULATE_REVERB;
+		}
 	}
 
 	void SoundEmitter::Emitter_Impl::SetDefaultDirection(const Vector3& front, const Vector3& up)
@@ -767,6 +841,33 @@ namespace scal
 		soundData_ = data;
 	}
 
+	void SoundEmitter::Emitter_Impl::Calculate(const X3DAUDIO_HANDLE& handle, X3DAUDIO_LISTENER* listener)
+	{
+		auto&& detail = GetMasterDetails();
+
+		X3DAudioCalculate(handle, listener, &emitter_, flag_, &dsp_);
+
+		if (soundData_->send_.empty())
+		{
+			auto&& mv = GetMasterVoice();
+
+			soundData_->sourceVoice_->SetOutputMatrix(mv, dsp_.SrcChannelCount,
+				dsp_.DstChannelCount, dsp_.pMatrixCoefficients);
+		}
+		else
+		{
+			for (auto& s : soundData_->send_)
+			{
+				soundData_->sourceVoice_->SetOutputMatrix(s.pOutputVoice, dsp_.SrcChannelCount,
+					dsp_.DstChannelCount, dsp_.pMatrixCoefficients);
+			}
+		}
+		soundData_->sourceVoice_->SetFrequencyRatio(dsp_.DopplerFactor);
+
+		sound_->SetFilter(XAUDIO2_FILTER_TYPE::LowPassFilter,
+			2.0f * (X3DAUDIO_PI / 6.0f * dsp_.LPFDirectCoefficient), 1.0f);
+	}
+
 	void SoundEmitter::Emitter_Impl::Apply(void)
 	{
 		auto&& m = rotate_.GetRotationMatrix();
@@ -786,8 +887,20 @@ namespace scal
 		emitter_ = { 0 };
 
 		auto&& d = GetMasterDetails();
-		emitter_.ChannelCount = soundData_->waveFormat_.nChannels;
+		emitter_.ChannelCount = 1;
 		emitter_.CurveDistanceScaler = FLT_MIN;
+		cone_ = new X3DAUDIO_CONE();
+
+		auto&& detail = GetMasterDetails();
+
+		dsp_ = {};
+		dsp_.SrcChannelCount = 1;
+		dsp_.DstChannelCount = detail.InputChannels;
+		dsp_.pMatrixCoefficients = new FLOAT32[dsp_.SrcChannelCount * dsp_.DstChannelCount];
+		dsp_.pDelayTimes = new FLOAT32[dsp_.DstChannelCount];
+
+		flag_ = X3DAUDIO_CALCULATE_MATRIX | X3DAUDIO_CALCULATE_REVERB | X3DAUDIO_CALCULATE_LPF_DIRECT | 
+			X3DAUDIO_CALCULATE_DOPPLER;
 	}
 
 
@@ -816,6 +929,26 @@ namespace scal
 	void SoundEmitter::SetPosition(const Vector3& pos)
 	{
 		impl_->SetPosition(pos);
+	}
+
+	void SoundEmitter::EnableSoundCone(bool flag)
+	{
+		impl_->EnableSoundCone(flag);
+	}
+
+	void SoundEmitter::SetSoundCone(const X3DAUDIO_CONE& cone)
+	{
+		impl_->SetSoundCone(cone);
+	}
+
+	void SoundEmitter::Enable3DDoppler(bool flag)
+	{
+		impl_->Enable3DDoppler(flag);
+	}
+
+	void SoundEmitter::Enable3DReverb(bool flag)
+	{
+		impl_->Enable3DReverb(flag);
 	}
 
 	void SoundEmitter::SetDefaultDirection(const Vector3& front, const Vector3& up)
@@ -866,5 +999,10 @@ namespace scal
 	void SoundEmitter::SetSoundInnerData(Sound::Sound_Impl* data)
 	{
 		impl_->SetSoundInnerData(data);
+	}
+
+	void SoundEmitter::Calculate(const X3DAUDIO_HANDLE& handle, X3DAUDIO_LISTENER* listener)
+	{
+		impl_->Calculate(handle, listener);
 	}
 }

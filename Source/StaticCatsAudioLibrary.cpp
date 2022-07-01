@@ -2,9 +2,12 @@
 //
 
 #include "../include/StaticCatsAudioLibrary.h"
+#include "../include/SCAL_Listener.h"
 #include "../include/SCAL_Loader.h"
+#include "../include/SCAL_Sound.h"
 #include "../include/SCAL_Utility.h"
 #include <memory>
+#include <vector>
 #include <x3daudio.h>
 
 
@@ -23,12 +26,17 @@ namespace scal
 		float soundSpeed_ = defaultSoundSpeed;
 
 		EulerOrder order_ = EulerOrder::XYZ;
+
+		float update3dInterval_ = 0.05f;
 	};
 
 	struct SystemState
 	{
 		bool isAvailable_ = false;
 	};
+
+	SystemSetting sys_setting;
+	SystemState sys_state;
 
 	class AudioManager final
 	{
@@ -125,18 +133,51 @@ namespace scal
 
 			isAvailable_ = false;
 		}
+
+		void Register(Listener* listener)
+		{
+			listener_.push_back(listener);
+		}
+		void Register(SoundEmitter* emitter)
+		{
+			emitter_.push_back(emitter);
+		}
+
+		void Update(float delta)
+		{
+			updateTimer_ += delta;
+
+			if (updateTimer_ < sys_setting.update3dInterval_)
+			{
+				return;
+			}
+
+			updateTimer_ -= sys_setting.update3dInterval_;
+
+			for (auto& l : listener_)
+			{
+				auto&& rl = l->GetRawListener();
+
+				for (auto& e : emitter_)
+				{
+					e->Calculate(x3dHandle_, &rl);
+				}
+			}
+		}
 	private:
 		X3DAUDIO_HANDLE x3dHandle_;
 		bool isAvailable_ = false;
+
+		std::vector<Listener*> listener_;
+		std::vector<SoundEmitter*> emitter_;
+
+		float updateTimer_ = 0.0f;
 	};
 
 	Audio3DCalculator x3dManager;
 
 
 	WAVLoader wavLoader;
-
-	SystemSetting sys_setting;
-	SystemState sys_state;
 
 
 	bool Initialize(void)
@@ -256,6 +297,26 @@ namespace scal
 		}
 	}
 
+	void RegisterEmitter(SoundEmitter* emitter)
+	{
+		x3dManager.Register(emitter);
+	}
+
+	void RegisterListener(Listener* listener)
+	{
+		x3dManager.Register(listener);
+	}
+
+	void Update3DAudio(float delta)
+	{
+		x3dManager.Update(delta);
+	}
+
+	void SetUpdateInterval(float interval)
+	{
+		sys_setting.update3dInterval_ = interval;
+	}
+
 
 	WAVLoader& GetWavLoader(void)
 	{
@@ -269,6 +330,10 @@ namespace scal
 	XAUDIO2_VOICE_DETAILS GetMasterDetails(void)
 	{
 		return manager.masterVoiceDetails_;
+	}
+	IXAudio2MasteringVoice*& GetMasterVoice(void)
+	{
+		return manager.masterVoice_;
 	}
 	void SetEulerOrder(EulerOrder order)
 	{

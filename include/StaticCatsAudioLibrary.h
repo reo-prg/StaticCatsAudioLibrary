@@ -40,7 +40,8 @@ namespace scal
 
 	class AudioManager;
 	class WAVLoader;
-
+	class SoundEmitter;
+	class Listener;
 
 	/// <summary>
 	/// ライブラリのシステムを初期化する
@@ -89,6 +90,13 @@ namespace scal
 	/// <param name="filepath">サウンドデータのファイルパス</param>
 	void DestroySoundFile(const std::string& filepath);
 
+	void RegisterEmitter(SoundEmitter* emitter);
+
+	void RegisterListener(Listener* listener);
+
+	void Update3DAudio(float delta);
+
+	void SetUpdateInterval(float interval);
 
 	/// <summary>
 	/// WAVのローダーを取得する
@@ -112,6 +120,8 @@ namespace scal
 	/// </summary>
 	/// <returns>マスタリングボイスの情報</returns>
 	XAUDIO2_VOICE_DETAILS GetMasterDetails(void);
+
+	IXAudio2MasteringVoice*& GetMasterVoice(void);
 
 	void SetEulerOrder(EulerOrder order);
 

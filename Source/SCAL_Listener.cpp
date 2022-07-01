@@ -29,6 +29,8 @@ namespace scal
 
 		void EnableVelocity(bool enable);
 
+		X3DAUDIO_LISTENER& GetRawListener(void);
+
 		X3DAUDIO_LISTENER listener_;
 
 		Vector3 defaultFrontVector_;
@@ -138,6 +140,11 @@ namespace scal
 		isVelocityEnable_ = enable;
 	}
 
+	X3DAUDIO_LISTENER& Listener::Listener_Impl::GetRawListener(void)
+	{
+		return listener_;
+	}
+
 	void Listener::Listener_Impl::Apply(void)
 	{
 		auto&& m = rotate_.GetRotationMatrix();
@@ -203,5 +210,9 @@ namespace scal
 	void Listener::UpdateVelocity(void)
 	{
 		impl_->UpdateVelocity();
+	}
+	X3DAUDIO_LISTENER& Listener::GetRawListener(void)
+	{
+		return impl_->GetRawListener();
 	}
 }

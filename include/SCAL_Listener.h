@@ -2,6 +2,7 @@
 #include <memory>
 #include <Windows.h>
 #include <DirectXMath.h>
+#include <x3daudio.h>
 #include "../include/SCAL_Math.h"
 
 namespace scal
@@ -27,6 +28,8 @@ namespace scal
 		void EnableVelocity(bool enable = true);
 
 		void UpdateVelocity(void);
+
+		X3DAUDIO_LISTENER& GetRawListener(void);
 	private:
 		class Listener_Impl;
 		std::unique_ptr<Listener_Impl> impl_;

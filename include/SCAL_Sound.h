@@ -5,6 +5,7 @@
 #include <xaudio2.h>
 #include <xaudio2fx.h>
 #include <xapofx.h>
+#include <x3daudio.h>
 #include <memory>
 #include <string>
 #include "SCAL_Math.h"
@@ -196,6 +197,13 @@ namespace scal
 
 		void SetPosition(const Vector3& pos);
 
+		void EnableSoundCone(bool flag);
+		void SetSoundCone(const X3DAUDIO_CONE& cone = X3DAudioDefault_DirectionalCone);
+
+		void Enable3DDoppler(bool flag);
+
+		void Enable3DReverb(bool flag);
+
 		void SetDefaultDirection(const Vector3& front, const Vector3& up);
 
 		void SetRotate(const Vector3& axis, float rot);
@@ -211,8 +219,9 @@ namespace scal
 		void UpdateVelocity(void);
 
 
-
 		void SetSoundInnerData(Sound::Sound_Impl* data);
+
+		void Calculate(const X3DAUDIO_HANDLE& handle, X3DAUDIO_LISTENER* listener);
 	private:
 		class Emitter_Impl;
 		std::unique_ptr<Emitter_Impl> impl_;
