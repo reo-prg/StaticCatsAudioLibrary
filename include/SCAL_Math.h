@@ -101,9 +101,9 @@ namespace scal
 
 		void SetRotationEulerAngle(float angx, float angy, float angz);
 
-		void SetRotationAxis(const Vector3 axis, float rotateAngle);
+		void SetRotationAxis(const Vector3& axis, float rotateAngle);
 
-		static Quaternion RotateAxis(const Vector3 axis, float rotateAngle);
+		static Quaternion RotateAxis(const Vector3& axis, float rotateAngle);
 
 		static Quaternion EulerAngle(float angx, float angy, float angz);
 

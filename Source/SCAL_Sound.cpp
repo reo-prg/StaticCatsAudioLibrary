@@ -756,7 +756,7 @@ namespace scal
 		else
 		{
 			emitter_.pCone = nullptr;
-			flag_ = flag_ - (X3DAUDIO_CALCULATE_DOPPLER;
+			flag_ = flag_ - X3DAUDIO_CALCULATE_DOPPLER;
 		}
 	}
 
@@ -770,7 +770,7 @@ namespace scal
 		else
 		{
 			emitter_.pCone = nullptr;
-			flag_ = flag_ - (X3DAUDIO_CALCULATE_REVERB;
+			flag_ = flag_ - X3DAUDIO_CALCULATE_REVERB;
 		}
 	}
 

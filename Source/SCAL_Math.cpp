@@ -117,7 +117,31 @@ namespace scal
 
 	Matrix RotationMatrix(float x, float y, float z)
 	{
-		return RotationMatrixAxisZ(z) * (RotationMatrixAxisY(y) * RotationMatrixAxisX(x));
+		EulerOrder order = GetEulerOrder();
+
+		Matrix m = IdentityMatrix();
+		switch (order)
+		{
+		case EulerOrder::XYZ:
+			m = RotationMatrixAxisX(x) * (RotationMatrixAxisY(y) * RotationMatrixAxisZ(z));
+			break;
+		case EulerOrder::XZY:
+			m = RotationMatrixAxisX(x) * (RotationMatrixAxisY(z) * RotationMatrixAxisZ(y));
+			break;
+		case EulerOrder::YXZ:
+			m = RotationMatrixAxisX(y) * (RotationMatrixAxisY(x) * RotationMatrixAxisZ(z));
+			break;
+		case EulerOrder::YZX:
+			m = RotationMatrixAxisX(y) * (RotationMatrixAxisY(z) * RotationMatrixAxisZ(x));
+			break;
+		case EulerOrder::ZXY:
+			m = RotationMatrixAxisX(z) * (RotationMatrixAxisY(x) * RotationMatrixAxisZ(y));
+			break;
+		case EulerOrder::ZYX:
+			m = RotationMatrixAxisX(z) * (RotationMatrixAxisY(y) * RotationMatrixAxisZ(x));
+			break;
+		}
+		return m;
 	}
 
 	Matrix RotationMatrix(const Vector3& vec)
@@ -185,7 +209,7 @@ namespace scal
 		return Quaternion(-x, -y, -z, w);
 	}
 
-	Quaternion Quaternion::RotateAxis(const Vector3 axis, float rotateAngle)
+	Quaternion Quaternion::RotateAxis(const Vector3& axis, float rotateAngle)
 	{
 		return Quaternion(axis.x * sinf(rotateAngle / 2.0f), axis.y * sinf(rotateAngle / 2.0f),
 			axis.z * sinf(rotateAngle / 2.0f), cosf(rotateAngle / 2.0f));
@@ -336,7 +360,7 @@ namespace scal
 		}
 	}
 
-	void Quaternion::SetRotationAxis(const Vector3 axis, float rotateAngle)
+	void Quaternion::SetRotationAxis(const Vector3& axis, float rotateAngle)
 	{
 		x = axis.x * sinf(rotateAngle / 2.0f);
 		y = axis.y * sinf(rotateAngle / 2.0f);
