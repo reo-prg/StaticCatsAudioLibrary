@@ -16,8 +16,8 @@ namespace scal
 	class SoundEmitter;
 
 	/// <summary>
-	/// Soundクラス
-	/// 音を再生したりできるクラスです
+	/// <para>サウンドクラス</para>
+	/// <para>音を再生したりできるクラスです</para>
 	/// </summary>
 	class Sound
 	{
@@ -29,7 +29,7 @@ namespace scal
 		/// </summary>
 		/// <param name="filepath">サウンドデータのファイルパス</param>
 		Sound(const std::string& filepath);
-		virtual ~Sound();
+		~Sound();
 		
 		/// <summary>
 		/// サウンドを取り込む
@@ -158,21 +158,61 @@ namespace scal
 		/// <param name="effectIndex">エフェクトのインデックス</param>
 		void SetMasteringLimiterParameter(UINT32 release = FXMASTERINGLIMITER_DEFAULT_RELEASE, 
 			UINT32 loudness = FXMASTERINGLIMITER_MAX_LOUDNESS, int effectIndex = -1);
+
+		/// <summary>
+		/// FXリバーブのパラメーターを設定する
+		/// </summary>
+		/// <param name="diffuse">壁の硬さ・拡散具合(0.0 - 1.0)</param>
+		/// <param name="roomsize">部屋の広さ(0.0001 - 1.0)</param>
+		/// <param name="effectIndex">エフェクトのインデックス</param>
 		void SetFXReverbParameter(float diffuse, float roomsize, int effectIndex = -1);
+
+		/// <summary>
+		/// ボリュームメーターを取得する
+		/// </summary>
+		/// <param name="effectIndex">エフェクトのインデックス</param>
+		/// <returns>ボリュームメーター</returns>
 		XAUDIO2FX_VOLUMEMETER_LEVELS* GetVolumeMeterParameter(int effectIndex = -1);
 
+		/// <summary>
+		/// <para>対応するエフェクトのインデックスを取得する</para>
+		/// <para>インデックスが必要な関数に-1を渡すとこの関数が中で呼ばれる</para>
+		/// </summary>
+		/// <param name="type">エフェクトの種類</param>
+		/// <returns>インデックス</returns>
 		int FindEffectIndex(AudioEffectType type);
 
-
+		/// <summary>
+		/// フィルターをかける
+		/// </summary>
+		/// <param name="type">フィルターの種類</param>
+		/// <param name="frequency">周波数 サンプルレートを6で割った値が1.0に対応する(0.0 - 1.0)</param>
+		/// <param name="danping">周波数を超えた際の減衰の大きさ(0.0 - 1.5)</param>
+		/// <returns>成功したらtrue</returns>
 		bool SetFilter(XAUDIO2_FILTER_TYPE type, float frequency, float danping);
 
+		/// <summary>
+		/// 現在の進度を取得する
+		/// </summary>
+		/// <returns>進度(0.0 - 1.0)</returns>
 		float GetProgress(void);
 
+		/// <summary>
+		/// 再生中の音を停止させる
+		/// </summary>
+		/// <returns>成功したらtrue</returns>
 		bool Stop(void);
+
+		/// <summary>
+		/// <para>所持しているサウンドのデータを破棄する</para>
+		/// <para>再び再生したい場合はLoadで読み込みなおす必要がある</para>
+		/// </summary>
 		void Destroy(void);
 
-		IXAudio2SourceVoice*& GetVoiceAddress(void);
-
+		/// <summary>
+		/// 現在再生可能かを取得する
+		/// </summary>
+		/// <returns>再生可能ならtrue</returns>
 		bool IsActivated(void) { return activated_; }
 
 		class Sound_Impl;
@@ -181,46 +221,148 @@ namespace scal
 
 		bool activated_ = false;
 	public:
+		/// <summary>
+		/// <para>生のボイスを取得する</para>
+		/// <para>通常は使用する必要なし</para>
+		/// </summary>
+		/// <returns>ソースボイスのポインタ</returns>
+		IXAudio2SourceVoice*& GetVoiceAddress(void);
 
+		/// <summary>
+		/// <para>エミッターにサウンドのデータを渡す</para>
+		/// <para>システム用の関数なので使用しないでください</para>
+		/// </summary>
+		/// <param name="emitter">エミッターのポインタ</param>
 		void GetSoundInnerData(SoundEmitter* emitter);
 	};
 
-
+	/// <summary>
+	/// <para>サウンドエミッタークラス</para>
+	/// <para>Soundクラスを3D計算に使用できます</para>
+	/// </summary>
 	class SoundEmitter
 	{
 	public:
+		/// <summary>
+		/// Soundを設定しない空のエミッターを生成します
+		/// </summary>
 		SoundEmitter();
+
+		/// <summary>
+		/// Soundが設定されたエミッターを生成します
+		/// </summary>
+		/// <param name="sound">設定したいSound</param>
 		SoundEmitter(Sound* sound);
 		~SoundEmitter();
 
+		/// <summary>
+		/// Soundを設定する
+		/// </summary>
+		/// <param name="sound">設定したいSound</param>
 		void SetSound(Sound* sound);
 
+		/// <summary>
+		/// 座標を設定する
+		/// </summary>
+		/// <param name="pos">座標</param>
 		void SetPosition(const Vector3& pos);
 
+		/// <summary>
+		/// 音に指向性を持たせるか
+		/// </summary>
+		/// <param name="flag">持たせるならtrue</param>
 		void EnableSoundCone(bool flag);
+
+		/// <summary>
+		/// 音の指向性の円錐を設定する
+		/// </summary>
+		/// <param name="cone">円錐</param>
 		void SetSoundCone(const X3DAUDIO_CONE& cone = X3DAudioDefault_DirectionalCone);
 
+		/// <summary>
+		/// 3Dのドップラー効果を有効にするか
+		/// </summary>
+		/// <param name="flag">有効にするならtrue</param>
 		void Enable3DDoppler(bool flag);
 
+		/// <summary>
+		/// 3Dのリバーブ効果を有効にするか
+		/// </summary>
+		/// <param name="flag">有効にするならtrue</param>
 		void Enable3DReverb(bool flag);
 
+		/// <summary>
+		/// <para>デフォルトの向きを設定する</para>
+		/// <para>正面と上は直角である必要あり</para>
+		/// </summary>
+		/// <param name="front">正面</param>
+		/// <param name="up">上</param>
 		void SetDefaultDirection(const Vector3& front, const Vector3& up);
 
+		/// <summary>
+		/// 回転を設定する
+		/// </summary>
+		/// <param name="axis">回転軸</param>
+		/// <param name="rot">回転角度</param>
 		void SetRotate(const Vector3& axis, float rot);
+
+		/// <summary>
+		/// 回転を設定する
+		/// </summary>
+		/// <param name="x">x回転</param>
+		/// <param name="y">y回転</param>
+		/// <param name="z">z回転</param>
 		void SetRotate(float x, float y, float z);
+
+		/// <summary>
+		/// 回転を設定する
+		/// </summary>
+		/// <param name="quat">クォータニオン</param>
 		void SetRotateAsQuaternion(const Quaternion& quat);
+
+		/// <summary>
+		/// 回転を加算する
+		/// </summary>
+		/// <param name="axis">回転軸</param>
+		/// <param name="rot">回転角度</param>
 		void AddRotate(const Vector3& axis, float rot);
+
+		/// <summary>
+		/// 回転を加算する
+		/// </summary>
+		/// <param name="quat">クォータニオン</param>
 		void AddRotateAsQuaternion(const Quaternion& quat);
 
+		/// <summary>
+		/// 回転を取得する
+		/// </summary>
+		/// <returns>回転用のクォータニオンの参照</returns>
 		Quaternion& GetRotateQuaternionRef(void);
 
+		/// <summary>
+		/// 速度を有効にするか
+		/// </summary>
+		/// <param name="enable">有効にするならtrue</param>
 		void EnableVelocity(bool enable = true);
 
+		/// <summary>
+		/// 速度を更新する
+		/// </summary>
 		void UpdateVelocity(void);
 
-
+		/// <summary>
+		/// <para>サウンドデータを取得する</para>
+		/// <para>システム用なので使用しないでください</para>
+		/// </summary>
+		/// <param name="data">Soundの内部クラス</param>
 		void SetSoundInnerData(Sound::Sound_Impl* data);
 
+		/// <summary>
+		/// <para>3Dサウンドを計算する</para>
+		/// <para>システム側で呼び出すので使用しないでください</para>
+		/// </summary>
+		/// <param name="handle">X3DAudioのハンドル</param>
+		/// <param name="listener">リスナー</param>
 		void Calculate(const X3DAUDIO_HANDLE& handle, X3DAUDIO_LISTENER* listener);
 	private:
 		class Emitter_Impl;

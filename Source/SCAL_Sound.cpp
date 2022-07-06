@@ -348,7 +348,7 @@ namespace scal
 		frequency = std::clamp(frequency, 0.0f, XAUDIO2_MAX_FILTER_FREQUENCY);
 		danping = std::clamp(danping, 0.0f, XAUDIO2_MAX_FILTER_ONEOVERQ);
 		filter_ = { type, frequency, danping };
-
+		
 		result = sourceVoice_->SetFilterParameters(&filter_);
 		return SUCCEEDED(result);
 	}
@@ -431,7 +431,7 @@ namespace scal
 		}
 
 		HRESULT result;
-
+		
 		FXREVERB_PARAMETERS param = { diffuse, roomsize };
 		result = sourceVoice_->SetEffectParameters(effectIndex, &param, sizeof(param));
 		if (FAILED(result))
