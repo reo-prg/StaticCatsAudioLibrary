@@ -88,8 +88,7 @@ namespace scal
 		}
 
 		send_.clear();
-		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
-		sourceVoice_->SetOutputVoices(&snd);
+		sourceVoice_->SetOutputVoices(nullptr);
 
 		if (sourceVoice_ != nullptr)
 		{

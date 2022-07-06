@@ -79,8 +79,7 @@ namespace scal
 		}
 
 		send_.clear();
-		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
-		submixVoice_->SetOutputVoices(&snd);
+		submixVoice_->SetOutputVoices(nullptr);
 
 		if (submixVoice_ != nullptr)
 		{
@@ -153,7 +152,7 @@ namespace scal
 		auto&& it = std::remove_if(sources_.begin(), sources_.end(), [&sound](Sound* s) { return sound == s; });
 		if (system_value_isCallingAnotherFunc && it != sources_.end())
 		{
-			(*it)->RemoveOutputNode(interface_);
+			(*it)->RemoveOutputNode(interface_, false);
 		}
 
 		sources_.erase(it, sources_.end());
