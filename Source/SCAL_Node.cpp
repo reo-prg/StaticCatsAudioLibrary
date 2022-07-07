@@ -166,9 +166,15 @@ namespace scal
 			detail.InputSampleRate, XAUDIO2_VOICE_USEFILTER, stage_, nullptr, nullptr);
 		if (FAILED(result)) { return false; }
 
-
-		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
-		submixVoice_->SetOutputVoices(&snd);
+		if (send_.empty())
+		{
+			submixVoice_->SetOutputVoices(nullptr);
+		}
+		else
+		{
+			XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
+			submixVoice_->SetOutputVoices(&snd);
+		}
 
 		interface_->activated_ = true;
 
