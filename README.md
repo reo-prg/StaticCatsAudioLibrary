@@ -1,3 +1,4 @@
 # StaticCatsAudioLibrary
+## XAudio2 Wrapper Library
 
-**[Document](https://reo-prg.github.io/StaticCatsAudioLibrary/)**
+>**[Reference](https://reo-prg.github.io/StaticCatsAudioLibrary/)**
