@@ -1,0 +1,629 @@
+\hypertarget{classscal_1_1_sound}{}\doxysection{scal\+::Sound クラス}
+\label{classscal_1_1_sound}\index{scal::Sound@{scal::Sound}}
+
+
+ 
+
+
+
+
+{\ttfamily \#include $<$SCAL\+\_\+\+Sound.\+h$>$}
+
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classscal_1_1_sound_a13579ea13a1cab5bbf47e18390756362}{Sound}} ()
+\item 
+\mbox{\hyperlink{classscal_1_1_sound_a45bd4dc74f927df4c7c9ed260517cd42}{Sound}} (const std\+::string \&filepath)
+\begin{DoxyCompactList}\small\item\em 生成と同時にサウンドを読み込む \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classscal_1_1_sound_a83cfb97f5ba27fa8dd511b3d5a588ba7}{$\sim$\+Sound}} ()
+\item 
+bool \mbox{\hyperlink{classscal_1_1_sound_a19c4dd84790c1fbccd05d1064465106b}{Load}} (const std\+::string \&filepath)
+\begin{DoxyCompactList}\small\item\em サウンドを取り込む \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classscal_1_1_sound_ab6323e60aeffc0e51cb814535821fc61}{Play}} (void)
+\begin{DoxyCompactList}\small\item\em 再生する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_a86d61b70afcafd04eae90d447a8078ab}{Set\+Play\+Segment}} (float begin=0.\+0f, float length=0.\+0f)
+\item 
+void \mbox{\hyperlink{classscal_1_1_sound_a8a9266f539f87b75420008183fbd07a3}{Set\+Loop\+Segment}} (float begin=0.\+0f, float length=0.\+0f)
+\begin{DoxyCompactList}\small\item\em ループ範囲を設定する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_ac686e1cd1e9adf64fe5baa0ccdf0b3da}{Set\+Loop\+Count}} (UINT32 count=XAUDIO2\+\_\+\+LOOP\+\_\+\+INFINITE)
+\item 
+void \mbox{\hyperlink{classscal_1_1_sound_a7797af7529b150e0242038ae32fbf069}{Set\+Volume}} (float volume=1.\+0f)
+\begin{DoxyCompactList}\small\item\em 音量を設定する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_aa2fc8720a9dd49e3c4368c1a1bb5f12e}{Add\+Output\+Node}} (\mbox{\hyperlink{classscal_1_1_node}{Node}} $\ast$node, bool system\+\_\+value\+\_\+is\+Calling\+Another\+Func=true)
+\begin{DoxyCompactList}\small\item\em 出力先のノードを追加する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_af2c980bea2e12dca5d95d8851aea4097}{Remove\+Output\+Node}} (\mbox{\hyperlink{classscal_1_1_node}{Node}} $\ast$node, bool system\+\_\+value\+\_\+is\+Calling\+Another\+Func=true)
+\begin{DoxyCompactList}\small\item\em 出力先のノードを除外する \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classscal_1_1_sound_a38925a98ecc5cbde889f1e2868cfa746}{Add\+Effect}} (\mbox{\hyperlink{namespacescal_a6ce2f31ba60a0b43bb95116901638bf6}{Audio\+Effect\+Type}} type, bool active, int insert\+Position=-\/1)
+\begin{DoxyCompactList}\small\item\em エフェクトを追加する \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classscal_1_1_sound_a632dbc1b6455778c48152829a4a78f22}{Remove\+Effect}} (int position=-\/1)
+\begin{DoxyCompactList}\small\item\em エフェクトを除外する \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classscal_1_1_sound_a5225401d2535cb4c6b415627f49791c2}{Enable\+Effect}} (int position=-\/1)
+\begin{DoxyCompactList}\small\item\em エフェクトを有効にする \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classscal_1_1_sound_ab0707d7ef04c4fb0fb44a762817d43d5}{Disable\+Effect}} (int position=-\/1)
+\begin{DoxyCompactList}\small\item\em エフェクトを無効にする \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_ac992c8846c229c3b350398d2651d6ae0}{Set\+Reverb\+Parameter}} (const XAUDIO2\+FX\+\_\+\+REVERB\+\_\+\+I3\+DL2\+\_\+\+PARAMETERS \&param, int effect\+Index=-\/1)
+\begin{DoxyCompactList}\small\item\em リバーブのエフェクトのパラメーターを設定する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_abbf2408bbe5a4433c333d56196f667c3}{Set\+Reverb\+Parameter}} (const XAUDIO2\+FX\+\_\+\+REVERB\+\_\+\+PARAMETERS \&param, int effect\+Index=-\/1)
+\begin{DoxyCompactList}\small\item\em リバーブのエフェクトのパラメーターを設定する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_af8b258112995255499e872a3a229b7b7}{Set\+Echo\+Parameter}} (float feedback\+Volume, float delay, float effect\+Strength, int effect\+Index=-\/1)
+\begin{DoxyCompactList}\small\item\em エコーのエフェクトのパラメーターを設定する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_a41844e774a633c0520de25ad5470ee70}{Set\+Equalizer\+Parameter}} (const FXEQ\+\_\+\+PARAMETERS \&param, int effect\+Index=-\/1)
+\begin{DoxyCompactList}\small\item\em イコライザーのエフェクトのパラメーターを設定する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_ab830728d591f8ff739f499fad864c216}{Set\+Mastering\+Limiter\+Parameter}} (UINT32 release=FXMASTERINGLIMITER\+\_\+\+DEFAULT\+\_\+\+RELEASE, UINT32 loudness=FXMASTERINGLIMITER\+\_\+\+MAX\+\_\+\+LOUDNESS, int effect\+Index=-\/1)
+\begin{DoxyCompactList}\small\item\em マスタリングリミッターのパラメーターを設定する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_a594b0ca187ef18921047616020e5237a}{Set\+FXReverb\+Parameter}} (float diffuse, float roomsize, int effect\+Index=-\/1)
+\begin{DoxyCompactList}\small\item\em FXリバーブのパラメーターを設定する \end{DoxyCompactList}\item 
+XAUDIO2\+FX\+\_\+\+VOLUMEMETER\+\_\+\+LEVELS $\ast$ \mbox{\hyperlink{classscal_1_1_sound_a08d22b762881de4fa1e5730e5602746f}{Get\+Volume\+Meter\+Parameter}} (int effect\+Index=-\/1)
+\begin{DoxyCompactList}\small\item\em ボリュームメーターを取得する \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classscal_1_1_sound_afef72e59d17d14ec0fa35a3d8fbaf4fb}{Find\+Effect\+Index}} (\mbox{\hyperlink{namespacescal_a6ce2f31ba60a0b43bb95116901638bf6}{Audio\+Effect\+Type}} type)
+\item 
+bool \mbox{\hyperlink{classscal_1_1_sound_ab002988ba608d4b5d7333e11dc3deded}{Set\+Filter}} (XAUDIO2\+\_\+\+FILTER\+\_\+\+TYPE type, float frequency, float danping)
+\begin{DoxyCompactList}\small\item\em フィルターをかける \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classscal_1_1_sound_a8aaa3ed8b377258d5a7c2053113a7beb}{Get\+Progress}} (void)
+\begin{DoxyCompactList}\small\item\em 現在の進度を取得する \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classscal_1_1_sound_a4cfe38b0d9280844c66b3edeb2fd3014}{Stop}} (void)
+\begin{DoxyCompactList}\small\item\em 再生中の音を停止させる \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_sound_a410a2c27d486c89a7a370d80b7d6990e}{Destroy}} (void)
+\item 
+bool \mbox{\hyperlink{classscal_1_1_sound_a1c4e1080b9c40dae9cb16e1e96a1222f}{Is\+Activated}} (void)
+\begin{DoxyCompactList}\small\item\em 現在再生可能かを取得する \end{DoxyCompactList}\item 
+IXAudio2\+Source\+Voice $\ast$\& \mbox{\hyperlink{classscal_1_1_sound_a5b492e77bf6e90a43b2ff13dc4dd4ae4}{Get\+Voice\+Address}} (void)
+\item 
+void \mbox{\hyperlink{classscal_1_1_sound_a32230e624c9bbb460635e81147a94ea2}{Get\+Sound\+Inner\+Data}} (\mbox{\hyperlink{classscal_1_1_sound_emitter}{Sound\+Emitter}} $\ast$emitter)
+\end{DoxyCompactItemize}
+\doxysubsection*{限定公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ Sound\+\_\+\+Impl $>$ \mbox{\hyperlink{classscal_1_1_sound_ac85eaa9d49c9b2e2b4e3f1434d16219b}{impl\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classscal_1_1_sound_ab5c7528e816c5dfc1e696d9e45a55028}{activated\+\_\+}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+
+
+サウンドクラス
+
+音を再生したりできるクラスです
+
+ \mbox{\hyperlink{_s_c_a_l___sound_8h_source}{SCAL\+\_\+\+Sound.\+h}} の \mbox{\hyperlink{_s_c_a_l___sound_8h_source_l00022}{22}} 行目に定義があります。
+
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{classscal_1_1_sound_a13579ea13a1cab5bbf47e18390756362}\label{classscal_1_1_sound_a13579ea13a1cab5bbf47e18390756362}} 
+\index{scal::Sound@{scal::Sound}!Sound@{Sound}}
+\index{Sound@{Sound}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{Sound()}{Sound()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily scal\+::\+Sound\+::\+Sound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classscal_1_1_sound_a45bd4dc74f927df4c7c9ed260517cd42}\label{classscal_1_1_sound_a45bd4dc74f927df4c7c9ed260517cd42}} 
+\index{scal::Sound@{scal::Sound}!Sound@{Sound}}
+\index{Sound@{Sound}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{Sound()}{Sound()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily scal\+::\+Sound\+::\+Sound (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filepath }\end{DoxyParamCaption})}
+
+
+
+生成と同時にサウンドを読み込む 
+
+
+\begin{DoxyParams}{引数}
+{\em filepath} & サウンドデータのファイルパス\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_a83cfb97f5ba27fa8dd511b3d5a588ba7}\label{classscal_1_1_sound_a83cfb97f5ba27fa8dd511b3d5a588ba7}} 
+\index{scal::Sound@{scal::Sound}!````~Sound@{$\sim$Sound}}
+\index{````~Sound@{$\sim$Sound}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{$\sim$Sound()}{~Sound()}}
+{\footnotesize\ttfamily scal\+::\+Sound\+::$\sim$\+Sound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{classscal_1_1_sound_a38925a98ecc5cbde889f1e2868cfa746}\label{classscal_1_1_sound_a38925a98ecc5cbde889f1e2868cfa746}} 
+\index{scal::Sound@{scal::Sound}!AddEffect@{AddEffect}}
+\index{AddEffect@{AddEffect}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{AddEffect()}{AddEffect()}}
+{\footnotesize\ttfamily int scal\+::\+Sound\+::\+Add\+Effect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacescal_a6ce2f31ba60a0b43bb95116901638bf6}{Audio\+Effect\+Type}}}]{type,  }\item[{bool}]{active,  }\item[{int}]{insert\+Position = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+エフェクトを追加する 
+
+
+\begin{DoxyParams}{引数}
+{\em type} & エフェクトの種類\\
+\hline
+{\em active} & 有効にするか\\
+\hline
+{\em insert\+Position} & 挿入するインデックス デフォルトだと一番後ろ\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+挿入されたインデックス
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_aa2fc8720a9dd49e3c4368c1a1bb5f12e}\label{classscal_1_1_sound_aa2fc8720a9dd49e3c4368c1a1bb5f12e}} 
+\index{scal::Sound@{scal::Sound}!AddOutputNode@{AddOutputNode}}
+\index{AddOutputNode@{AddOutputNode}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{AddOutputNode()}{AddOutputNode()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Add\+Output\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscal_1_1_node}{Node}} $\ast$}]{node,  }\item[{bool}]{system\+\_\+value\+\_\+is\+Calling\+Another\+Func = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+出力先のノードを追加する 
+
+
+\begin{DoxyParams}{引数}
+{\em node} & 出力先のノード\\
+\hline
+{\em system\+\_\+value\+\_\+is\+Calling\+Another\+Func} & trueにしてください\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_a410a2c27d486c89a7a370d80b7d6990e}\label{classscal_1_1_sound_a410a2c27d486c89a7a370d80b7d6990e}} 
+\index{scal::Sound@{scal::Sound}!Destroy@{Destroy}}
+\index{Destroy@{Destroy}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{Destroy()}{Destroy()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Destroy (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+
+
+所持しているサウンドのデータを破棄する
+
+再び再生したい場合は\+Loadで読み込みなおす必要がある\mbox{\Hypertarget{classscal_1_1_sound_ab0707d7ef04c4fb0fb44a762817d43d5}\label{classscal_1_1_sound_ab0707d7ef04c4fb0fb44a762817d43d5}} 
+\index{scal::Sound@{scal::Sound}!DisableEffect@{DisableEffect}}
+\index{DisableEffect@{DisableEffect}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{DisableEffect()}{DisableEffect()}}
+{\footnotesize\ttfamily bool scal\+::\+Sound\+::\+Disable\+Effect (\begin{DoxyParamCaption}\item[{int}]{position = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+エフェクトを無効にする 
+
+
+\begin{DoxyParams}{引数}
+{\em position} & 無効にするエフェクトのインデックス デフォルトだと全て\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+成功したらtrue
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_a5225401d2535cb4c6b415627f49791c2}\label{classscal_1_1_sound_a5225401d2535cb4c6b415627f49791c2}} 
+\index{scal::Sound@{scal::Sound}!EnableEffect@{EnableEffect}}
+\index{EnableEffect@{EnableEffect}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{EnableEffect()}{EnableEffect()}}
+{\footnotesize\ttfamily bool scal\+::\+Sound\+::\+Enable\+Effect (\begin{DoxyParamCaption}\item[{int}]{position = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+エフェクトを有効にする 
+
+
+\begin{DoxyParams}{引数}
+{\em position} & 有効にするエフェクトのインデックス デフォルトだと全て\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+成功したらtrue
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_afef72e59d17d14ec0fa35a3d8fbaf4fb}\label{classscal_1_1_sound_afef72e59d17d14ec0fa35a3d8fbaf4fb}} 
+\index{scal::Sound@{scal::Sound}!FindEffectIndex@{FindEffectIndex}}
+\index{FindEffectIndex@{FindEffectIndex}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{FindEffectIndex()}{FindEffectIndex()}}
+{\footnotesize\ttfamily int scal\+::\+Sound\+::\+Find\+Effect\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacescal_a6ce2f31ba60a0b43bb95116901638bf6}{Audio\+Effect\+Type}}}]{type }\end{DoxyParamCaption})}
+
+
+
+
+
+対応するエフェクトのインデックスを取得する
+
+インデックスが必要な関数に-\/1を渡すとこの関数が中で呼ばれる
+
+
+\begin{DoxyParams}{引数}
+{\em type} & エフェクトの種類\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+インデックス
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_a8aaa3ed8b377258d5a7c2053113a7beb}\label{classscal_1_1_sound_a8aaa3ed8b377258d5a7c2053113a7beb}} 
+\index{scal::Sound@{scal::Sound}!GetProgress@{GetProgress}}
+\index{GetProgress@{GetProgress}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{GetProgress()}{GetProgress()}}
+{\footnotesize\ttfamily float scal\+::\+Sound\+::\+Get\+Progress (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+現在の進度を取得する 
+
+\begin{DoxyReturn}{戻り値}
+進度(0.\+0 -\/ 1.\+0)
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_a32230e624c9bbb460635e81147a94ea2}\label{classscal_1_1_sound_a32230e624c9bbb460635e81147a94ea2}} 
+\index{scal::Sound@{scal::Sound}!GetSoundInnerData@{GetSoundInnerData}}
+\index{GetSoundInnerData@{GetSoundInnerData}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{GetSoundInnerData()}{GetSoundInnerData()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Get\+Sound\+Inner\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscal_1_1_sound_emitter}{Sound\+Emitter}} $\ast$}]{emitter }\end{DoxyParamCaption})}
+
+
+
+
+
+エミッターにサウンドのデータを渡す
+
+システム用の関数なので使用しないでください
+
+
+\begin{DoxyParams}{引数}
+{\em emitter} & エミッターのポインタ\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_a5b492e77bf6e90a43b2ff13dc4dd4ae4}\label{classscal_1_1_sound_a5b492e77bf6e90a43b2ff13dc4dd4ae4}} 
+\index{scal::Sound@{scal::Sound}!GetVoiceAddress@{GetVoiceAddress}}
+\index{GetVoiceAddress@{GetVoiceAddress}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{GetVoiceAddress()}{GetVoiceAddress()}}
+{\footnotesize\ttfamily IXAudio2\+Source\+Voice $\ast$\& scal\+::\+Sound\+::\+Get\+Voice\+Address (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+
+
+生のボイスを取得する
+
+通常は使用する必要なし
+
+\begin{DoxyReturn}{戻り値}
+ソースボイスのポインタ
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_a08d22b762881de4fa1e5730e5602746f}\label{classscal_1_1_sound_a08d22b762881de4fa1e5730e5602746f}} 
+\index{scal::Sound@{scal::Sound}!GetVolumeMeterParameter@{GetVolumeMeterParameter}}
+\index{GetVolumeMeterParameter@{GetVolumeMeterParameter}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{GetVolumeMeterParameter()}{GetVolumeMeterParameter()}}
+{\footnotesize\ttfamily XAUDIO2\+FX\+\_\+\+VOLUMEMETER\+\_\+\+LEVELS $\ast$ scal\+::\+Sound\+::\+Get\+Volume\+Meter\+Parameter (\begin{DoxyParamCaption}\item[{int}]{effect\+Index = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+ボリュームメーターを取得する 
+
+
+\begin{DoxyParams}{引数}
+{\em effect\+Index} & エフェクトのインデックス\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+ボリュームメーター
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_a1c4e1080b9c40dae9cb16e1e96a1222f}\label{classscal_1_1_sound_a1c4e1080b9c40dae9cb16e1e96a1222f}} 
+\index{scal::Sound@{scal::Sound}!IsActivated@{IsActivated}}
+\index{IsActivated@{IsActivated}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{IsActivated()}{IsActivated()}}
+{\footnotesize\ttfamily bool scal\+::\+Sound\+::\+Is\+Activated (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+現在再生可能かを取得する 
+
+\begin{DoxyReturn}{戻り値}
+再生可能ならtrue
+\end{DoxyReturn}
+
+
+ \mbox{\hyperlink{_s_c_a_l___sound_8h_source}{SCAL\+\_\+\+Sound.\+h}} の \mbox{\hyperlink{_s_c_a_l___sound_8h_source_l00216}{216}} 行目に定義があります。
+
+\mbox{\Hypertarget{classscal_1_1_sound_a19c4dd84790c1fbccd05d1064465106b}\label{classscal_1_1_sound_a19c4dd84790c1fbccd05d1064465106b}} 
+\index{scal::Sound@{scal::Sound}!Load@{Load}}
+\index{Load@{Load}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily bool scal\+::\+Sound\+::\+Load (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filepath }\end{DoxyParamCaption})}
+
+
+
+サウンドを取り込む 
+
+
+\begin{DoxyParams}{引数}
+{\em filepath} & サウンドデータのファイルパス\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+成功したらtrue
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_ab6323e60aeffc0e51cb814535821fc61}\label{classscal_1_1_sound_ab6323e60aeffc0e51cb814535821fc61}} 
+\index{scal::Sound@{scal::Sound}!Play@{Play}}
+\index{Play@{Play}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{Play()}{Play()}}
+{\footnotesize\ttfamily bool scal\+::\+Sound\+::\+Play (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+再生する 
+
+\begin{DoxyReturn}{戻り値}
+成功したらtrue
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_a632dbc1b6455778c48152829a4a78f22}\label{classscal_1_1_sound_a632dbc1b6455778c48152829a4a78f22}} 
+\index{scal::Sound@{scal::Sound}!RemoveEffect@{RemoveEffect}}
+\index{RemoveEffect@{RemoveEffect}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{RemoveEffect()}{RemoveEffect()}}
+{\footnotesize\ttfamily bool scal\+::\+Sound\+::\+Remove\+Effect (\begin{DoxyParamCaption}\item[{int}]{position = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+エフェクトを除外する 
+
+
+\begin{DoxyParams}{引数}
+{\em position} & 除外したいインデックス\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+成功したらtrue
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_af2c980bea2e12dca5d95d8851aea4097}\label{classscal_1_1_sound_af2c980bea2e12dca5d95d8851aea4097}} 
+\index{scal::Sound@{scal::Sound}!RemoveOutputNode@{RemoveOutputNode}}
+\index{RemoveOutputNode@{RemoveOutputNode}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{RemoveOutputNode()}{RemoveOutputNode()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Remove\+Output\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classscal_1_1_node}{Node}} $\ast$}]{node,  }\item[{bool}]{system\+\_\+value\+\_\+is\+Calling\+Another\+Func = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+出力先のノードを除外する 
+
+
+\begin{DoxyParams}{引数}
+{\em node} & 除外したいノード\\
+\hline
+{\em system\+\_\+value\+\_\+is\+Calling\+Another\+Func} & trueにしてください\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_af8b258112995255499e872a3a229b7b7}\label{classscal_1_1_sound_af8b258112995255499e872a3a229b7b7}} 
+\index{scal::Sound@{scal::Sound}!SetEchoParameter@{SetEchoParameter}}
+\index{SetEchoParameter@{SetEchoParameter}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetEchoParameter()}{SetEchoParameter()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Set\+Echo\+Parameter (\begin{DoxyParamCaption}\item[{float}]{feedback\+Volume,  }\item[{float}]{delay,  }\item[{float}]{effect\+Strength,  }\item[{int}]{effect\+Index = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+エコーのエフェクトのパラメーターを設定する 
+
+
+\begin{DoxyParams}{引数}
+{\em feedback\+Volume} & 出力の強さ\\
+\hline
+{\em delay} & ディレイ\\
+\hline
+{\em effect\+Strength} & エコーのかかり具合\\
+\hline
+{\em effect\+Index} & エフェクトのインデックス\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_a41844e774a633c0520de25ad5470ee70}\label{classscal_1_1_sound_a41844e774a633c0520de25ad5470ee70}} 
+\index{scal::Sound@{scal::Sound}!SetEqualizerParameter@{SetEqualizerParameter}}
+\index{SetEqualizerParameter@{SetEqualizerParameter}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetEqualizerParameter()}{SetEqualizerParameter()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Set\+Equalizer\+Parameter (\begin{DoxyParamCaption}\item[{const FXEQ\+\_\+\+PARAMETERS \&}]{param,  }\item[{int}]{effect\+Index = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+イコライザーのエフェクトのパラメーターを設定する 
+
+
+\begin{DoxyParams}{引数}
+{\em param} & パラメーター\\
+\hline
+{\em effect\+Index} & エフェクトのインデックス\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_ab002988ba608d4b5d7333e11dc3deded}\label{classscal_1_1_sound_ab002988ba608d4b5d7333e11dc3deded}} 
+\index{scal::Sound@{scal::Sound}!SetFilter@{SetFilter}}
+\index{SetFilter@{SetFilter}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetFilter()}{SetFilter()}}
+{\footnotesize\ttfamily bool scal\+::\+Sound\+::\+Set\+Filter (\begin{DoxyParamCaption}\item[{XAUDIO2\+\_\+\+FILTER\+\_\+\+TYPE}]{type,  }\item[{float}]{frequency,  }\item[{float}]{danping }\end{DoxyParamCaption})}
+
+
+
+フィルターをかける 
+
+
+\begin{DoxyParams}{引数}
+{\em type} & フィルターの種類\\
+\hline
+{\em frequency} & 周波数 サンプルレートを6で割った値が1.0に対応する(0.\+0 -\/ 1.\+0)\\
+\hline
+{\em danping} & 周波数を超えた際の減衰の大きさ(0.\+0 -\/ 1.\+5)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+成功したらtrue
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_sound_a594b0ca187ef18921047616020e5237a}\label{classscal_1_1_sound_a594b0ca187ef18921047616020e5237a}} 
+\index{scal::Sound@{scal::Sound}!SetFXReverbParameter@{SetFXReverbParameter}}
+\index{SetFXReverbParameter@{SetFXReverbParameter}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetFXReverbParameter()}{SetFXReverbParameter()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Set\+FXReverb\+Parameter (\begin{DoxyParamCaption}\item[{float}]{diffuse,  }\item[{float}]{roomsize,  }\item[{int}]{effect\+Index = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+FXリバーブのパラメーターを設定する 
+
+
+\begin{DoxyParams}{引数}
+{\em diffuse} & 壁の硬さ・拡散具合(0.\+0 -\/ 1.\+0)\\
+\hline
+{\em roomsize} & 部屋の広さ(0.\+0001 -\/ 1.\+0)\\
+\hline
+{\em effect\+Index} & エフェクトのインデックス\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_ac686e1cd1e9adf64fe5baa0ccdf0b3da}\label{classscal_1_1_sound_ac686e1cd1e9adf64fe5baa0ccdf0b3da}} 
+\index{scal::Sound@{scal::Sound}!SetLoopCount@{SetLoopCount}}
+\index{SetLoopCount@{SetLoopCount}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetLoopCount()}{SetLoopCount()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Set\+Loop\+Count (\begin{DoxyParamCaption}\item[{UINT32}]{count = {\ttfamily XAUDIO2\+\_\+LOOP\+\_\+INFINITE} }\end{DoxyParamCaption})}
+
+
+
+
+
+ループ回数を設定する
+
+XAUDIO2\+\_\+\+LOOP\+\_\+\+INFINITEで無限ループ
+
+
+\begin{DoxyParams}{引数}
+{\em count} & 回数\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_a8a9266f539f87b75420008183fbd07a3}\label{classscal_1_1_sound_a8a9266f539f87b75420008183fbd07a3}} 
+\index{scal::Sound@{scal::Sound}!SetLoopSegment@{SetLoopSegment}}
+\index{SetLoopSegment@{SetLoopSegment}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetLoopSegment()}{SetLoopSegment()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Set\+Loop\+Segment (\begin{DoxyParamCaption}\item[{float}]{begin = {\ttfamily 0.0f},  }\item[{float}]{length = {\ttfamily 0.0f} }\end{DoxyParamCaption})}
+
+
+
+ループ範囲を設定する 
+
+
+\begin{DoxyParams}{引数}
+{\em begin} & ループ開始地点(秒)\\
+\hline
+{\em length} & ループ範囲の長さ(秒)\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_ab830728d591f8ff739f499fad864c216}\label{classscal_1_1_sound_ab830728d591f8ff739f499fad864c216}} 
+\index{scal::Sound@{scal::Sound}!SetMasteringLimiterParameter@{SetMasteringLimiterParameter}}
+\index{SetMasteringLimiterParameter@{SetMasteringLimiterParameter}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetMasteringLimiterParameter()}{SetMasteringLimiterParameter()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Set\+Mastering\+Limiter\+Parameter (\begin{DoxyParamCaption}\item[{UINT32}]{release = {\ttfamily FXMASTERINGLIMITER\+\_\+DEFAULT\+\_\+RELEASE},  }\item[{UINT32}]{loudness = {\ttfamily FXMASTERINGLIMITER\+\_\+MAX\+\_\+LOUDNESS},  }\item[{int}]{effect\+Index = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+マスタリングリミッターのパラメーターを設定する 
+
+
+\begin{DoxyParams}{引数}
+{\em release} & loudnessを下回った際の(1 -\/ 20)\\
+\hline
+{\em loudness} & 最大音量(1 -\/ 1800)\\
+\hline
+{\em effect\+Index} & エフェクトのインデックス\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_a86d61b70afcafd04eae90d447a8078ab}\label{classscal_1_1_sound_a86d61b70afcafd04eae90d447a8078ab}} 
+\index{scal::Sound@{scal::Sound}!SetPlaySegment@{SetPlaySegment}}
+\index{SetPlaySegment@{SetPlaySegment}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetPlaySegment()}{SetPlaySegment()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Set\+Play\+Segment (\begin{DoxyParamCaption}\item[{float}]{begin = {\ttfamily 0.0f},  }\item[{float}]{length = {\ttfamily 0.0f} }\end{DoxyParamCaption})}
+
+
+
+
+
+再生範囲を設定する
+
+再生前に呼ばないといけない
+
+
+\begin{DoxyParams}{引数}
+{\em begin} & 再生開始地点(秒)\\
+\hline
+{\em length} & 再生範囲の長さ(秒)\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_ac992c8846c229c3b350398d2651d6ae0}\label{classscal_1_1_sound_ac992c8846c229c3b350398d2651d6ae0}} 
+\index{scal::Sound@{scal::Sound}!SetReverbParameter@{SetReverbParameter}}
+\index{SetReverbParameter@{SetReverbParameter}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetReverbParameter()}{SetReverbParameter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Set\+Reverb\+Parameter (\begin{DoxyParamCaption}\item[{const XAUDIO2\+FX\+\_\+\+REVERB\+\_\+\+I3\+DL2\+\_\+\+PARAMETERS \&}]{param,  }\item[{int}]{effect\+Index = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+リバーブのエフェクトのパラメーターを設定する 
+
+
+\begin{DoxyParams}{引数}
+{\em param} & パラメーター\\
+\hline
+{\em effect\+Index} & エフェクトのインデックス\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_abbf2408bbe5a4433c333d56196f667c3}\label{classscal_1_1_sound_abbf2408bbe5a4433c333d56196f667c3}} 
+\index{scal::Sound@{scal::Sound}!SetReverbParameter@{SetReverbParameter}}
+\index{SetReverbParameter@{SetReverbParameter}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetReverbParameter()}{SetReverbParameter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Set\+Reverb\+Parameter (\begin{DoxyParamCaption}\item[{const XAUDIO2\+FX\+\_\+\+REVERB\+\_\+\+PARAMETERS \&}]{param,  }\item[{int}]{effect\+Index = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+リバーブのエフェクトのパラメーターを設定する 
+
+
+\begin{DoxyParams}{引数}
+{\em param} & パラメーター\\
+\hline
+{\em effect\+Index} & エフェクトのインデックス\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_a7797af7529b150e0242038ae32fbf069}\label{classscal_1_1_sound_a7797af7529b150e0242038ae32fbf069}} 
+\index{scal::Sound@{scal::Sound}!SetVolume@{SetVolume}}
+\index{SetVolume@{SetVolume}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{SetVolume()}{SetVolume()}}
+{\footnotesize\ttfamily void scal\+::\+Sound\+::\+Set\+Volume (\begin{DoxyParamCaption}\item[{float}]{volume = {\ttfamily 1.0f} }\end{DoxyParamCaption})}
+
+
+
+音量を設定する 
+
+
+\begin{DoxyParams}{引数}
+{\em volume} & 音量 1は元の音量 0は無音\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_sound_a4cfe38b0d9280844c66b3edeb2fd3014}\label{classscal_1_1_sound_a4cfe38b0d9280844c66b3edeb2fd3014}} 
+\index{scal::Sound@{scal::Sound}!Stop@{Stop}}
+\index{Stop@{Stop}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{Stop()}{Stop()}}
+{\footnotesize\ttfamily bool scal\+::\+Sound\+::\+Stop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+再生中の音を停止させる 
+
+\begin{DoxyReturn}{戻り値}
+成功したらtrue
+\end{DoxyReturn}
+
+
+\doxysubsection{メンバ詳解}
+\mbox{\Hypertarget{classscal_1_1_sound_ab5c7528e816c5dfc1e696d9e45a55028}\label{classscal_1_1_sound_ab5c7528e816c5dfc1e696d9e45a55028}} 
+\index{scal::Sound@{scal::Sound}!activated\_@{activated\_}}
+\index{activated\_@{activated\_}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{activated\_}{activated\_}}
+{\footnotesize\ttfamily bool scal\+::\+Sound\+::activated\+\_\+ = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___sound_8h_source}{SCAL\+\_\+\+Sound.\+h}} の \mbox{\hyperlink{_s_c_a_l___sound_8h_source_l00222}{222}} 行目に定義があります。
+
+\mbox{\Hypertarget{classscal_1_1_sound_ac85eaa9d49c9b2e2b4e3f1434d16219b}\label{classscal_1_1_sound_ac85eaa9d49c9b2e2b4e3f1434d16219b}} 
+\index{scal::Sound@{scal::Sound}!impl\_@{impl\_}}
+\index{impl\_@{impl\_}!scal::Sound@{scal::Sound}}
+\doxysubsubsection{\texorpdfstring{impl\_}{impl\_}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$Sound\+\_\+\+Impl$>$ scal\+::\+Sound\+::impl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___sound_8h_source}{SCAL\+\_\+\+Sound.\+h}} の \mbox{\hyperlink{_s_c_a_l___sound_8h_source_l00220}{220}} 行目に定義があります。
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_s_c_a_l___sound_8h}{SCAL\+\_\+\+Sound.\+h}}\end{DoxyCompactItemize}

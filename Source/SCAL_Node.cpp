@@ -101,9 +101,6 @@ namespace scal
 		stage_ = min(stage_, node->impl_->stage_);
 
 		send_.emplace_back(XAUDIO2_SEND_DESCRIPTOR{ 0, node->GetVoiceAddress()});
-
-		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
-		submixVoice_->SetOutputVoices(&snd);
 	}
 
 	void Node::Node_Impl::AddInputNode(Node* node)
@@ -168,6 +165,10 @@ namespace scal
 		result = core->CreateSubmixVoice(&submixVoice_, detail.InputChannels,
 			detail.InputSampleRate, XAUDIO2_VOICE_USEFILTER, stage_, nullptr, nullptr);
 		if (FAILED(result)) { return false; }
+
+
+		XAUDIO2_VOICE_SENDS snd = { static_cast<UINT32>(send_.size()), send_.data() };
+		submixVoice_->SetOutputVoices(&snd);
 
 		interface_->activated_ = true;
 

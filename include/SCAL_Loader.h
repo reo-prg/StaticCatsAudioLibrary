@@ -32,10 +32,29 @@ namespace scal
 		WAVLoader();
 		~WAVLoader();
 
+		/// <summary>
+		/// wavデータを読み込む
+		/// </summary>
+		/// <param name="filename">ファイルパス</param>
+		/// <returns>成功したらtrue</returns>
 		bool LoadWAVFile(const std::string& filename);
+
+		/// <summary>
+		/// wavデータを取得する
+		/// </summary>
+		/// <param name="filename">ファイルパス</param>
+		/// <returns>wavデータ</returns>
 		WAVData* GetWAVFile(const std::string& filename);
+
+		/// <summary>
+		/// 読み込んだwavデータを削除する
+		/// </summary>
+		/// <param name="filename">ファイルパス</param>
 		void DestroyWAVFile(const std::string& filename);
 
+		/// <summary>
+		/// 読み込んである全てのwavデータを削除する
+		/// </summary>
 		void Terminate(void);
 	private:
 		std::unordered_map<std::string, WAVData> wav_;

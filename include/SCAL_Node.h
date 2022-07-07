@@ -16,20 +16,16 @@ namespace scal
 	/// <para>ノードクラス</para>
 	/// <para>サウンドが出力されるまでの中継地点として使用でき、</para>
 	/// <para>通過するサウンドに音量変更やエフェクトをかけることができる</para>
+	/// <para>使用方法</para>
+	/// <para>ゲームの初期化時に使用するノードを全て生成して、</para>
+	/// <para>サウンドが通るツリーを構成しましょう</para>
+	/// <para>その際、最終出力に近いノードから構築してください</para>
 	/// </summary>
 	class Node
 	{
 	public:
 		Node();
 		~Node();
-
-		/// <summary>
-		/// <para>音量を設定する</para>
-		/// <para>例) サウンドの音量:0.5 ノードの音量:0.3</para>
-		/// <para>最終的な音量 = 0.5 * 0.3 = 0.15</para>
-		/// </summary>
-		/// <param name="volume">音量</param>
-		void SetVolume(float volume);
 
 		/// <summary>
 		/// 出力先のノードを追加する
@@ -42,6 +38,26 @@ namespace scal
 		/// </summary>
 		/// <param name="node">除外したいノード</param>
 		void RemoveOutputNode(Node* node);
+
+		/// <summary>
+		/// <para>このノードを生成する</para>
+		/// <para>※出力先のノードを全て登録してから呼んでください</para>
+		/// <para>例</para>
+		/// <code>Node node;
+		/// <para>node.AddOutputNode(another_node);</para>
+		/// <para>node.AddOutputNode(some_node);</para>
+		/// <para>node.Create();</para></code>
+		/// </summary>
+		/// <returns>成功したらtrue</returns>
+		bool Create(void);
+
+		/// <summary>
+		/// <para>音量を設定する</para>
+		/// <para>例) サウンドの音量:0.5 ノードの音量:0.3</para>
+		/// <para>最終的な音量 = 0.5 * 0.3 = 0.15</para>
+		/// </summary>
+		/// <param name="volume">音量</param>
+		void SetVolume(float volume);
 
 		/// <summary>
 		///	入力のサウンドを追加する
@@ -158,11 +174,10 @@ namespace scal
 		/// <returns>成功したらtrue</returns>
 		bool SetFilter(XAUDIO2_FILTER_TYPE type, float frequency, float danping);
 
-		bool Create(void);
-
+		/// <summary>
+		/// このノードを削除する
+		/// </summary>
 		void Destroy(void);
-
-		IXAudio2SubmixVoice*& GetVoiceAddress(void);
 
 		bool IsActivated(void) { return activated_; }
 	private:
@@ -171,5 +186,13 @@ namespace scal
 		friend Node_Impl;
 
 		bool activated_ = false;
+	public:
+
+		/// <summary>
+		/// <para>生のボイスを取得する</para>
+		/// <para>通常は使用する必要なし</para>
+		/// </summary>
+		/// <returns>サブミックスボイスのポインタ</returns>
+		IXAudio2SubmixVoice*& GetVoiceAddress(void);
 	};
 }

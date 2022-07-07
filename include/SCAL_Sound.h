@@ -46,8 +46,8 @@ namespace scal
 		
 
 		/// <summary>
-		/// 再生範囲を設定する
-		/// 再生前に呼ばないといけない
+		/// <para>再生範囲を設定する</para>
+		/// <para>再生前に呼ばないといけない</para>
 		/// </summary>
 		/// <param name="begin">再生開始地点(秒)</param>
 		/// <param name="length">再生範囲の長さ(秒)</param>
@@ -61,8 +61,8 @@ namespace scal
 		void SetLoopSegment(float begin = 0.0f, float length = 0.0f);
 
 		/// <summary>
-		/// ループ回数を設定する
-		/// XAUDIO2_LOOP_INFINITE は無限ループ
+		/// <para>ループ回数を設定する</para>
+		/// <para>XAUDIO2_LOOP_INFINITEで無限ループ</para>
 		/// </summary>
 		/// <param name="count">回数</param>
 		void SetLoopCount(UINT32 count = XAUDIO2_LOOP_INFINITE);

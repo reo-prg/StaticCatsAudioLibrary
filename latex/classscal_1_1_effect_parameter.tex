@@ -1,0 +1,133 @@
+\hypertarget{classscal_1_1_effect_parameter}{}\doxysection{scal\+::Effect\+Parameter クラス}
+\label{classscal_1_1_effect_parameter}\index{scal::EffectParameter@{scal::EffectParameter}}
+
+
+ 
+
+
+
+
+{\ttfamily \#include $<$SCAL\+\_\+\+Effect.\+h$>$}
+
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classscal_1_1_effect_parameter_af1894355c3c37695a5217b8fcd990336}{$\sim$\+Effect\+Parameter}} ()
+\item 
+\mbox{\hyperlink{namespacescal_a6ce2f31ba60a0b43bb95116901638bf6}{Audio\+Effect\+Type}} \& \mbox{\hyperlink{classscal_1_1_effect_parameter_af2f293e6dedfddd9c50b55340fe57d43}{Get\+Effect\+Type}} (void)
+\begin{DoxyCompactList}\small\item\em エフェクトの種類を取得する \end{DoxyCompactList}\item 
+IUnknown $\ast$\& \mbox{\hyperlink{classscal_1_1_effect_parameter_a3557d004ec52282c441ee91c9a17c755}{Get\+Effect\+Raw\+Address}} (void)
+\begin{DoxyCompactList}\small\item\em 生のエフェクトのアドレスを取得する \end{DoxyCompactList}\item 
+void $\ast$\& \mbox{\hyperlink{classscal_1_1_effect_parameter_ac7e41f6657106770494db8123b224e54}{Get\+Parameter\+Raw\+Address}} (void)
+\begin{DoxyCompactList}\small\item\em エフェクトのパラメーターを取得する \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{非公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacescal_a6ce2f31ba60a0b43bb95116901638bf6}{Audio\+Effect\+Type}} \mbox{\hyperlink{classscal_1_1_effect_parameter_a272849c85981286657d2f2c9fba5c1a5}{type\+\_\+}}
+\item 
+IUnknown $\ast$ \mbox{\hyperlink{classscal_1_1_effect_parameter_a3fc7f6192cb7a21d209df29868d2c061}{p\+Effect\+\_\+}}
+\item 
+void $\ast$ \mbox{\hyperlink{classscal_1_1_effect_parameter_a47eb72ae31009655b77307c1030dc47c}{param\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+
+
+サウンドエフェクトのクラス
+
+Soundや\+Nodeが自分で管理しているので
+
+使用する必要なし
+
+ \mbox{\hyperlink{_s_c_a_l___effect_8h_source}{SCAL\+\_\+\+Effect.\+h}} の \mbox{\hyperlink{_s_c_a_l___effect_8h_source_l00015}{15}} 行目に定義があります。
+
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{classscal_1_1_effect_parameter_af1894355c3c37695a5217b8fcd990336}\label{classscal_1_1_effect_parameter_af1894355c3c37695a5217b8fcd990336}} 
+\index{scal::EffectParameter@{scal::EffectParameter}!````~EffectParameter@{$\sim$EffectParameter}}
+\index{````~EffectParameter@{$\sim$EffectParameter}!scal::EffectParameter@{scal::EffectParameter}}
+\doxysubsubsection{\texorpdfstring{$\sim$EffectParameter()}{~EffectParameter()}}
+{\footnotesize\ttfamily scal\+::\+Effect\+Parameter\+::$\sim$\+Effect\+Parameter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{classscal_1_1_effect_parameter_a3557d004ec52282c441ee91c9a17c755}\label{classscal_1_1_effect_parameter_a3557d004ec52282c441ee91c9a17c755}} 
+\index{scal::EffectParameter@{scal::EffectParameter}!GetEffectRawAddress@{GetEffectRawAddress}}
+\index{GetEffectRawAddress@{GetEffectRawAddress}!scal::EffectParameter@{scal::EffectParameter}}
+\doxysubsubsection{\texorpdfstring{GetEffectRawAddress()}{GetEffectRawAddress()}}
+{\footnotesize\ttfamily IUnknown $\ast$\& scal\+::\+Effect\+Parameter\+::\+Get\+Effect\+Raw\+Address (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+生のエフェクトのアドレスを取得する 
+
+\begin{DoxyReturn}{戻り値}
+エフェクトのアドレス
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_effect_parameter_af2f293e6dedfddd9c50b55340fe57d43}\label{classscal_1_1_effect_parameter_af2f293e6dedfddd9c50b55340fe57d43}} 
+\index{scal::EffectParameter@{scal::EffectParameter}!GetEffectType@{GetEffectType}}
+\index{GetEffectType@{GetEffectType}!scal::EffectParameter@{scal::EffectParameter}}
+\doxysubsubsection{\texorpdfstring{GetEffectType()}{GetEffectType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacescal_a6ce2f31ba60a0b43bb95116901638bf6}{Audio\+Effect\+Type}} \& scal\+::\+Effect\+Parameter\+::\+Get\+Effect\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+エフェクトの種類を取得する 
+
+\begin{DoxyReturn}{戻り値}
+エフェクトの種類
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_effect_parameter_ac7e41f6657106770494db8123b224e54}\label{classscal_1_1_effect_parameter_ac7e41f6657106770494db8123b224e54}} 
+\index{scal::EffectParameter@{scal::EffectParameter}!GetParameterRawAddress@{GetParameterRawAddress}}
+\index{GetParameterRawAddress@{GetParameterRawAddress}!scal::EffectParameter@{scal::EffectParameter}}
+\doxysubsubsection{\texorpdfstring{GetParameterRawAddress()}{GetParameterRawAddress()}}
+{\footnotesize\ttfamily void $\ast$\& scal\+::\+Effect\+Parameter\+::\+Get\+Parameter\+Raw\+Address (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+エフェクトのパラメーターを取得する 
+
+\begin{DoxyReturn}{戻り値}
+パラメーター
+\end{DoxyReturn}
+
+
+\doxysubsection{メンバ詳解}
+\mbox{\Hypertarget{classscal_1_1_effect_parameter_a47eb72ae31009655b77307c1030dc47c}\label{classscal_1_1_effect_parameter_a47eb72ae31009655b77307c1030dc47c}} 
+\index{scal::EffectParameter@{scal::EffectParameter}!param\_@{param\_}}
+\index{param\_@{param\_}!scal::EffectParameter@{scal::EffectParameter}}
+\doxysubsubsection{\texorpdfstring{param\_}{param\_}}
+{\footnotesize\ttfamily void$\ast$ scal\+::\+Effect\+Parameter\+::param\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___effect_8h_source}{SCAL\+\_\+\+Effect.\+h}} の \mbox{\hyperlink{_s_c_a_l___effect_8h_source_l00041}{41}} 行目に定義があります。
+
+\mbox{\Hypertarget{classscal_1_1_effect_parameter_a3fc7f6192cb7a21d209df29868d2c061}\label{classscal_1_1_effect_parameter_a3fc7f6192cb7a21d209df29868d2c061}} 
+\index{scal::EffectParameter@{scal::EffectParameter}!pEffect\_@{pEffect\_}}
+\index{pEffect\_@{pEffect\_}!scal::EffectParameter@{scal::EffectParameter}}
+\doxysubsubsection{\texorpdfstring{pEffect\_}{pEffect\_}}
+{\footnotesize\ttfamily IUnknown$\ast$ scal\+::\+Effect\+Parameter\+::p\+Effect\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___effect_8h_source}{SCAL\+\_\+\+Effect.\+h}} の \mbox{\hyperlink{_s_c_a_l___effect_8h_source_l00040}{40}} 行目に定義があります。
+
+\mbox{\Hypertarget{classscal_1_1_effect_parameter_a272849c85981286657d2f2c9fba5c1a5}\label{classscal_1_1_effect_parameter_a272849c85981286657d2f2c9fba5c1a5}} 
+\index{scal::EffectParameter@{scal::EffectParameter}!type\_@{type\_}}
+\index{type\_@{type\_}!scal::EffectParameter@{scal::EffectParameter}}
+\doxysubsubsection{\texorpdfstring{type\_}{type\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacescal_a6ce2f31ba60a0b43bb95116901638bf6}{Audio\+Effect\+Type}} scal\+::\+Effect\+Parameter\+::type\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___effect_8h_source}{SCAL\+\_\+\+Effect.\+h}} の \mbox{\hyperlink{_s_c_a_l___effect_8h_source_l00038}{38}} 行目に定義があります。
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_s_c_a_l___effect_8h}{SCAL\+\_\+\+Effect.\+h}}\end{DoxyCompactItemize}

@@ -4,6 +4,11 @@
 
 namespace scal_util
 {
+	/// <summary>
+	/// マルチバイト文字をワイド文字に変換する
+	/// </summary>
+	/// <param name="str">マルチバイト文字列</param>
+	/// <returns>ワイド文字列</returns>
 	std::wstring StringToWString(const std::string& str)
 	{
 		std::wstring ret;
@@ -13,8 +18,11 @@ namespace scal_util
 		return ret;
 	}
 
-
-
+	/// <summary>
+	/// 拡張子を取得する
+	/// </summary>
+	/// <param name="str">ファイルパス</param>
+	/// <returns>拡張子("sound.wav" なら "wav")</returns>
 	std::string GetExtension(const std::string& str)
 	{
 		size_t idx = str.rfind(".");
@@ -26,26 +34,15 @@ namespace scal_util
 		return str.substr(idx + 1);
 	}
 
-	unsigned int AlignTo(unsigned int value, unsigned int align)
-	{
-		return value + (align - (value % align)) % align;
-	}
-
-	template<typename T>
-	T sign(const T& value)
-	{
-		static_assert(std::is_arithmetic<T>::value);
-		return (value < static_cast<T>(0)) - (value > static_cast<T>(0));
-	}
-
+	/// <summary>
+	/// 線形補間をする
+	/// </summary>
+	/// <param name="val1">1つ目の値</param>
+	/// <param name="val2">2つ目の値</param>
+	/// <param name="t">補間値</param>
+	/// <returns>val1 + (val2 - val1) * t</returns>
 	float Lerp(float val1, float val2, float t)
 	{
 		return val1 + (val2 - val1) * t;
 	}
-
-	struct Size
-	{
-		int x;
-		int y;
-	};
 }

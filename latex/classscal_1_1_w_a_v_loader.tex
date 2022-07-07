@@ -1,0 +1,157 @@
+\hypertarget{classscal_1_1_w_a_v_loader}{}\doxysection{scal\+::WAVLoader クラス}
+\label{classscal_1_1_w_a_v_loader}\index{scal::WAVLoader@{scal::WAVLoader}}
+
+
+{\ttfamily \#include $<$SCAL\+\_\+\+Loader.\+h$>$}
+
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classscal_1_1_w_a_v_loader_a1f5b7e94a171d8fc98304371be438694}{WAVLoader}} ()
+\item 
+\mbox{\hyperlink{classscal_1_1_w_a_v_loader_a0362a1424242e39d3c155287ffcf76d7}{$\sim$\+WAVLoader}} ()
+\item 
+bool \mbox{\hyperlink{classscal_1_1_w_a_v_loader_a52971a7bbe9efe7f25a19ce33ca2cf0b}{Load\+WAVFile}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em wavデータを読み込む \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structscal_1_1_w_a_v_data}{WAVData}} $\ast$ \mbox{\hyperlink{classscal_1_1_w_a_v_loader_a16d17b6c831e4266df5eee80b345570a}{Get\+WAVFile}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em wavデータを取得する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_w_a_v_loader_a30753008317c2407ab134d13eff2556f}{Destroy\+WAVFile}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em 読み込んだwavデータを削除する \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_w_a_v_loader_af68471d2cc4d9584d6ff71c0561801f3}{Terminate}} (void)
+\begin{DoxyCompactList}\small\item\em 読み込んである全てのwavデータを削除する \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{非公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structscal_1_1_w_a_v_data}{WAVData}} $>$ \mbox{\hyperlink{classscal_1_1_w_a_v_loader_aed96d895ae471146dcb5cf421b4dbd72}{wav\+\_\+}}
+\end{DoxyCompactItemize}
+\doxysubsection*{静的非公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr char \mbox{\hyperlink{classscal_1_1_w_a_v_loader_ac07c31014cb7a3e0fdf22e1da1e6d973}{fmttag}} \mbox{[}4\mbox{]} = \{ \textquotesingle{}f\textquotesingle{}, \textquotesingle{}m\textquotesingle{}, \textquotesingle{}t\textquotesingle{}, \textquotesingle{} \textquotesingle{} \}
+\item 
+static constexpr char \mbox{\hyperlink{classscal_1_1_w_a_v_loader_abfc0687920b243b01fb5ad8474ceb375}{datatag}} \mbox{[}4\mbox{]} = \{ \textquotesingle{}d\textquotesingle{}, \textquotesingle{}a\textquotesingle{}, \textquotesingle{}t\textquotesingle{}, \textquotesingle{}a\textquotesingle{} \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+
+
+ \mbox{\hyperlink{_s_c_a_l___loader_8h_source}{SCAL\+\_\+\+Loader.\+h}} の \mbox{\hyperlink{_s_c_a_l___loader_8h_source_l00029}{29}} 行目に定義があります。
+
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{classscal_1_1_w_a_v_loader_a1f5b7e94a171d8fc98304371be438694}\label{classscal_1_1_w_a_v_loader_a1f5b7e94a171d8fc98304371be438694}} 
+\index{scal::WAVLoader@{scal::WAVLoader}!WAVLoader@{WAVLoader}}
+\index{WAVLoader@{WAVLoader}!scal::WAVLoader@{scal::WAVLoader}}
+\doxysubsubsection{\texorpdfstring{WAVLoader()}{WAVLoader()}}
+{\footnotesize\ttfamily scal\+::\+WAVLoader\+::\+WAVLoader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classscal_1_1_w_a_v_loader_a0362a1424242e39d3c155287ffcf76d7}\label{classscal_1_1_w_a_v_loader_a0362a1424242e39d3c155287ffcf76d7}} 
+\index{scal::WAVLoader@{scal::WAVLoader}!````~WAVLoader@{$\sim$WAVLoader}}
+\index{````~WAVLoader@{$\sim$WAVLoader}!scal::WAVLoader@{scal::WAVLoader}}
+\doxysubsubsection{\texorpdfstring{$\sim$WAVLoader()}{~WAVLoader()}}
+{\footnotesize\ttfamily scal\+::\+WAVLoader\+::$\sim$\+WAVLoader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{classscal_1_1_w_a_v_loader_a30753008317c2407ab134d13eff2556f}\label{classscal_1_1_w_a_v_loader_a30753008317c2407ab134d13eff2556f}} 
+\index{scal::WAVLoader@{scal::WAVLoader}!DestroyWAVFile@{DestroyWAVFile}}
+\index{DestroyWAVFile@{DestroyWAVFile}!scal::WAVLoader@{scal::WAVLoader}}
+\doxysubsubsection{\texorpdfstring{DestroyWAVFile()}{DestroyWAVFile()}}
+{\footnotesize\ttfamily void scal\+::\+WAVLoader\+::\+Destroy\+WAVFile (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+読み込んだwavデータを削除する 
+
+
+\begin{DoxyParams}{引数}
+{\em filename} & ファイルパス\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_w_a_v_loader_a16d17b6c831e4266df5eee80b345570a}\label{classscal_1_1_w_a_v_loader_a16d17b6c831e4266df5eee80b345570a}} 
+\index{scal::WAVLoader@{scal::WAVLoader}!GetWAVFile@{GetWAVFile}}
+\index{GetWAVFile@{GetWAVFile}!scal::WAVLoader@{scal::WAVLoader}}
+\doxysubsubsection{\texorpdfstring{GetWAVFile()}{GetWAVFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structscal_1_1_w_a_v_data}{WAVData}} $\ast$ scal\+::\+WAVLoader\+::\+Get\+WAVFile (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+wavデータを取得する 
+
+
+\begin{DoxyParams}{引数}
+{\em filename} & ファイルパス\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+wavデータ
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_w_a_v_loader_a52971a7bbe9efe7f25a19ce33ca2cf0b}\label{classscal_1_1_w_a_v_loader_a52971a7bbe9efe7f25a19ce33ca2cf0b}} 
+\index{scal::WAVLoader@{scal::WAVLoader}!LoadWAVFile@{LoadWAVFile}}
+\index{LoadWAVFile@{LoadWAVFile}!scal::WAVLoader@{scal::WAVLoader}}
+\doxysubsubsection{\texorpdfstring{LoadWAVFile()}{LoadWAVFile()}}
+{\footnotesize\ttfamily bool scal\+::\+WAVLoader\+::\+Load\+WAVFile (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+wavデータを読み込む 
+
+
+\begin{DoxyParams}{引数}
+{\em filename} & ファイルパス\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+成功したらtrue
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_w_a_v_loader_af68471d2cc4d9584d6ff71c0561801f3}\label{classscal_1_1_w_a_v_loader_af68471d2cc4d9584d6ff71c0561801f3}} 
+\index{scal::WAVLoader@{scal::WAVLoader}!Terminate@{Terminate}}
+\index{Terminate@{Terminate}!scal::WAVLoader@{scal::WAVLoader}}
+\doxysubsubsection{\texorpdfstring{Terminate()}{Terminate()}}
+{\footnotesize\ttfamily void scal\+::\+WAVLoader\+::\+Terminate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+読み込んである全てのwavデータを削除する 
+
+
+
+\doxysubsection{メンバ詳解}
+\mbox{\Hypertarget{classscal_1_1_w_a_v_loader_abfc0687920b243b01fb5ad8474ceb375}\label{classscal_1_1_w_a_v_loader_abfc0687920b243b01fb5ad8474ceb375}} 
+\index{scal::WAVLoader@{scal::WAVLoader}!datatag@{datatag}}
+\index{datatag@{datatag}!scal::WAVLoader@{scal::WAVLoader}}
+\doxysubsubsection{\texorpdfstring{datatag}{datatag}}
+{\footnotesize\ttfamily constexpr char scal\+::\+WAVLoader\+::datatag\mbox{[}4\mbox{]} = \{ \textquotesingle{}d\textquotesingle{}, \textquotesingle{}a\textquotesingle{}, \textquotesingle{}t\textquotesingle{}, \textquotesingle{}a\textquotesingle{} \}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___loader_8h_source}{SCAL\+\_\+\+Loader.\+h}} の \mbox{\hyperlink{_s_c_a_l___loader_8h_source_l00063}{63}} 行目に定義があります。
+
+\mbox{\Hypertarget{classscal_1_1_w_a_v_loader_ac07c31014cb7a3e0fdf22e1da1e6d973}\label{classscal_1_1_w_a_v_loader_ac07c31014cb7a3e0fdf22e1da1e6d973}} 
+\index{scal::WAVLoader@{scal::WAVLoader}!fmttag@{fmttag}}
+\index{fmttag@{fmttag}!scal::WAVLoader@{scal::WAVLoader}}
+\doxysubsubsection{\texorpdfstring{fmttag}{fmttag}}
+{\footnotesize\ttfamily constexpr char scal\+::\+WAVLoader\+::fmttag\mbox{[}4\mbox{]} = \{ \textquotesingle{}f\textquotesingle{}, \textquotesingle{}m\textquotesingle{}, \textquotesingle{}t\textquotesingle{}, \textquotesingle{} \textquotesingle{} \}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___loader_8h_source}{SCAL\+\_\+\+Loader.\+h}} の \mbox{\hyperlink{_s_c_a_l___loader_8h_source_l00062}{62}} 行目に定義があります。
+
+\mbox{\Hypertarget{classscal_1_1_w_a_v_loader_aed96d895ae471146dcb5cf421b4dbd72}\label{classscal_1_1_w_a_v_loader_aed96d895ae471146dcb5cf421b4dbd72}} 
+\index{scal::WAVLoader@{scal::WAVLoader}!wav\_@{wav\_}}
+\index{wav\_@{wav\_}!scal::WAVLoader@{scal::WAVLoader}}
+\doxysubsubsection{\texorpdfstring{wav\_}{wav\_}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{structscal_1_1_w_a_v_data}{WAVData}}$>$ scal\+::\+WAVLoader\+::wav\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___loader_8h_source}{SCAL\+\_\+\+Loader.\+h}} の \mbox{\hyperlink{_s_c_a_l___loader_8h_source_l00060}{60}} 行目に定義があります。
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_s_c_a_l___loader_8h}{SCAL\+\_\+\+Loader.\+h}}\end{DoxyCompactItemize}

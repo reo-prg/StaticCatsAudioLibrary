@@ -1,0 +1,304 @@
+\hypertarget{classscal_1_1_quaternion}{}\doxysection{scal\+::Quaternion クラス}
+\label{classscal_1_1_quaternion}\index{scal::Quaternion@{scal::Quaternion}}
+
+
+{\ttfamily \#include $<$SCAL\+\_\+\+Math.\+h$>$}
+
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classscal_1_1_quaternion_a9051bbf4077c9477d26b584feba149b4}{Quaternion}} ()
+\item 
+\mbox{\hyperlink{classscal_1_1_quaternion_a38995aa623af406a659456c9b24080f2}{Quaternion}} (float valx, float valy, float valz, float valw)
+\item 
+\mbox{\hyperlink{classscal_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classscal_1_1_quaternion_adde76b3ae1132d518cdaf3da01aa8c6c}{operator$\ast$}} (const \mbox{\hyperlink{classscal_1_1_quaternion}{Quaternion}} \&quat)
+\item 
+\mbox{\hyperlink{classscal_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classscal_1_1_quaternion_aa0ad07a63739585383fd4655c8f63cb8}{Inverse}} (void)
+\begin{DoxyCompactList}\small\item\em 逆クォータニオンの取得 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classscal_1_1_vector3}{Vector3}} \mbox{\hyperlink{classscal_1_1_quaternion_a5aea37a273a290e6aadd666b3b964165}{Rotate\+Vector}} (const \mbox{\hyperlink{classscal_1_1_vector3}{Vector3}} \&vec)
+\begin{DoxyCompactList}\small\item\em ベクトルを回転させる \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classscal_1_1_matrix}{Matrix}} \mbox{\hyperlink{classscal_1_1_quaternion_a7d64209fc958312eef314827700710a3}{Get\+Rotation\+Matrix}} (void)
+\begin{DoxyCompactList}\small\item\em 回転行列の取得 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_quaternion_a1640cee067e8a8e6988455a68a3ffb4e}{Set\+Rotation\+Matrix}} (const \mbox{\hyperlink{classscal_1_1_matrix}{Matrix}} \&mat)
+\begin{DoxyCompactList}\small\item\em 回転行列からクォータニオンを生成 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_quaternion_a9bcbaf314f102a77eb3c9f241236d608}{Set\+Rotation\+Euler\+Angle}} (const \mbox{\hyperlink{classscal_1_1_vector3}{Vector3}} \&angle)
+\begin{DoxyCompactList}\small\item\em オイラー角からクォータニオンを生成 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_quaternion_ab2c60a56ff946b1776d19d24798e2316}{Set\+Rotation\+Euler\+Angle}} (float angx, float angy, float angz)
+\begin{DoxyCompactList}\small\item\em オイラー角からクォータニオンを生成 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classscal_1_1_quaternion_a5f9a5c209eed1b5cf78879fce9475146}{Set\+Rotation\+Axis}} (const \mbox{\hyperlink{classscal_1_1_vector3}{Vector3}} \&axis, float rotate\+Angle)
+\begin{DoxyCompactList}\small\item\em 回転軸と回転量からクォータニオンを生成 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{静的公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classscal_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classscal_1_1_quaternion_a5bcf41ad23e512dcb32c3ebe006e5e64}{Rotate\+Axis}} (const \mbox{\hyperlink{classscal_1_1_vector3}{Vector3}} \&axis, float rotate\+Angle)
+\begin{DoxyCompactList}\small\item\em 回転軸と回転量からクォータニオンを生成 \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classscal_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classscal_1_1_quaternion_ac6d29eb52a68dcf050d8386ac71cb1ce}{Euler\+Angle}} (float angx, float angy, float angz)
+\begin{DoxyCompactList}\small\item\em オイラー角からクォータニオンを生成 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classscal_1_1_quaternion_a568e6fdf2715fb677e5d515dd9a90f90}{x}}
+\item 
+float \mbox{\hyperlink{classscal_1_1_quaternion_aa56144747922ef531c63200adbde9617}{y}}
+\item 
+float \mbox{\hyperlink{classscal_1_1_quaternion_a256786b4ba2761470e12317676e4da7d}{z}}
+\item 
+float \mbox{\hyperlink{classscal_1_1_quaternion_a43d7858545ef4cd6082936a2b02b4793}{w}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{詳解}
+
+
+ \mbox{\hyperlink{_s_c_a_l___math_8h_source}{SCAL\+\_\+\+Math.\+h}} の \mbox{\hyperlink{_s_c_a_l___math_8h_source_l00163}{163}} 行目に定義があります。
+
+
+
+\doxysubsection{構築子と解体子}
+\mbox{\Hypertarget{classscal_1_1_quaternion_a9051bbf4077c9477d26b584feba149b4}\label{classscal_1_1_quaternion_a9051bbf4077c9477d26b584feba149b4}} 
+\index{scal::Quaternion@{scal::Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily scal\+::\+Quaternion\+::\+Quaternion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___math_8h_source}{SCAL\+\_\+\+Math.\+h}} の \mbox{\hyperlink{_s_c_a_l___math_8h_source_l00168}{168}} 行目に定義があります。
+
+被呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classscal_1_1_quaternion_a9051bbf4077c9477d26b584feba149b4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classscal_1_1_quaternion_a38995aa623af406a659456c9b24080f2}\label{classscal_1_1_quaternion_a38995aa623af406a659456c9b24080f2}} 
+\index{scal::Quaternion@{scal::Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily scal\+::\+Quaternion\+::\+Quaternion (\begin{DoxyParamCaption}\item[{float}]{valx,  }\item[{float}]{valy,  }\item[{float}]{valz,  }\item[{float}]{valw }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___math_8h_source}{SCAL\+\_\+\+Math.\+h}} の \mbox{\hyperlink{_s_c_a_l___math_8h_source_l00170}{170}} 行目に定義があります。
+
+
+
+\doxysubsection{関数詳解}
+\mbox{\Hypertarget{classscal_1_1_quaternion_ac6d29eb52a68dcf050d8386ac71cb1ce}\label{classscal_1_1_quaternion_ac6d29eb52a68dcf050d8386ac71cb1ce}} 
+\index{scal::Quaternion@{scal::Quaternion}!EulerAngle@{EulerAngle}}
+\index{EulerAngle@{EulerAngle}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{EulerAngle()}{EulerAngle()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classscal_1_1_quaternion}{Quaternion}} scal\+::\+Quaternion\+::\+Euler\+Angle (\begin{DoxyParamCaption}\item[{float}]{angx,  }\item[{float}]{angy,  }\item[{float}]{angz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+オイラー角からクォータニオンを生成 
+
+
+\begin{DoxyParams}{引数}
+{\em angx} & x回転\\
+\hline
+{\em angy} & y回転\\
+\hline
+{\em angz} & z回転\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+対応するクォータニオン
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_quaternion_a7d64209fc958312eef314827700710a3}\label{classscal_1_1_quaternion_a7d64209fc958312eef314827700710a3}} 
+\index{scal::Quaternion@{scal::Quaternion}!GetRotationMatrix@{GetRotationMatrix}}
+\index{GetRotationMatrix@{GetRotationMatrix}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{GetRotationMatrix()}{GetRotationMatrix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscal_1_1_matrix}{Matrix}} scal\+::\+Quaternion\+::\+Get\+Rotation\+Matrix (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+回転行列の取得 
+
+\begin{DoxyReturn}{戻り値}
+回転行列
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_quaternion_aa0ad07a63739585383fd4655c8f63cb8}\label{classscal_1_1_quaternion_aa0ad07a63739585383fd4655c8f63cb8}} 
+\index{scal::Quaternion@{scal::Quaternion}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{Inverse()}{Inverse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscal_1_1_quaternion}{Quaternion}} scal\+::\+Quaternion\+::\+Inverse (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+逆クォータニオンの取得 
+
+\begin{DoxyReturn}{戻り値}
+逆クォータニオン
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_quaternion_adde76b3ae1132d518cdaf3da01aa8c6c}\label{classscal_1_1_quaternion_adde76b3ae1132d518cdaf3da01aa8c6c}} 
+\index{scal::Quaternion@{scal::Quaternion}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscal_1_1_quaternion}{Quaternion}} scal\+::\+Quaternion\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classscal_1_1_quaternion}{Quaternion}} \&}]{quat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___math_8h_source}{SCAL\+\_\+\+Math.\+h}} の \mbox{\hyperlink{_s_c_a_l___math_8h_source_l00172}{172}} 行目に定義があります。
+
+呼び出し関係図\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classscal_1_1_quaternion_adde76b3ae1132d518cdaf3da01aa8c6c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classscal_1_1_quaternion_a5bcf41ad23e512dcb32c3ebe006e5e64}\label{classscal_1_1_quaternion_a5bcf41ad23e512dcb32c3ebe006e5e64}} 
+\index{scal::Quaternion@{scal::Quaternion}!RotateAxis@{RotateAxis}}
+\index{RotateAxis@{RotateAxis}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{RotateAxis()}{RotateAxis()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classscal_1_1_quaternion}{Quaternion}} scal\+::\+Quaternion\+::\+Rotate\+Axis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classscal_1_1_vector3}{Vector3}} \&}]{axis,  }\item[{float}]{rotate\+Angle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+回転軸と回転量からクォータニオンを生成 
+
+
+\begin{DoxyParams}{引数}
+{\em axis} & 回転軸\\
+\hline
+{\em rotate\+Angle} & 回転量\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+対応するクォータニオン
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_quaternion_a5aea37a273a290e6aadd666b3b964165}\label{classscal_1_1_quaternion_a5aea37a273a290e6aadd666b3b964165}} 
+\index{scal::Quaternion@{scal::Quaternion}!RotateVector@{RotateVector}}
+\index{RotateVector@{RotateVector}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{RotateVector()}{RotateVector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classscal_1_1_vector3}{Vector3}} scal\+::\+Quaternion\+::\+Rotate\+Vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classscal_1_1_vector3}{Vector3}} \&}]{vec }\end{DoxyParamCaption})}
+
+
+
+ベクトルを回転させる 
+
+
+\begin{DoxyParams}{引数}
+{\em vec} & ベクトル\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+回転後のベクトル
+\end{DoxyReturn}
+\mbox{\Hypertarget{classscal_1_1_quaternion_a5f9a5c209eed1b5cf78879fce9475146}\label{classscal_1_1_quaternion_a5f9a5c209eed1b5cf78879fce9475146}} 
+\index{scal::Quaternion@{scal::Quaternion}!SetRotationAxis@{SetRotationAxis}}
+\index{SetRotationAxis@{SetRotationAxis}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{SetRotationAxis()}{SetRotationAxis()}}
+{\footnotesize\ttfamily void scal\+::\+Quaternion\+::\+Set\+Rotation\+Axis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classscal_1_1_vector3}{Vector3}} \&}]{axis,  }\item[{float}]{rotate\+Angle }\end{DoxyParamCaption})}
+
+
+
+回転軸と回転量からクォータニオンを生成 
+
+
+\begin{DoxyParams}{引数}
+{\em axis} & 回転軸\\
+\hline
+{\em rotate\+Angle} & 回転量\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_quaternion_a9bcbaf314f102a77eb3c9f241236d608}\label{classscal_1_1_quaternion_a9bcbaf314f102a77eb3c9f241236d608}} 
+\index{scal::Quaternion@{scal::Quaternion}!SetRotationEulerAngle@{SetRotationEulerAngle}}
+\index{SetRotationEulerAngle@{SetRotationEulerAngle}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{SetRotationEulerAngle()}{SetRotationEulerAngle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void scal\+::\+Quaternion\+::\+Set\+Rotation\+Euler\+Angle (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classscal_1_1_vector3}{Vector3}} \&}]{angle }\end{DoxyParamCaption})}
+
+
+
+オイラー角からクォータニオンを生成 
+
+
+\begin{DoxyParams}{引数}
+{\em angle} & オイラー角\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_quaternion_ab2c60a56ff946b1776d19d24798e2316}\label{classscal_1_1_quaternion_ab2c60a56ff946b1776d19d24798e2316}} 
+\index{scal::Quaternion@{scal::Quaternion}!SetRotationEulerAngle@{SetRotationEulerAngle}}
+\index{SetRotationEulerAngle@{SetRotationEulerAngle}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{SetRotationEulerAngle()}{SetRotationEulerAngle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void scal\+::\+Quaternion\+::\+Set\+Rotation\+Euler\+Angle (\begin{DoxyParamCaption}\item[{float}]{angx,  }\item[{float}]{angy,  }\item[{float}]{angz }\end{DoxyParamCaption})}
+
+
+
+オイラー角からクォータニオンを生成 
+
+
+\begin{DoxyParams}{引数}
+{\em angx} & x回転\\
+\hline
+{\em angy} & y回転\\
+\hline
+{\em angz} & z回転\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classscal_1_1_quaternion_a1640cee067e8a8e6988455a68a3ffb4e}\label{classscal_1_1_quaternion_a1640cee067e8a8e6988455a68a3ffb4e}} 
+\index{scal::Quaternion@{scal::Quaternion}!SetRotationMatrix@{SetRotationMatrix}}
+\index{SetRotationMatrix@{SetRotationMatrix}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{SetRotationMatrix()}{SetRotationMatrix()}}
+{\footnotesize\ttfamily void scal\+::\+Quaternion\+::\+Set\+Rotation\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classscal_1_1_matrix}{Matrix}} \&}]{mat }\end{DoxyParamCaption})}
+
+
+
+回転行列からクォータニオンを生成 
+
+
+\begin{DoxyParams}{引数}
+{\em mat} & 回転行列\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{メンバ詳解}
+\mbox{\Hypertarget{classscal_1_1_quaternion_a43d7858545ef4cd6082936a2b02b4793}\label{classscal_1_1_quaternion_a43d7858545ef4cd6082936a2b02b4793}} 
+\index{scal::Quaternion@{scal::Quaternion}!w@{w}}
+\index{w@{w}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily float scal\+::\+Quaternion\+::w}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___math_8h_source}{SCAL\+\_\+\+Math.\+h}} の \mbox{\hyperlink{_s_c_a_l___math_8h_source_l00166}{166}} 行目に定義があります。
+
+\mbox{\Hypertarget{classscal_1_1_quaternion_a568e6fdf2715fb677e5d515dd9a90f90}\label{classscal_1_1_quaternion_a568e6fdf2715fb677e5d515dd9a90f90}} 
+\index{scal::Quaternion@{scal::Quaternion}!x@{x}}
+\index{x@{x}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily float scal\+::\+Quaternion\+::x}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___math_8h_source}{SCAL\+\_\+\+Math.\+h}} の \mbox{\hyperlink{_s_c_a_l___math_8h_source_l00166}{166}} 行目に定義があります。
+
+\mbox{\Hypertarget{classscal_1_1_quaternion_aa56144747922ef531c63200adbde9617}\label{classscal_1_1_quaternion_aa56144747922ef531c63200adbde9617}} 
+\index{scal::Quaternion@{scal::Quaternion}!y@{y}}
+\index{y@{y}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily float scal\+::\+Quaternion\+::y}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___math_8h_source}{SCAL\+\_\+\+Math.\+h}} の \mbox{\hyperlink{_s_c_a_l___math_8h_source_l00166}{166}} 行目に定義があります。
+
+\mbox{\Hypertarget{classscal_1_1_quaternion_a256786b4ba2761470e12317676e4da7d}\label{classscal_1_1_quaternion_a256786b4ba2761470e12317676e4da7d}} 
+\index{scal::Quaternion@{scal::Quaternion}!z@{z}}
+\index{z@{z}!scal::Quaternion@{scal::Quaternion}}
+\doxysubsubsection{\texorpdfstring{z}{z}}
+{\footnotesize\ttfamily float scal\+::\+Quaternion\+::z}
+
+
+
+ \mbox{\hyperlink{_s_c_a_l___math_8h_source}{SCAL\+\_\+\+Math.\+h}} の \mbox{\hyperlink{_s_c_a_l___math_8h_source_l00166}{166}} 行目に定義があります。
+
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_s_c_a_l___math_8h}{SCAL\+\_\+\+Math.\+h}}\end{DoxyCompactItemize}
