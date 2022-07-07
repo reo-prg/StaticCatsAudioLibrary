@@ -88,10 +88,10 @@ namespace scal
 		}
 
 		send_.clear();
-		sourceVoice_->SetOutputVoices(nullptr);
-
 		if (sourceVoice_ != nullptr)
 		{
+			sourceVoice_->SetOutputVoices(nullptr);
+
 			sourceVoice_->DestroyVoice();
 		}
 	}

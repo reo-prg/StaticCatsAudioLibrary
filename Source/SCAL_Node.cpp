@@ -79,10 +79,10 @@ namespace scal
 		}
 
 		send_.clear();
-		submixVoice_->SetOutputVoices(nullptr);
-
 		if (submixVoice_ != nullptr)
 		{
+			submixVoice_->SetOutputVoices(nullptr);
+
 			submixVoice_->DestroyVoice();
 		}
 	}
