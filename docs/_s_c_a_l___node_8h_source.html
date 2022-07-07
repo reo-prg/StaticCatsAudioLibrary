@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>StaticCatsAudioLibrary: SCAL_Node.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">StaticCatsAudioLibrary<span id="projectnumber">&#160;v1.5</span>
+   </div>
+   <div id="projectbrief">XAudio2 Wrapper Library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_62c2e282352915363ad8f8be403610a6.html">StaticCatsAudioLibrary</a></li><li class="navelem"><a class="el" href="dir_4d521e7fd9a2dd2c3db5e88c50d016b2.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">SCAL_Node.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_s_c_a_l___node_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;Windows.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;xaudio2.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;xaudio2fx.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;xapofx.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_s_c_a_l___defines_8h.html">SCAL_Defines.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacescal.html">scal</a></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="namespacescal.html#a1325387c6c57f2202321a71fbaa2ab5c">   11</a></span>    <span class="keyword">constexpr</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="namespacescal.html#a1325387c6c57f2202321a71fbaa2ab5c">rootSubmixProcessingStage</a> = 128u;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">class </span><a class="code hl_class" href="classscal_1_1_sound.html">Sound</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html">   24</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classscal_1_1_node.html">Node</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a9e14a753cbfb8fbda57fbe7bce0641d7">   27</a></span>        <a class="code hl_function" href="classscal_1_1_node.html#a9e14a753cbfb8fbda57fbe7bce0641d7">Node</a>();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#ab60a57e329b3215688dc4ab093048900">   28</a></span>        <a class="code hl_function" href="classscal_1_1_node.html#ab60a57e329b3215688dc4ab093048900">~Node</a>();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a5a148d7df1df2db9f6047703f012f66e">   34</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#a5a148d7df1df2db9f6047703f012f66e">AddOutputNode</a>(<a class="code hl_class" href="classscal_1_1_node.html">Node</a>* node);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a80c81b391ce009cea83e76de27819a37">   40</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#a80c81b391ce009cea83e76de27819a37">RemoveOutputNode</a>(<a class="code hl_class" href="classscal_1_1_node.html">Node</a>* node);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#ab7cee20b5d50a68a48c4af48227f582b">   52</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_node.html#ab7cee20b5d50a68a48c4af48227f582b">Create</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#abe2fe7ca46b1db1abf1b4b0a49477c24">   60</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#abe2fe7ca46b1db1abf1b4b0a49477c24">SetVolume</a>(<span class="keywordtype">float</span> volume);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a86de41b8f6d3512b98092faa307ea38c">   67</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#a86de41b8f6d3512b98092faa307ea38c">AddInputSound</a>(<a class="code hl_class" href="classscal_1_1_sound.html">Sound</a>* sound, <span class="keywordtype">bool</span> system_value_isCallingAnotherFunc = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a3b37ccba1a857e270db2503b9be519e3">   74</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#a3b37ccba1a857e270db2503b9be519e3">RemoveInputSound</a>(<a class="code hl_class" href="classscal_1_1_sound.html">Sound</a>* sound, <span class="keywordtype">bool</span> system_value_isCallingAnotherFunc = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#ae859239185f12e5901096544525a1163">   83</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classscal_1_1_node.html#ae859239185f12e5901096544525a1163">AddEffect</a>(<a class="code hl_enumeration" href="namespacescal.html#a6ce2f31ba60a0b43bb95116901638bf6">AudioEffectType</a> type, <span class="keywordtype">bool</span> active, <span class="keywordtype">int</span> insertPosition = -1);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a81149efc57a86f21479cf9b394f4eb36">   90</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_node.html#a81149efc57a86f21479cf9b394f4eb36">RemoveEffect</a>(<span class="keywordtype">int</span> position = -1);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#ad8a087fe748eed6389b7364edab622c9">   97</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_node.html#ad8a087fe748eed6389b7364edab622c9">EnableEffect</a>(<span class="keywordtype">int</span> position = -1);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a7bc7e2e99badeba4f92f73d2bd24add5">  104</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_node.html#a7bc7e2e99badeba4f92f73d2bd24add5">DisableEffect</a>(<span class="keywordtype">int</span> position = -1);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a96f64658799c3a2005319bfa970782a8">  112</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#a96f64658799c3a2005319bfa970782a8">SetReverbParameter</a>(<span class="keyword">const</span> XAUDIO2FX_REVERB_I3DL2_PARAMETERS&amp; param, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a22bdee9f686c59bc7716e65b2fadbe20">  119</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#a22bdee9f686c59bc7716e65b2fadbe20">SetReverbParameter</a>(<span class="keyword">const</span> XAUDIO2FX_REVERB_PARAMETERS&amp; param, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a9851c21ce0c96f248384c629931cce69">  128</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#a9851c21ce0c96f248384c629931cce69">SetEchoParameter</a>(<span class="keywordtype">float</span> strength, <span class="keywordtype">float</span> delay, <span class="keywordtype">float</span> reverb, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#aba5f8863d0dc678dd229736c9666c39a">  135</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#aba5f8863d0dc678dd229736c9666c39a">SetEqualizerParameter</a>(<span class="keyword">const</span> FXEQ_PARAMETERS&amp; param, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#aa50f1d927bf44a2e90897437e7b6a3ee">  143</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#aa50f1d927bf44a2e90897437e7b6a3ee">SetMasteringLimiterParameter</a>(UINT32 release, UINT32 loudness, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#aedfb55b5cf2c76b6ac9e760d2b37df74">  151</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#aedfb55b5cf2c76b6ac9e760d2b37df74">SetFXReverbParameter</a>(<span class="keywordtype">float</span> diffuse, <span class="keywordtype">float</span> roomsize, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a08880b79332df9d0f241994f491739f4">  158</a></span>        XAUDIO2FX_VOLUMEMETER_LEVELS* <a class="code hl_function" href="classscal_1_1_node.html#a08880b79332df9d0f241994f491739f4">GetVolumeMeterParameter</a>(<span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a063ee123e4e2063f2a8409c74dd7644e">  166</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classscal_1_1_node.html#a063ee123e4e2063f2a8409c74dd7644e">FindEffectIndex</a>(<a class="code hl_enumeration" href="namespacescal.html#a6ce2f31ba60a0b43bb95116901638bf6">AudioEffectType</a> type);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a3a1cc859afbbfc85e701a93c77d2d6e9">  175</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_node.html#a3a1cc859afbbfc85e701a93c77d2d6e9">SetFilter</a>(XAUDIO2_FILTER_TYPE type, <span class="keywordtype">float</span> frequency, <span class="keywordtype">float</span> danping);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a0a67d8359dd1db9255c728c9b2c39fef">  180</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_node.html#a0a67d8359dd1db9255c728c9b2c39fef">Destroy</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#aa43cbb1912fe3f546d8933b8539e42c9">  182</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_node.html#aa43cbb1912fe3f546d8933b8539e42c9">IsActivated</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code hl_variable" href="classscal_1_1_node.html#ad0870912f2e63bbc00f3fca68c6b75db">activated_</a>; }</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keyword">class </span><a class="code hl_variable" href="classscal_1_1_node.html#abd04099d13775eb860d91e739a5a3435">Node_Impl</a>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a5242b5c385b49cdcf3c803dc50a2b69d">  185</a></span>        std::unique_ptr&lt;Node_Impl&gt; <a class="code hl_variable" href="classscal_1_1_node.html#a5242b5c385b49cdcf3c803dc50a2b69d">impl_</a>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#abd04099d13775eb860d91e739a5a3435">  186</a></span>        <span class="keyword">friend</span> <a class="code hl_variable" href="classscal_1_1_node.html#abd04099d13775eb860d91e739a5a3435">Node_Impl</a>;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#ad0870912f2e63bbc00f3fca68c6b75db">  188</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classscal_1_1_node.html#ad0870912f2e63bbc00f3fca68c6b75db">activated_</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classscal_1_1_node.html#a5643d388201c3d5840808393118e15a2">  196</a></span>        IXAudio2SubmixVoice*&amp; <a class="code hl_function" href="classscal_1_1_node.html#a5643d388201c3d5840808393118e15a2">GetVoiceAddress</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    };</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>}</div>
+<div class="ttc" id="a_s_c_a_l___defines_8h_html"><div class="ttname"><a href="_s_c_a_l___defines_8h.html">SCAL_Defines.h</a></div></div>
+<div class="ttc" id="aclassscal_1_1_node_html"><div class="ttname"><a href="classscal_1_1_node.html">scal::Node</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___node_8h_source.html#l00024">SCAL_Node.h:25</a></div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a063ee123e4e2063f2a8409c74dd7644e"><div class="ttname"><a href="classscal_1_1_node.html#a063ee123e4e2063f2a8409c74dd7644e">scal::Node::FindEffectIndex</a></div><div class="ttdeci">int FindEffectIndex(AudioEffectType type)</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a08880b79332df9d0f241994f491739f4"><div class="ttname"><a href="classscal_1_1_node.html#a08880b79332df9d0f241994f491739f4">scal::Node::GetVolumeMeterParameter</a></div><div class="ttdeci">XAUDIO2FX_VOLUMEMETER_LEVELS * GetVolumeMeterParameter(int effectIndex=-1)</div><div class="ttdoc">ボリュームメーターを取得する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a0a67d8359dd1db9255c728c9b2c39fef"><div class="ttname"><a href="classscal_1_1_node.html#a0a67d8359dd1db9255c728c9b2c39fef">scal::Node::Destroy</a></div><div class="ttdeci">void Destroy(void)</div><div class="ttdoc">このノードを削除する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a22bdee9f686c59bc7716e65b2fadbe20"><div class="ttname"><a href="classscal_1_1_node.html#a22bdee9f686c59bc7716e65b2fadbe20">scal::Node::SetReverbParameter</a></div><div class="ttdeci">void SetReverbParameter(const XAUDIO2FX_REVERB_PARAMETERS &amp;param, int effectIndex=-1)</div><div class="ttdoc">リバーブのエフェクトのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a3a1cc859afbbfc85e701a93c77d2d6e9"><div class="ttname"><a href="classscal_1_1_node.html#a3a1cc859afbbfc85e701a93c77d2d6e9">scal::Node::SetFilter</a></div><div class="ttdeci">bool SetFilter(XAUDIO2_FILTER_TYPE type, float frequency, float danping)</div><div class="ttdoc">フィルターをかける</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a3b37ccba1a857e270db2503b9be519e3"><div class="ttname"><a href="classscal_1_1_node.html#a3b37ccba1a857e270db2503b9be519e3">scal::Node::RemoveInputSound</a></div><div class="ttdeci">void RemoveInputSound(Sound *sound, bool system_value_isCallingAnotherFunc=true)</div><div class="ttdoc">入力のサウンドを除外する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a5242b5c385b49cdcf3c803dc50a2b69d"><div class="ttname"><a href="classscal_1_1_node.html#a5242b5c385b49cdcf3c803dc50a2b69d">scal::Node::impl_</a></div><div class="ttdeci">std::unique_ptr&lt; Node_Impl &gt; impl_</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___node_8h_source.html#l00185">SCAL_Node.h:185</a></div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a5643d388201c3d5840808393118e15a2"><div class="ttname"><a href="classscal_1_1_node.html#a5643d388201c3d5840808393118e15a2">scal::Node::GetVoiceAddress</a></div><div class="ttdeci">IXAudio2SubmixVoice *&amp; GetVoiceAddress(void)</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a5a148d7df1df2db9f6047703f012f66e"><div class="ttname"><a href="classscal_1_1_node.html#a5a148d7df1df2db9f6047703f012f66e">scal::Node::AddOutputNode</a></div><div class="ttdeci">void AddOutputNode(Node *node)</div><div class="ttdoc">出力先のノードを追加する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a7bc7e2e99badeba4f92f73d2bd24add5"><div class="ttname"><a href="classscal_1_1_node.html#a7bc7e2e99badeba4f92f73d2bd24add5">scal::Node::DisableEffect</a></div><div class="ttdeci">bool DisableEffect(int position=-1)</div><div class="ttdoc">エフェクトを無効にする</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a80c81b391ce009cea83e76de27819a37"><div class="ttname"><a href="classscal_1_1_node.html#a80c81b391ce009cea83e76de27819a37">scal::Node::RemoveOutputNode</a></div><div class="ttdeci">void RemoveOutputNode(Node *node)</div><div class="ttdoc">出力先のノードを除外する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a81149efc57a86f21479cf9b394f4eb36"><div class="ttname"><a href="classscal_1_1_node.html#a81149efc57a86f21479cf9b394f4eb36">scal::Node::RemoveEffect</a></div><div class="ttdeci">bool RemoveEffect(int position=-1)</div><div class="ttdoc">エフェクトを除外する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a86de41b8f6d3512b98092faa307ea38c"><div class="ttname"><a href="classscal_1_1_node.html#a86de41b8f6d3512b98092faa307ea38c">scal::Node::AddInputSound</a></div><div class="ttdeci">void AddInputSound(Sound *sound, bool system_value_isCallingAnotherFunc=true)</div><div class="ttdoc">入力のサウンドを追加する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a96f64658799c3a2005319bfa970782a8"><div class="ttname"><a href="classscal_1_1_node.html#a96f64658799c3a2005319bfa970782a8">scal::Node::SetReverbParameter</a></div><div class="ttdeci">void SetReverbParameter(const XAUDIO2FX_REVERB_I3DL2_PARAMETERS &amp;param, int effectIndex=-1)</div><div class="ttdoc">リバーブのエフェクトのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a9851c21ce0c96f248384c629931cce69"><div class="ttname"><a href="classscal_1_1_node.html#a9851c21ce0c96f248384c629931cce69">scal::Node::SetEchoParameter</a></div><div class="ttdeci">void SetEchoParameter(float strength, float delay, float reverb, int effectIndex=-1)</div><div class="ttdoc">エコーのエフェクトのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_a9e14a753cbfb8fbda57fbe7bce0641d7"><div class="ttname"><a href="classscal_1_1_node.html#a9e14a753cbfb8fbda57fbe7bce0641d7">scal::Node::Node</a></div><div class="ttdeci">Node()</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_aa43cbb1912fe3f546d8933b8539e42c9"><div class="ttname"><a href="classscal_1_1_node.html#aa43cbb1912fe3f546d8933b8539e42c9">scal::Node::IsActivated</a></div><div class="ttdeci">bool IsActivated(void)</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___node_8h_source.html#l00182">SCAL_Node.h:182</a></div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_aa50f1d927bf44a2e90897437e7b6a3ee"><div class="ttname"><a href="classscal_1_1_node.html#aa50f1d927bf44a2e90897437e7b6a3ee">scal::Node::SetMasteringLimiterParameter</a></div><div class="ttdeci">void SetMasteringLimiterParameter(UINT32 release, UINT32 loudness, int effectIndex=-1)</div><div class="ttdoc">マスタリングリミッターのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_ab60a57e329b3215688dc4ab093048900"><div class="ttname"><a href="classscal_1_1_node.html#ab60a57e329b3215688dc4ab093048900">scal::Node::~Node</a></div><div class="ttdeci">~Node()</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_ab7cee20b5d50a68a48c4af48227f582b"><div class="ttname"><a href="classscal_1_1_node.html#ab7cee20b5d50a68a48c4af48227f582b">scal::Node::Create</a></div><div class="ttdeci">bool Create(void)</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_aba5f8863d0dc678dd229736c9666c39a"><div class="ttname"><a href="classscal_1_1_node.html#aba5f8863d0dc678dd229736c9666c39a">scal::Node::SetEqualizerParameter</a></div><div class="ttdeci">void SetEqualizerParameter(const FXEQ_PARAMETERS &amp;param, int effectIndex=-1)</div><div class="ttdoc">イコライザーのエフェクトのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_abd04099d13775eb860d91e739a5a3435"><div class="ttname"><a href="classscal_1_1_node.html#abd04099d13775eb860d91e739a5a3435">scal::Node::Node_Impl</a></div><div class="ttdeci">friend Node_Impl</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___node_8h_source.html#l00186">SCAL_Node.h:186</a></div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_abe2fe7ca46b1db1abf1b4b0a49477c24"><div class="ttname"><a href="classscal_1_1_node.html#abe2fe7ca46b1db1abf1b4b0a49477c24">scal::Node::SetVolume</a></div><div class="ttdeci">void SetVolume(float volume)</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_ad0870912f2e63bbc00f3fca68c6b75db"><div class="ttname"><a href="classscal_1_1_node.html#ad0870912f2e63bbc00f3fca68c6b75db">scal::Node::activated_</a></div><div class="ttdeci">bool activated_</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___node_8h_source.html#l00188">SCAL_Node.h:188</a></div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_ad8a087fe748eed6389b7364edab622c9"><div class="ttname"><a href="classscal_1_1_node.html#ad8a087fe748eed6389b7364edab622c9">scal::Node::EnableEffect</a></div><div class="ttdeci">bool EnableEffect(int position=-1)</div><div class="ttdoc">エフェクトを有効にする</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_ae859239185f12e5901096544525a1163"><div class="ttname"><a href="classscal_1_1_node.html#ae859239185f12e5901096544525a1163">scal::Node::AddEffect</a></div><div class="ttdeci">int AddEffect(AudioEffectType type, bool active, int insertPosition=-1)</div><div class="ttdoc">エフェクトを追加する</div></div>
+<div class="ttc" id="aclassscal_1_1_node_html_aedfb55b5cf2c76b6ac9e760d2b37df74"><div class="ttname"><a href="classscal_1_1_node.html#aedfb55b5cf2c76b6ac9e760d2b37df74">scal::Node::SetFXReverbParameter</a></div><div class="ttdeci">void SetFXReverbParameter(float diffuse, float roomsize, int effectIndex=-1)</div><div class="ttdoc">FXリバーブのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html"><div class="ttname"><a href="classscal_1_1_sound.html">scal::Sound</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___sound_8h_source.html#l00022">SCAL_Sound.h:23</a></div></div>
+<div class="ttc" id="anamespacescal_html"><div class="ttname"><a href="namespacescal.html">scal</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___defines_8h_source.html#l00003">SCAL_Defines.h:4</a></div></div>
+<div class="ttc" id="anamespacescal_html_a1325387c6c57f2202321a71fbaa2ab5c"><div class="ttname"><a href="namespacescal.html#a1325387c6c57f2202321a71fbaa2ab5c">scal::rootSubmixProcessingStage</a></div><div class="ttdeci">constexpr unsigned int rootSubmixProcessingStage</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___node_8h_source.html#l00011">SCAL_Node.h:11</a></div></div>
+<div class="ttc" id="anamespacescal_html_a6ce2f31ba60a0b43bb95116901638bf6"><div class="ttname"><a href="namespacescal.html#a6ce2f31ba60a0b43bb95116901638bf6">scal::AudioEffectType</a></div><div class="ttdeci">AudioEffectType</div><div class="ttdoc">サウンドエフェクトの種類</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___defines_8h_source.html#l00008">SCAL_Defines.h:9</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+</small></address>
+</body>
+</html>

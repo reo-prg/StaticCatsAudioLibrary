@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>StaticCatsAudioLibrary: SCAL_Listener.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">StaticCatsAudioLibrary<span id="projectnumber">&#160;v1.5</span>
+   </div>
+   <div id="projectbrief">XAudio2 Wrapper Library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_62c2e282352915363ad8f8be403610a6.html">StaticCatsAudioLibrary</a></li><li class="navelem"><a class="el" href="dir_4d521e7fd9a2dd2c3db5e88c50d016b2.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">SCAL_Listener.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_s_c_a_l___listener_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;Windows.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;DirectXMath.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;x3daudio.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;../include/SCAL_Math.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacescal.html">scal</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html">   14</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classscal_1_1_listener.html">Listener</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#a0a3d3000f656d62a869e94cf775bc2c5">   17</a></span>        <a class="code hl_function" href="classscal_1_1_listener.html#a0a3d3000f656d62a869e94cf775bc2c5">Listener</a>();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#ad7ed9c0a45c764e01bb368d01d21cd84">   18</a></span>        <a class="code hl_function" href="classscal_1_1_listener.html#ad7ed9c0a45c764e01bb368d01d21cd84">~Listener</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#a7020c7b1a2f2e15d7fdd5335139618bb">   24</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_listener.html#a7020c7b1a2f2e15d7fdd5335139618bb">SetPosition</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_vector3.html">Vector3</a>&amp; pos);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#afcd4779ba67d5c8f03eb9a4b66e7a146">   32</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_listener.html#afcd4779ba67d5c8f03eb9a4b66e7a146">SetDefaultDirection</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_vector3.html">Vector3</a>&amp; front, <span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_vector3.html">Vector3</a>&amp; up);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#a4bc931b10864386c68df22853fab7cdb">   39</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_listener.html#a4bc931b10864386c68df22853fab7cdb">SetRotate</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_vector3.html">Vector3</a>&amp; axis, <span class="keywordtype">float</span> rot);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#a0553e4e36a5560d0feb09fdc0bee9208">   47</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_listener.html#a0553e4e36a5560d0feb09fdc0bee9208">SetRotate</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#aa0bccc680cbedc99d41b654f0a4080dd">   53</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_listener.html#aa0bccc680cbedc99d41b654f0a4080dd">SetRotateAsQuaternion</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_quaternion.html">Quaternion</a>&amp; quat);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#a0f995aa4be2ebec9785d8a07c527ebbc">   60</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_listener.html#a0f995aa4be2ebec9785d8a07c527ebbc">AddRotate</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_vector3.html">Vector3</a>&amp; axis, <span class="keywordtype">float</span> rot);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#af32700038e2d3d57be54d2c2728e438a">   66</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_listener.html#af32700038e2d3d57be54d2c2728e438a">AddRotateAsQuaternion</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_quaternion.html">Quaternion</a>&amp; quat);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#aa7f70423fac71b3d678bdb3b91e1ec63">   72</a></span>        <a class="code hl_class" href="classscal_1_1_quaternion.html">Quaternion</a>&amp; <a class="code hl_function" href="classscal_1_1_listener.html#aa7f70423fac71b3d678bdb3b91e1ec63">GetRotateQuaternionRef</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#ae42906924491b33c7447614d6db1976e">   78</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_listener.html#ae42906924491b33c7447614d6db1976e">EnableVelocity</a>(<span class="keywordtype">bool</span> enable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#af2eb9d3f6a0e3c65570a8a833ed7e38e">   83</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_listener.html#af2eb9d3f6a0e3c65570a8a833ed7e38e">UpdateVelocity</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#a18fcf7a15fc31fdc8b17fa977ecfd345">   90</a></span>        X3DAUDIO_LISTENER&amp; <a class="code hl_function" href="classscal_1_1_listener.html#a18fcf7a15fc31fdc8b17fa977ecfd345">GetRawListener</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keyword">class </span>Listener_Impl;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classscal_1_1_listener.html#ae76c5a6430c12ec01201f745efc1af95">   93</a></span>        std::unique_ptr&lt;Listener_Impl&gt; <a class="code hl_variable" href="classscal_1_1_listener.html#ae76c5a6430c12ec01201f745efc1af95">impl_</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    };</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
+<div class="ttc" id="aclassscal_1_1_listener_html"><div class="ttname"><a href="classscal_1_1_listener.html">scal::Listener</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___listener_8h_source.html#l00014">SCAL_Listener.h:15</a></div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_a0553e4e36a5560d0feb09fdc0bee9208"><div class="ttname"><a href="classscal_1_1_listener.html#a0553e4e36a5560d0feb09fdc0bee9208">scal::Listener::SetRotate</a></div><div class="ttdeci">void SetRotate(float x, float y, float z)</div><div class="ttdoc">回転を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_a0a3d3000f656d62a869e94cf775bc2c5"><div class="ttname"><a href="classscal_1_1_listener.html#a0a3d3000f656d62a869e94cf775bc2c5">scal::Listener::Listener</a></div><div class="ttdeci">Listener()</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_a0f995aa4be2ebec9785d8a07c527ebbc"><div class="ttname"><a href="classscal_1_1_listener.html#a0f995aa4be2ebec9785d8a07c527ebbc">scal::Listener::AddRotate</a></div><div class="ttdeci">void AddRotate(const Vector3 &amp;axis, float rot)</div><div class="ttdoc">回転を加算する</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_a18fcf7a15fc31fdc8b17fa977ecfd345"><div class="ttname"><a href="classscal_1_1_listener.html#a18fcf7a15fc31fdc8b17fa977ecfd345">scal::Listener::GetRawListener</a></div><div class="ttdeci">X3DAUDIO_LISTENER &amp; GetRawListener(void)</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_a4bc931b10864386c68df22853fab7cdb"><div class="ttname"><a href="classscal_1_1_listener.html#a4bc931b10864386c68df22853fab7cdb">scal::Listener::SetRotate</a></div><div class="ttdeci">void SetRotate(const Vector3 &amp;axis, float rot)</div><div class="ttdoc">回転を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_a7020c7b1a2f2e15d7fdd5335139618bb"><div class="ttname"><a href="classscal_1_1_listener.html#a7020c7b1a2f2e15d7fdd5335139618bb">scal::Listener::SetPosition</a></div><div class="ttdeci">void SetPosition(const Vector3 &amp;pos)</div><div class="ttdoc">座標を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_aa0bccc680cbedc99d41b654f0a4080dd"><div class="ttname"><a href="classscal_1_1_listener.html#aa0bccc680cbedc99d41b654f0a4080dd">scal::Listener::SetRotateAsQuaternion</a></div><div class="ttdeci">void SetRotateAsQuaternion(const Quaternion &amp;quat)</div><div class="ttdoc">回転を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_aa7f70423fac71b3d678bdb3b91e1ec63"><div class="ttname"><a href="classscal_1_1_listener.html#aa7f70423fac71b3d678bdb3b91e1ec63">scal::Listener::GetRotateQuaternionRef</a></div><div class="ttdeci">Quaternion &amp; GetRotateQuaternionRef(void)</div><div class="ttdoc">回転を取得する</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_ad7ed9c0a45c764e01bb368d01d21cd84"><div class="ttname"><a href="classscal_1_1_listener.html#ad7ed9c0a45c764e01bb368d01d21cd84">scal::Listener::~Listener</a></div><div class="ttdeci">~Listener()</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_ae42906924491b33c7447614d6db1976e"><div class="ttname"><a href="classscal_1_1_listener.html#ae42906924491b33c7447614d6db1976e">scal::Listener::EnableVelocity</a></div><div class="ttdeci">void EnableVelocity(bool enable=true)</div><div class="ttdoc">速度を有効にするか</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_ae76c5a6430c12ec01201f745efc1af95"><div class="ttname"><a href="classscal_1_1_listener.html#ae76c5a6430c12ec01201f745efc1af95">scal::Listener::impl_</a></div><div class="ttdeci">std::unique_ptr&lt; Listener_Impl &gt; impl_</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___listener_8h_source.html#l00093">SCAL_Listener.h:93</a></div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_af2eb9d3f6a0e3c65570a8a833ed7e38e"><div class="ttname"><a href="classscal_1_1_listener.html#af2eb9d3f6a0e3c65570a8a833ed7e38e">scal::Listener::UpdateVelocity</a></div><div class="ttdeci">void UpdateVelocity(void)</div><div class="ttdoc">速度を更新する</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_af32700038e2d3d57be54d2c2728e438a"><div class="ttname"><a href="classscal_1_1_listener.html#af32700038e2d3d57be54d2c2728e438a">scal::Listener::AddRotateAsQuaternion</a></div><div class="ttdeci">void AddRotateAsQuaternion(const Quaternion &amp;quat)</div><div class="ttdoc">回転を加算する</div></div>
+<div class="ttc" id="aclassscal_1_1_listener_html_afcd4779ba67d5c8f03eb9a4b66e7a146"><div class="ttname"><a href="classscal_1_1_listener.html#afcd4779ba67d5c8f03eb9a4b66e7a146">scal::Listener::SetDefaultDirection</a></div><div class="ttdeci">void SetDefaultDirection(const Vector3 &amp;front, const Vector3 &amp;up)</div></div>
+<div class="ttc" id="aclassscal_1_1_quaternion_html"><div class="ttname"><a href="classscal_1_1_quaternion.html">scal::Quaternion</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___math_8h_source.html#l00163">SCAL_Math.h:164</a></div></div>
+<div class="ttc" id="aclassscal_1_1_vector3_html"><div class="ttname"><a href="classscal_1_1_vector3.html">scal::Vector3</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___math_8h_source.html#l00006">SCAL_Math.h:7</a></div></div>
+<div class="ttc" id="anamespacescal_html"><div class="ttname"><a href="namespacescal.html">scal</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___defines_8h_source.html#l00003">SCAL_Defines.h:4</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+</small></address>
+</body>
+</html>
