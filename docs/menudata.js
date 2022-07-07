@@ -120,6 +120,4 @@ var menudata={children:[
 {text:"w",url:"functions_vars.html#index_w"},
 {text:"x",url:"functions_vars.html#index_x"},
 {text:"y",url:"functions_vars.html#index_y"},
-{text:"z",url:"functions_vars.html#index_z"}]}]}]},
-{text:"ファイル",url:"files.html",children:[
-{text:"ファイル一覧",url:"files.html"}]}]}
+{text:"z",url:"functions_vars.html#index_z"}]}]}]}]}

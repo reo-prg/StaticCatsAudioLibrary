@@ -3,11 +3,10 @@ var indexSectionsWithContent =
   0: "abcdefgilmnopqrstuvwxyz~",
   1: "eflmnqsvw",
   2: "s",
-  3: "s",
-  4: "acdefgilmnopqrstuvw~",
-  5: "abcdfimnprstwxyz",
-  6: "aes",
-  7: "efmprsvxyz"
+  3: "acdefgilmnopqrstuvw~",
+  4: "abcdfimnprstwxyz",
+  5: "aes",
+  6: "efmprsvxyz"
 };
 
 var indexSectionNames =
@@ -15,11 +14,10 @@ var indexSectionNames =
   0: "all",
   1: "classes",
   2: "namespaces",
-  3: "files",
-  4: "functions",
-  5: "variables",
-  6: "enums",
-  7: "enumvalues"
+  3: "functions",
+  4: "variables",
+  5: "enums",
+  6: "enumvalues"
 };
 
 var indexSectionLabels =
@@ -27,10 +25,9 @@ var indexSectionLabels =
   0: "全て",
   1: "クラス",
   2: "名前空間",
-  3: "ファイル",
-  4: "関数",
-  5: "変数",
-  6: "列挙型",
-  7: "列挙値"
+  3: "関数",
+  4: "変数",
+  5: "列挙型",
+  6: "列挙値"
 };
 
