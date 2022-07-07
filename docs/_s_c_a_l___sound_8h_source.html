@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>StaticCatsAudioLibrary: SCAL_Sound.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">StaticCatsAudioLibrary<span id="projectnumber">&#160;v1.5</span>
+   </div>
+   <div id="projectbrief">XAudio2 Wrapper Library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_62c2e282352915363ad8f8be403610a6.html">StaticCatsAudioLibrary</a></li><li class="navelem"><a class="el" href="dir_4d521e7fd9a2dd2c3db5e88c50d016b2.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">SCAL_Sound.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;SCAL_Defines.h&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;Windows.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;DirectXMath.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;xaudio2.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;xaudio2fx.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;xapofx.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;x3daudio.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;SCAL_Math.h&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacescal.html">scal</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">class </span>Node;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">class </span>SoundEmitter;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html">   22</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classscal_1_1_sound.html">Sound</a></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a13579ea13a1cab5bbf47e18390756362">   25</a></span>        <a class="code hl_function" href="classscal_1_1_sound.html#a13579ea13a1cab5bbf47e18390756362">Sound</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a45bd4dc74f927df4c7c9ed260517cd42">   31</a></span>        <a class="code hl_function" href="classscal_1_1_sound.html#a45bd4dc74f927df4c7c9ed260517cd42">Sound</a>(<span class="keyword">const</span> std::string&amp; filepath);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a83cfb97f5ba27fa8dd511b3d5a588ba7">   32</a></span>        <a class="code hl_function" href="classscal_1_1_sound.html#a83cfb97f5ba27fa8dd511b3d5a588ba7">~Sound</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a19c4dd84790c1fbccd05d1064465106b">   39</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_sound.html#a19c4dd84790c1fbccd05d1064465106b">Load</a>(<span class="keyword">const</span> std::string&amp; filepath);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#ab6323e60aeffc0e51cb814535821fc61">   45</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_sound.html#ab6323e60aeffc0e51cb814535821fc61">Play</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a86d61b70afcafd04eae90d447a8078ab">   54</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#a86d61b70afcafd04eae90d447a8078ab">SetPlaySegment</a>(<span class="keywordtype">float</span> begin = 0.0f, <span class="keywordtype">float</span> length = 0.0f);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a8a9266f539f87b75420008183fbd07a3">   61</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#a8a9266f539f87b75420008183fbd07a3">SetLoopSegment</a>(<span class="keywordtype">float</span> begin = 0.0f, <span class="keywordtype">float</span> length = 0.0f);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#ac686e1cd1e9adf64fe5baa0ccdf0b3da">   68</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#ac686e1cd1e9adf64fe5baa0ccdf0b3da">SetLoopCount</a>(UINT32 count = XAUDIO2_LOOP_INFINITE);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a7797af7529b150e0242038ae32fbf069">   74</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#a7797af7529b150e0242038ae32fbf069">SetVolume</a>(<span class="keywordtype">float</span> volume = 1.0f);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#aa2fc8720a9dd49e3c4368c1a1bb5f12e">   82</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#aa2fc8720a9dd49e3c4368c1a1bb5f12e">AddOutputNode</a>(<a class="code hl_class" href="classscal_1_1_node.html">Node</a>* node, <span class="keywordtype">bool</span> system_value_isCallingAnotherFunc = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#af2c980bea2e12dca5d95d8851aea4097">   89</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#af2c980bea2e12dca5d95d8851aea4097">RemoveOutputNode</a>(<a class="code hl_class" href="classscal_1_1_node.html">Node</a>* node, <span class="keywordtype">bool</span> system_value_isCallingAnotherFunc = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a38925a98ecc5cbde889f1e2868cfa746">   99</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classscal_1_1_sound.html#a38925a98ecc5cbde889f1e2868cfa746">AddEffect</a>(<a class="code hl_enumeration" href="namespacescal.html#a6ce2f31ba60a0b43bb95116901638bf6">AudioEffectType</a> type, <span class="keywordtype">bool</span> active, <span class="keywordtype">int</span> insertPosition = -1);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a632dbc1b6455778c48152829a4a78f22">  106</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_sound.html#a632dbc1b6455778c48152829a4a78f22">RemoveEffect</a>(<span class="keywordtype">int</span> position = -1);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a5225401d2535cb4c6b415627f49791c2">  113</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_sound.html#a5225401d2535cb4c6b415627f49791c2">EnableEffect</a>(<span class="keywordtype">int</span> position = -1);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#ab0707d7ef04c4fb0fb44a762817d43d5">  120</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_sound.html#ab0707d7ef04c4fb0fb44a762817d43d5">DisableEffect</a>(<span class="keywordtype">int</span> position = -1);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#ac992c8846c229c3b350398d2651d6ae0">  128</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#ac992c8846c229c3b350398d2651d6ae0">SetReverbParameter</a>(<span class="keyword">const</span> XAUDIO2FX_REVERB_I3DL2_PARAMETERS&amp; param, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#abbf2408bbe5a4433c333d56196f667c3">  135</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#abbf2408bbe5a4433c333d56196f667c3">SetReverbParameter</a>(<span class="keyword">const</span> XAUDIO2FX_REVERB_PARAMETERS&amp; param, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#af8b258112995255499e872a3a229b7b7">  144</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#af8b258112995255499e872a3a229b7b7">SetEchoParameter</a>(<span class="keywordtype">float</span> feedbackVolume, <span class="keywordtype">float</span> delay, <span class="keywordtype">float</span> effectStrength, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a41844e774a633c0520de25ad5470ee70">  151</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#a41844e774a633c0520de25ad5470ee70">SetEqualizerParameter</a>(<span class="keyword">const</span> FXEQ_PARAMETERS&amp; param, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#ab830728d591f8ff739f499fad864c216">  159</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#ab830728d591f8ff739f499fad864c216">SetMasteringLimiterParameter</a>(UINT32 release = FXMASTERINGLIMITER_DEFAULT_RELEASE, </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>            UINT32 loudness = FXMASTERINGLIMITER_MAX_LOUDNESS, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a594b0ca187ef18921047616020e5237a">  168</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#a594b0ca187ef18921047616020e5237a">SetFXReverbParameter</a>(<span class="keywordtype">float</span> diffuse, <span class="keywordtype">float</span> roomsize, <span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a08d22b762881de4fa1e5730e5602746f">  175</a></span>        XAUDIO2FX_VOLUMEMETER_LEVELS* <a class="code hl_function" href="classscal_1_1_sound.html#a08d22b762881de4fa1e5730e5602746f">GetVolumeMeterParameter</a>(<span class="keywordtype">int</span> effectIndex = -1);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#afef72e59d17d14ec0fa35a3d8fbaf4fb">  183</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classscal_1_1_sound.html#afef72e59d17d14ec0fa35a3d8fbaf4fb">FindEffectIndex</a>(<a class="code hl_enumeration" href="namespacescal.html#a6ce2f31ba60a0b43bb95116901638bf6">AudioEffectType</a> type);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#ab002988ba608d4b5d7333e11dc3deded">  192</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_sound.html#ab002988ba608d4b5d7333e11dc3deded">SetFilter</a>(XAUDIO2_FILTER_TYPE type, <span class="keywordtype">float</span> frequency, <span class="keywordtype">float</span> danping);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a8aaa3ed8b377258d5a7c2053113a7beb">  198</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classscal_1_1_sound.html#a8aaa3ed8b377258d5a7c2053113a7beb">GetProgress</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a4cfe38b0d9280844c66b3edeb2fd3014">  204</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_sound.html#a4cfe38b0d9280844c66b3edeb2fd3014">Stop</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a410a2c27d486c89a7a370d80b7d6990e">  210</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#a410a2c27d486c89a7a370d80b7d6990e">Destroy</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a1c4e1080b9c40dae9cb16e1e96a1222f">  216</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classscal_1_1_sound.html#a1c4e1080b9c40dae9cb16e1e96a1222f">IsActivated</a>(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code hl_variable" href="classscal_1_1_sound.html#ab5c7528e816c5dfc1e696d9e45a55028">activated_</a>; }</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        <span class="keyword">class </span>Sound_Impl;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#ac85eaa9d49c9b2e2b4e3f1434d16219b">  220</a></span>        std::unique_ptr&lt;Sound_Impl&gt; <a class="code hl_variable" href="classscal_1_1_sound.html#ac85eaa9d49c9b2e2b4e3f1434d16219b">impl_</a>;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#ab5c7528e816c5dfc1e696d9e45a55028">  222</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classscal_1_1_sound.html#ab5c7528e816c5dfc1e696d9e45a55028">activated_</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a5b492e77bf6e90a43b2ff13dc4dd4ae4">  229</a></span>        IXAudio2SourceVoice*&amp; <a class="code hl_function" href="classscal_1_1_sound.html#a5b492e77bf6e90a43b2ff13dc4dd4ae4">GetVoiceAddress</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classscal_1_1_sound.html#a32230e624c9bbb460635e81147a94ea2">  236</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound.html#a32230e624c9bbb460635e81147a94ea2">GetSoundInnerData</a>(<a class="code hl_class" href="classscal_1_1_sound_emitter.html">SoundEmitter</a>* emitter);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    };</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html">  243</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classscal_1_1_sound_emitter.html">SoundEmitter</a></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    {</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#ad56b6158e15d32672babf58c352ea85e">  249</a></span>        <a class="code hl_function" href="classscal_1_1_sound_emitter.html#ad56b6158e15d32672babf58c352ea85e">SoundEmitter</a>();</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a9119b3414e59e19859665704fc73b806">  255</a></span>        <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a9119b3414e59e19859665704fc73b806">SoundEmitter</a>(<a class="code hl_class" href="classscal_1_1_sound.html">Sound</a>* sound);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a6bff1f8726e9bf4869222801660c96c6">  256</a></span>        <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a6bff1f8726e9bf4869222801660c96c6">~SoundEmitter</a>();</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a083e746be81648a3e784dfd145654f57">  262</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a083e746be81648a3e784dfd145654f57">SetSound</a>(<a class="code hl_class" href="classscal_1_1_sound.html">Sound</a>* sound);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#ae38e8b3047e9e0d49d82bbdf0d20dae5">  268</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#ae38e8b3047e9e0d49d82bbdf0d20dae5">SetPosition</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_vector3.html">Vector3</a>&amp; pos);</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#aaa8a6ae7572fe8eee34ab9509b63ab8e">  274</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#aaa8a6ae7572fe8eee34ab9509b63ab8e">EnableSoundCone</a>(<span class="keywordtype">bool</span> flag);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a10474df969efc6bb3c562656b49bfe4e">  280</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a10474df969efc6bb3c562656b49bfe4e">SetSoundCone</a>(<span class="keyword">const</span> X3DAUDIO_CONE&amp; cone = X3DAudioDefault_DirectionalCone);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a06b6b844cf7c1ee8c267ed9fcff6391c">  286</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a06b6b844cf7c1ee8c267ed9fcff6391c">Enable3DDoppler</a>(<span class="keywordtype">bool</span> flag);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a1ee82f966a6a0d7564a3ee00a38b2c2b">  292</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a1ee82f966a6a0d7564a3ee00a38b2c2b">Enable3DReverb</a>(<span class="keywordtype">bool</span> flag);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a2ea2a537b145a00e32000d6e81e2954d">  300</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a2ea2a537b145a00e32000d6e81e2954d">SetDefaultDirection</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_vector3.html">Vector3</a>&amp; front, <span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_vector3.html">Vector3</a>&amp; up);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#ae77fa7595f89a4de814755faa694d2e3">  307</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#ae77fa7595f89a4de814755faa694d2e3">SetRotate</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_vector3.html">Vector3</a>&amp; axis, <span class="keywordtype">float</span> rot);</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a123a53c4dcc0d028dcac3ba778b314ec">  315</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a123a53c4dcc0d028dcac3ba778b314ec">SetRotate</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#ada1644edd9b321355c480c171a2ea998">  321</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#ada1644edd9b321355c480c171a2ea998">SetRotateAsQuaternion</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_quaternion.html">Quaternion</a>&amp; quat);</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a0126e88cd9596093a64361d94ae72c46">  328</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a0126e88cd9596093a64361d94ae72c46">AddRotate</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_vector3.html">Vector3</a>&amp; axis, <span class="keywordtype">float</span> rot);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#af60b8e9bb6b7f5fab6d78e8f975ab7b0">  334</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#af60b8e9bb6b7f5fab6d78e8f975ab7b0">AddRotateAsQuaternion</a>(<span class="keyword">const</span> <a class="code hl_class" href="classscal_1_1_quaternion.html">Quaternion</a>&amp; quat);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#afe8822434854dc081b2ce41a3dcbc2ac">  340</a></span>        <a class="code hl_class" href="classscal_1_1_quaternion.html">Quaternion</a>&amp; <a class="code hl_function" href="classscal_1_1_sound_emitter.html#afe8822434854dc081b2ce41a3dcbc2ac">GetRotateQuaternionRef</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a04adee2584bbd12f366298107cb82d61">  346</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a04adee2584bbd12f366298107cb82d61">EnableVelocity</a>(<span class="keywordtype">bool</span> enable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a2da10255d7a572ca6466cb2855da5e73">  351</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a2da10255d7a572ca6466cb2855da5e73">UpdateVelocity</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a73fe22e814853ce113539cf56131ae90">  358</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a73fe22e814853ce113539cf56131ae90">SetSoundInnerData</a>(Sound::Sound_Impl* data);</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#a2fd88ab13ea968484c3a6daf4a8684b2">  366</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classscal_1_1_sound_emitter.html#a2fd88ab13ea968484c3a6daf4a8684b2">Calculate</a>(<span class="keyword">const</span> X3DAUDIO_HANDLE&amp; handle, X3DAUDIO_LISTENER* listener);</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>        <span class="keyword">class </span>Emitter_Impl;</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno"><a class="line" href="classscal_1_1_sound_emitter.html#ae28b78f0ed8cacbdeb670762eeefefde">  369</a></span>        std::unique_ptr&lt;Emitter_Impl&gt; <a class="code hl_variable" href="classscal_1_1_sound_emitter.html#ae28b78f0ed8cacbdeb670762eeefefde">impl_</a>;</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    };</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>}</div>
+<div class="ttc" id="aclassscal_1_1_node_html"><div class="ttname"><a href="classscal_1_1_node.html">scal::Node</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___node_8h_source.html#l00024">SCAL_Node.h:25</a></div></div>
+<div class="ttc" id="aclassscal_1_1_quaternion_html"><div class="ttname"><a href="classscal_1_1_quaternion.html">scal::Quaternion</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___math_8h_source.html#l00163">SCAL_Math.h:164</a></div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html"><div class="ttname"><a href="classscal_1_1_sound_emitter.html">scal::SoundEmitter</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___sound_8h_source.html#l00243">SCAL_Sound.h:244</a></div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a0126e88cd9596093a64361d94ae72c46"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a0126e88cd9596093a64361d94ae72c46">scal::SoundEmitter::AddRotate</a></div><div class="ttdeci">void AddRotate(const Vector3 &amp;axis, float rot)</div><div class="ttdoc">回転を加算する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a04adee2584bbd12f366298107cb82d61"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a04adee2584bbd12f366298107cb82d61">scal::SoundEmitter::EnableVelocity</a></div><div class="ttdeci">void EnableVelocity(bool enable=true)</div><div class="ttdoc">速度を有効にするか</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a06b6b844cf7c1ee8c267ed9fcff6391c"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a06b6b844cf7c1ee8c267ed9fcff6391c">scal::SoundEmitter::Enable3DDoppler</a></div><div class="ttdeci">void Enable3DDoppler(bool flag)</div><div class="ttdoc">3Dのドップラー効果を有効にするか</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a083e746be81648a3e784dfd145654f57"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a083e746be81648a3e784dfd145654f57">scal::SoundEmitter::SetSound</a></div><div class="ttdeci">void SetSound(Sound *sound)</div><div class="ttdoc">Soundを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a10474df969efc6bb3c562656b49bfe4e"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a10474df969efc6bb3c562656b49bfe4e">scal::SoundEmitter::SetSoundCone</a></div><div class="ttdeci">void SetSoundCone(const X3DAUDIO_CONE &amp;cone=X3DAudioDefault_DirectionalCone)</div><div class="ttdoc">音の指向性の円錐を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a123a53c4dcc0d028dcac3ba778b314ec"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a123a53c4dcc0d028dcac3ba778b314ec">scal::SoundEmitter::SetRotate</a></div><div class="ttdeci">void SetRotate(float x, float y, float z)</div><div class="ttdoc">回転を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a1ee82f966a6a0d7564a3ee00a38b2c2b"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a1ee82f966a6a0d7564a3ee00a38b2c2b">scal::SoundEmitter::Enable3DReverb</a></div><div class="ttdeci">void Enable3DReverb(bool flag)</div><div class="ttdoc">3Dのリバーブ効果を有効にするか</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a2da10255d7a572ca6466cb2855da5e73"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a2da10255d7a572ca6466cb2855da5e73">scal::SoundEmitter::UpdateVelocity</a></div><div class="ttdeci">void UpdateVelocity(void)</div><div class="ttdoc">速度を更新する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a2ea2a537b145a00e32000d6e81e2954d"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a2ea2a537b145a00e32000d6e81e2954d">scal::SoundEmitter::SetDefaultDirection</a></div><div class="ttdeci">void SetDefaultDirection(const Vector3 &amp;front, const Vector3 &amp;up)</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a2fd88ab13ea968484c3a6daf4a8684b2"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a2fd88ab13ea968484c3a6daf4a8684b2">scal::SoundEmitter::Calculate</a></div><div class="ttdeci">void Calculate(const X3DAUDIO_HANDLE &amp;handle, X3DAUDIO_LISTENER *listener)</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a6bff1f8726e9bf4869222801660c96c6"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a6bff1f8726e9bf4869222801660c96c6">scal::SoundEmitter::~SoundEmitter</a></div><div class="ttdeci">~SoundEmitter()</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a73fe22e814853ce113539cf56131ae90"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a73fe22e814853ce113539cf56131ae90">scal::SoundEmitter::SetSoundInnerData</a></div><div class="ttdeci">void SetSoundInnerData(Sound::Sound_Impl *data)</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_a9119b3414e59e19859665704fc73b806"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#a9119b3414e59e19859665704fc73b806">scal::SoundEmitter::SoundEmitter</a></div><div class="ttdeci">SoundEmitter(Sound *sound)</div><div class="ttdoc">Soundが設定されたエミッターを生成します</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_aaa8a6ae7572fe8eee34ab9509b63ab8e"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#aaa8a6ae7572fe8eee34ab9509b63ab8e">scal::SoundEmitter::EnableSoundCone</a></div><div class="ttdeci">void EnableSoundCone(bool flag)</div><div class="ttdoc">音に指向性を持たせるか</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_ad56b6158e15d32672babf58c352ea85e"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#ad56b6158e15d32672babf58c352ea85e">scal::SoundEmitter::SoundEmitter</a></div><div class="ttdeci">SoundEmitter()</div><div class="ttdoc">Soundを設定しない空のエミッターを生成します</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_ada1644edd9b321355c480c171a2ea998"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#ada1644edd9b321355c480c171a2ea998">scal::SoundEmitter::SetRotateAsQuaternion</a></div><div class="ttdeci">void SetRotateAsQuaternion(const Quaternion &amp;quat)</div><div class="ttdoc">回転を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_ae28b78f0ed8cacbdeb670762eeefefde"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#ae28b78f0ed8cacbdeb670762eeefefde">scal::SoundEmitter::impl_</a></div><div class="ttdeci">std::unique_ptr&lt; Emitter_Impl &gt; impl_</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___sound_8h_source.html#l00369">SCAL_Sound.h:369</a></div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_ae38e8b3047e9e0d49d82bbdf0d20dae5"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#ae38e8b3047e9e0d49d82bbdf0d20dae5">scal::SoundEmitter::SetPosition</a></div><div class="ttdeci">void SetPosition(const Vector3 &amp;pos)</div><div class="ttdoc">座標を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_ae77fa7595f89a4de814755faa694d2e3"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#ae77fa7595f89a4de814755faa694d2e3">scal::SoundEmitter::SetRotate</a></div><div class="ttdeci">void SetRotate(const Vector3 &amp;axis, float rot)</div><div class="ttdoc">回転を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_af60b8e9bb6b7f5fab6d78e8f975ab7b0"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#af60b8e9bb6b7f5fab6d78e8f975ab7b0">scal::SoundEmitter::AddRotateAsQuaternion</a></div><div class="ttdeci">void AddRotateAsQuaternion(const Quaternion &amp;quat)</div><div class="ttdoc">回転を加算する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_emitter_html_afe8822434854dc081b2ce41a3dcbc2ac"><div class="ttname"><a href="classscal_1_1_sound_emitter.html#afe8822434854dc081b2ce41a3dcbc2ac">scal::SoundEmitter::GetRotateQuaternionRef</a></div><div class="ttdeci">Quaternion &amp; GetRotateQuaternionRef(void)</div><div class="ttdoc">回転を取得する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html"><div class="ttname"><a href="classscal_1_1_sound.html">scal::Sound</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___sound_8h_source.html#l00022">SCAL_Sound.h:23</a></div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a08d22b762881de4fa1e5730e5602746f"><div class="ttname"><a href="classscal_1_1_sound.html#a08d22b762881de4fa1e5730e5602746f">scal::Sound::GetVolumeMeterParameter</a></div><div class="ttdeci">XAUDIO2FX_VOLUMEMETER_LEVELS * GetVolumeMeterParameter(int effectIndex=-1)</div><div class="ttdoc">ボリュームメーターを取得する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a13579ea13a1cab5bbf47e18390756362"><div class="ttname"><a href="classscal_1_1_sound.html#a13579ea13a1cab5bbf47e18390756362">scal::Sound::Sound</a></div><div class="ttdeci">Sound()</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a19c4dd84790c1fbccd05d1064465106b"><div class="ttname"><a href="classscal_1_1_sound.html#a19c4dd84790c1fbccd05d1064465106b">scal::Sound::Load</a></div><div class="ttdeci">bool Load(const std::string &amp;filepath)</div><div class="ttdoc">サウンドを取り込む</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a1c4e1080b9c40dae9cb16e1e96a1222f"><div class="ttname"><a href="classscal_1_1_sound.html#a1c4e1080b9c40dae9cb16e1e96a1222f">scal::Sound::IsActivated</a></div><div class="ttdeci">bool IsActivated(void)</div><div class="ttdoc">現在再生可能かを取得する</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___sound_8h_source.html#l00216">SCAL_Sound.h:216</a></div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a32230e624c9bbb460635e81147a94ea2"><div class="ttname"><a href="classscal_1_1_sound.html#a32230e624c9bbb460635e81147a94ea2">scal::Sound::GetSoundInnerData</a></div><div class="ttdeci">void GetSoundInnerData(SoundEmitter *emitter)</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a38925a98ecc5cbde889f1e2868cfa746"><div class="ttname"><a href="classscal_1_1_sound.html#a38925a98ecc5cbde889f1e2868cfa746">scal::Sound::AddEffect</a></div><div class="ttdeci">int AddEffect(AudioEffectType type, bool active, int insertPosition=-1)</div><div class="ttdoc">エフェクトを追加する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a410a2c27d486c89a7a370d80b7d6990e"><div class="ttname"><a href="classscal_1_1_sound.html#a410a2c27d486c89a7a370d80b7d6990e">scal::Sound::Destroy</a></div><div class="ttdeci">void Destroy(void)</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a41844e774a633c0520de25ad5470ee70"><div class="ttname"><a href="classscal_1_1_sound.html#a41844e774a633c0520de25ad5470ee70">scal::Sound::SetEqualizerParameter</a></div><div class="ttdeci">void SetEqualizerParameter(const FXEQ_PARAMETERS &amp;param, int effectIndex=-1)</div><div class="ttdoc">イコライザーのエフェクトのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a45bd4dc74f927df4c7c9ed260517cd42"><div class="ttname"><a href="classscal_1_1_sound.html#a45bd4dc74f927df4c7c9ed260517cd42">scal::Sound::Sound</a></div><div class="ttdeci">Sound(const std::string &amp;filepath)</div><div class="ttdoc">生成と同時にサウンドを読み込む</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a4cfe38b0d9280844c66b3edeb2fd3014"><div class="ttname"><a href="classscal_1_1_sound.html#a4cfe38b0d9280844c66b3edeb2fd3014">scal::Sound::Stop</a></div><div class="ttdeci">bool Stop(void)</div><div class="ttdoc">再生中の音を停止させる</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a5225401d2535cb4c6b415627f49791c2"><div class="ttname"><a href="classscal_1_1_sound.html#a5225401d2535cb4c6b415627f49791c2">scal::Sound::EnableEffect</a></div><div class="ttdeci">bool EnableEffect(int position=-1)</div><div class="ttdoc">エフェクトを有効にする</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a594b0ca187ef18921047616020e5237a"><div class="ttname"><a href="classscal_1_1_sound.html#a594b0ca187ef18921047616020e5237a">scal::Sound::SetFXReverbParameter</a></div><div class="ttdeci">void SetFXReverbParameter(float diffuse, float roomsize, int effectIndex=-1)</div><div class="ttdoc">FXリバーブのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a5b492e77bf6e90a43b2ff13dc4dd4ae4"><div class="ttname"><a href="classscal_1_1_sound.html#a5b492e77bf6e90a43b2ff13dc4dd4ae4">scal::Sound::GetVoiceAddress</a></div><div class="ttdeci">IXAudio2SourceVoice *&amp; GetVoiceAddress(void)</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a632dbc1b6455778c48152829a4a78f22"><div class="ttname"><a href="classscal_1_1_sound.html#a632dbc1b6455778c48152829a4a78f22">scal::Sound::RemoveEffect</a></div><div class="ttdeci">bool RemoveEffect(int position=-1)</div><div class="ttdoc">エフェクトを除外する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a7797af7529b150e0242038ae32fbf069"><div class="ttname"><a href="classscal_1_1_sound.html#a7797af7529b150e0242038ae32fbf069">scal::Sound::SetVolume</a></div><div class="ttdeci">void SetVolume(float volume=1.0f)</div><div class="ttdoc">音量を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a83cfb97f5ba27fa8dd511b3d5a588ba7"><div class="ttname"><a href="classscal_1_1_sound.html#a83cfb97f5ba27fa8dd511b3d5a588ba7">scal::Sound::~Sound</a></div><div class="ttdeci">~Sound()</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a86d61b70afcafd04eae90d447a8078ab"><div class="ttname"><a href="classscal_1_1_sound.html#a86d61b70afcafd04eae90d447a8078ab">scal::Sound::SetPlaySegment</a></div><div class="ttdeci">void SetPlaySegment(float begin=0.0f, float length=0.0f)</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a8a9266f539f87b75420008183fbd07a3"><div class="ttname"><a href="classscal_1_1_sound.html#a8a9266f539f87b75420008183fbd07a3">scal::Sound::SetLoopSegment</a></div><div class="ttdeci">void SetLoopSegment(float begin=0.0f, float length=0.0f)</div><div class="ttdoc">ループ範囲を設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_a8aaa3ed8b377258d5a7c2053113a7beb"><div class="ttname"><a href="classscal_1_1_sound.html#a8aaa3ed8b377258d5a7c2053113a7beb">scal::Sound::GetProgress</a></div><div class="ttdeci">float GetProgress(void)</div><div class="ttdoc">現在の進度を取得する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_aa2fc8720a9dd49e3c4368c1a1bb5f12e"><div class="ttname"><a href="classscal_1_1_sound.html#aa2fc8720a9dd49e3c4368c1a1bb5f12e">scal::Sound::AddOutputNode</a></div><div class="ttdeci">void AddOutputNode(Node *node, bool system_value_isCallingAnotherFunc=true)</div><div class="ttdoc">出力先のノードを追加する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_ab002988ba608d4b5d7333e11dc3deded"><div class="ttname"><a href="classscal_1_1_sound.html#ab002988ba608d4b5d7333e11dc3deded">scal::Sound::SetFilter</a></div><div class="ttdeci">bool SetFilter(XAUDIO2_FILTER_TYPE type, float frequency, float danping)</div><div class="ttdoc">フィルターをかける</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_ab0707d7ef04c4fb0fb44a762817d43d5"><div class="ttname"><a href="classscal_1_1_sound.html#ab0707d7ef04c4fb0fb44a762817d43d5">scal::Sound::DisableEffect</a></div><div class="ttdeci">bool DisableEffect(int position=-1)</div><div class="ttdoc">エフェクトを無効にする</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_ab5c7528e816c5dfc1e696d9e45a55028"><div class="ttname"><a href="classscal_1_1_sound.html#ab5c7528e816c5dfc1e696d9e45a55028">scal::Sound::activated_</a></div><div class="ttdeci">bool activated_</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___sound_8h_source.html#l00222">SCAL_Sound.h:222</a></div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_ab6323e60aeffc0e51cb814535821fc61"><div class="ttname"><a href="classscal_1_1_sound.html#ab6323e60aeffc0e51cb814535821fc61">scal::Sound::Play</a></div><div class="ttdeci">bool Play(void)</div><div class="ttdoc">再生する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_ab830728d591f8ff739f499fad864c216"><div class="ttname"><a href="classscal_1_1_sound.html#ab830728d591f8ff739f499fad864c216">scal::Sound::SetMasteringLimiterParameter</a></div><div class="ttdeci">void SetMasteringLimiterParameter(UINT32 release=FXMASTERINGLIMITER_DEFAULT_RELEASE, UINT32 loudness=FXMASTERINGLIMITER_MAX_LOUDNESS, int effectIndex=-1)</div><div class="ttdoc">マスタリングリミッターのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_abbf2408bbe5a4433c333d56196f667c3"><div class="ttname"><a href="classscal_1_1_sound.html#abbf2408bbe5a4433c333d56196f667c3">scal::Sound::SetReverbParameter</a></div><div class="ttdeci">void SetReverbParameter(const XAUDIO2FX_REVERB_PARAMETERS &amp;param, int effectIndex=-1)</div><div class="ttdoc">リバーブのエフェクトのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_ac686e1cd1e9adf64fe5baa0ccdf0b3da"><div class="ttname"><a href="classscal_1_1_sound.html#ac686e1cd1e9adf64fe5baa0ccdf0b3da">scal::Sound::SetLoopCount</a></div><div class="ttdeci">void SetLoopCount(UINT32 count=XAUDIO2_LOOP_INFINITE)</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_ac85eaa9d49c9b2e2b4e3f1434d16219b"><div class="ttname"><a href="classscal_1_1_sound.html#ac85eaa9d49c9b2e2b4e3f1434d16219b">scal::Sound::impl_</a></div><div class="ttdeci">std::unique_ptr&lt; Sound_Impl &gt; impl_</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___sound_8h_source.html#l00220">SCAL_Sound.h:220</a></div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_ac992c8846c229c3b350398d2651d6ae0"><div class="ttname"><a href="classscal_1_1_sound.html#ac992c8846c229c3b350398d2651d6ae0">scal::Sound::SetReverbParameter</a></div><div class="ttdeci">void SetReverbParameter(const XAUDIO2FX_REVERB_I3DL2_PARAMETERS &amp;param, int effectIndex=-1)</div><div class="ttdoc">リバーブのエフェクトのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_af2c980bea2e12dca5d95d8851aea4097"><div class="ttname"><a href="classscal_1_1_sound.html#af2c980bea2e12dca5d95d8851aea4097">scal::Sound::RemoveOutputNode</a></div><div class="ttdeci">void RemoveOutputNode(Node *node, bool system_value_isCallingAnotherFunc=true)</div><div class="ttdoc">出力先のノードを除外する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_af8b258112995255499e872a3a229b7b7"><div class="ttname"><a href="classscal_1_1_sound.html#af8b258112995255499e872a3a229b7b7">scal::Sound::SetEchoParameter</a></div><div class="ttdeci">void SetEchoParameter(float feedbackVolume, float delay, float effectStrength, int effectIndex=-1)</div><div class="ttdoc">エコーのエフェクトのパラメーターを設定する</div></div>
+<div class="ttc" id="aclassscal_1_1_sound_html_afef72e59d17d14ec0fa35a3d8fbaf4fb"><div class="ttname"><a href="classscal_1_1_sound.html#afef72e59d17d14ec0fa35a3d8fbaf4fb">scal::Sound::FindEffectIndex</a></div><div class="ttdeci">int FindEffectIndex(AudioEffectType type)</div></div>
+<div class="ttc" id="aclassscal_1_1_vector3_html"><div class="ttname"><a href="classscal_1_1_vector3.html">scal::Vector3</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___math_8h_source.html#l00006">SCAL_Math.h:7</a></div></div>
+<div class="ttc" id="anamespacescal_html"><div class="ttname"><a href="namespacescal.html">scal</a></div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___defines_8h_source.html#l00003">SCAL_Defines.h:4</a></div></div>
+<div class="ttc" id="anamespacescal_html_a6ce2f31ba60a0b43bb95116901638bf6"><div class="ttname"><a href="namespacescal.html#a6ce2f31ba60a0b43bb95116901638bf6">scal::AudioEffectType</a></div><div class="ttdeci">AudioEffectType</div><div class="ttdoc">サウンドエフェクトの種類</div><div class="ttdef"><b>Definition:</b> <a href="_s_c_a_l___defines_8h_source.html#l00008">SCAL_Defines.h:9</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+</small></address>
+</body>
+</html>
