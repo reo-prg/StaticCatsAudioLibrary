@@ -39,6 +39,8 @@ namespace scal
 		/// <returns>¬Œ÷‚µ‚½‚çtrue</returns>
 		bool LoadWAVFile(const std::string& filename);
 
+		bool LoadWAVFile(unsigned char* rawdata, unsigned int size, const std::string& key);
+
 		/// <summary>
 		/// wavƒf[ƒ^‚ğæ“¾‚·‚é
 		/// </summary>

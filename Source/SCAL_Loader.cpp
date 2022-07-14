@@ -129,6 +129,85 @@ namespace scal
 			OutputDebugStringA(("SCAL_ERROR : ome happens in" + filename + "\n").c_str());
 			return false;
 		}
+
+		return true;
+	}
+
+	bool WAVLoader::LoadWAVFile(unsigned char* rawdata, unsigned int size, const std::string& key)
+	{
+		if (wav_.find(key) != wav_.end())
+		{
+			return true;
+		}
+		WAVData data;
+
+		try
+		{
+			// ファイル識別子チェック
+			if (rawdata[0] != 'R' || rawdata[1] != 'I' || rawdata[2] != 'F' || rawdata[3] != 'F')
+			{
+				OutputDebugStringA(("SCAL_ERROR : RIFF Identifier is not found in" + key + "\n").c_str());
+				return false;
+			}
+
+			data.fileSize_ = *(unsigned int*)(rawdata + sizeof(char) * 4);
+
+			unsigned char* raw;
+			unsigned int cursor = 0;
+			raw = rawdata + sizeof(char) * 4 + sizeof(int);
+
+			// RIFF識別子チェック
+			char riffidtf[4];
+			std::copy(&raw[cursor], &raw[cursor + 4], riffidtf);
+			if (riffidtf[0] != 'W' || riffidtf[1] != 'A' || riffidtf[2] != 'V' || riffidtf[3] != 'E')
+			{
+				OutputDebugStringA(("SCAL_ERROR : WAVE Identifier is not found in" + key + "\n").c_str());
+				return false;
+			}
+			cursor += 4;
+
+			if (!SeekToFourCC(raw, fmttag, cursor, size))
+			{
+				OutputDebugStringA(("SCAL_ERROR : format Identifier is not found in" + key + "\n").c_str());
+				return false;
+			}
+
+			std::copy(reinterpret_cast<FmtDesc*>(&raw[cursor]),
+				reinterpret_cast<FmtDesc*>(&raw[cursor + sizeof(FmtDesc)]), &data.fmt_);
+			cursor += sizeof(data.fmt_);
+
+			if (!SeekToFourCC(raw, datatag, cursor, size))
+			{
+				OutputDebugStringA(("SCAL_ERROR : data Identifier is not found in" + key + "\n").c_str());
+				return false;
+			}
+
+			std::copy(reinterpret_cast<unsigned int*>(&raw[cursor]),
+				reinterpret_cast<unsigned int*>(&raw[cursor + 4]), &data.dataSize_);
+			cursor += sizeof(data.dataSize_);
+
+			if (cursor + data.dataSize_ > size)
+			{
+				OutputDebugStringA(("SCAL_ERROR : data size is not length enough in" + key + "\n").c_str());
+				return false;
+			}
+			data.data_ = new unsigned char[data.dataSize_];
+			std::copy_n(&raw[cursor], data.dataSize_, data.data_);
+
+			wav_.emplace(key, data);
+			delete[] rawdata;
+		}
+		catch (std::bad_alloc)
+		{
+			OutputDebugStringA("SCAL_ERROR : not enough memory\n");
+			return false;
+		}
+		catch (...)
+		{
+			OutputDebugStringA(("SCAL_ERROR : ome happens in" + key + "\n").c_str());
+			return false;
+		}
+
 		return true;
 	}
 

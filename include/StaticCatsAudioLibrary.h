@@ -80,6 +80,15 @@ namespace scal
 	bool LoadSoundFile(const std::string& filepath);
 
 	/// <summary>
+	/// <para>サウンドを読み込む</para>
+	/// </summary>
+	/// <param name="rawdata">生データ</param>
+	/// <param name="size">ファイルサイズ</param>
+	/// <param name="key">キー</param>
+	/// <returns>成功したらtrue</returns>
+	bool LoadSoundFile(unsigned char* rawdata, unsigned int size, const std::string& key);
+
+	/// <summary>
 	/// <para>サウンドの生のデータを取得する</para>
 	/// <para>ライブラリ用の関数なので使用しなくても問題無いです</para>
 	/// </summary>

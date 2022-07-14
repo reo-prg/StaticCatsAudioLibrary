@@ -29,6 +29,7 @@ namespace scal
 		/// </summary>
 		/// <param name="filepath">サウンドデータのファイルパス</param>
 		Sound(const std::string& filepath);
+
 		~Sound();
 		
 		/// <summary>

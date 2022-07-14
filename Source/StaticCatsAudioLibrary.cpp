@@ -236,45 +236,48 @@ namespace scal
 		return true;
 	}
 
+	bool LoadSoundFile(unsigned char* rawdata, unsigned int size, const std::string& key)
+	{
+		return wavLoader.LoadWAVFile(rawdata, size, key);
+	}
+
 	SoundData GetSoundData(const std::string& filepath)
 	{
-		std::string ext = scal_util::GetExtension(filepath);
 		SoundData data = {};
 
-		if (ext == "wav")
-		{
-			auto&& d = wavLoader.GetWAVFile(filepath);
-			if (!d) 
-			{ 
-				wavLoader.LoadWAVFile(filepath); 
-				d = wavLoader.GetWAVFile(filepath);
-			}
+		auto&& d = wavLoader.GetWAVFile(filepath);
+		if (!d) 
+		{ 
+			wavLoader.LoadWAVFile(filepath); 
+			d = wavLoader.GetWAVFile(filepath);
+		}
 
+		if (d)
+		{
 			data.dataSize_ = d->dataSize_;
 			data.data_ = d->data_;
 			data.fileSize_ = d->fileSize_;
 			data.fmt_ = d->fmt_;
-			return data;
 		}
-		else if (ext.empty())
-		{
-			auto&& d = wavLoader.GetWAVFile(filepath + ".wav");
-			if (!d)
-			{
-				wavLoader.LoadWAVFile(filepath + ".wav");
-				d = wavLoader.GetWAVFile(filepath + ".wav");
-			}
+		return data;
+	}
 
-			data.dataSize_ = d->dataSize_;
-			data.data_ = d->data_;
-			data.fileSize_ = d->fileSize_;
-			data.fmt_ = d->fmt_;
-			return data;
-		}
-		else
+	SoundData GetSoundData(unsigned char* rawdata, int size, std::string& key)
+	{
+		SoundData data = {};
+
+		auto&& d = wavLoader.GetWAVFile(key);
+		if (!d)
 		{
-			return data;
+			wavLoader.LoadWAVFile(rawdata, size, key);
+			d = wavLoader.GetWAVFile(key);
 		}
+
+		data.dataSize_ = d->dataSize_;
+		data.data_ = d->data_;
+		data.fileSize_ = d->fileSize_;
+		data.fmt_ = d->fmt_;
+		return data;
 	}
 
 	void DestroySoundFile(const std::string& filepath)
