@@ -3,7 +3,7 @@
 #include "SCAL_Defines.h"
 #include <xaudio2fx.h>
 
-#pragma comment(lib,"xapobase.lib")
+//#pragma comment(lib,"xapobase.lib")
 
 namespace scal
 {
