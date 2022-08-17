@@ -44,7 +44,8 @@ namespace scal
 		/// </summary>
 		/// <returns>成功したらtrue</returns>
 		bool Play(void);
-		
+
+		bool PlayAgain(void);
 
 		/// <summary>
 		/// <para>再生範囲を設定する</para>
@@ -67,6 +68,8 @@ namespace scal
 		/// </summary>
 		/// <param name="count">回数</param>
 		void SetLoopCount(UINT32 count = XAUDIO2_LOOP_INFINITE);
+
+		void ExitLoop(void);
 		
 		/// <summary>
 		/// 音量を設定する
@@ -249,6 +252,9 @@ namespace scal
 		/// </summary>
 		SoundEmitter();
 
+		SoundEmitter(SoundEmitter&) = default;
+		SoundEmitter& operator=(SoundEmitter&) = default;
+
 		/// <summary>
 		/// Soundが設定されたエミッターを生成します
 		/// </summary>
@@ -262,11 +268,15 @@ namespace scal
 		/// <param name="sound">設定したいSound</param>
 		void SetSound(Sound* sound);
 
+		Sound* GetSound(void);
+
 		/// <summary>
 		/// 座標を設定する
 		/// </summary>
 		/// <param name="pos">座標</param>
 		void SetPosition(const Vector3& pos);
+
+		void SetRadius(float radius);
 
 		/// <summary>
 		/// 音に指向性を持たせるか

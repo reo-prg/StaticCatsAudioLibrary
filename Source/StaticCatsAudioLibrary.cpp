@@ -143,6 +143,18 @@ namespace scal
 			emitter_.push_back(emitter);
 		}
 
+		void Unregister(Listener* listener)
+		{
+			std::erase_if(listener_,
+				[&listener](Listener* l) { return l == listener; });
+		}
+
+		void Unregister(SoundEmitter* emitter)
+		{
+			std::erase_if(emitter_,
+				[&emitter](SoundEmitter* e) { return e == emitter; });
+		}
+
 		void Update(float delta)
 		{
 			updateTimer_ += delta;
@@ -308,6 +320,16 @@ namespace scal
 	void RegisterListener(Listener* listener)
 	{
 		x3dManager.Register(listener);
+	}
+
+	void UnregisterEmitter(SoundEmitter* emitter)
+	{
+		x3dManager.Unregister(emitter);
+	}
+
+	void UnregisterListener(Listener* listener)
+	{
+		x3dManager.Unregister(listener);
 	}
 
 	void Update3DAudio(float delta)

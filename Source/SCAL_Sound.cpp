@@ -23,9 +23,11 @@ namespace scal
 		// Sound ----------------------------------------------------------
 		bool Load(const std::string& filepath);
 		bool Play(void);
+		bool PlayAgain(void);
 		void SetPlaySegment(float begin, float length);
 		void SetLoopSegment(float begin, float length);
 		void SetLoopCount(UINT32 count = -1);
+		void ExitLoop(void);
 		void SetVolume(float volume);
 		void AddOutputNode(Node* node, bool system_value_isCallingAnotherFunc);
 		void RemoveOutputNode(Node* node, bool system_value_isCallingAnotherFunc);
@@ -143,6 +145,26 @@ namespace scal
 		return true;
 	}
 
+	bool Sound::Sound_Impl::PlayAgain(void)
+	{
+		if (vState_ == SoundState::Playing)
+		{
+			sourceVoice_->Stop();
+		}
+		HRESULT result;
+		result = sourceVoice_->FlushSourceBuffers();
+		if (FAILED(result)) { return false; }
+		result = sourceVoice_->SubmitSourceBuffer(&buffer_);
+		if (FAILED(result)) { return false; }
+
+		result = sourceVoice_->Start();
+		if (FAILED(result)) { return false; }
+
+		vState_ = SoundState::Playing;
+
+		return true;
+	}
+
 	void Sound::Sound_Impl::SetPlaySegment(float begin, float length)
 	{
 		buffer_.PlayBegin = static_cast<UINT32>(waveFormat_.nSamplesPerSec * begin);
@@ -158,6 +180,11 @@ namespace scal
 	void Sound::Sound_Impl::SetLoopCount(UINT32 count)
 	{
 		buffer_.LoopCount = count;
+	}
+
+	void Sound::Sound_Impl::ExitLoop(void)
+	{
+		sourceVoice_->ExitLoop();
 	}
 
 	void Sound::Sound_Impl::SetVolume(float volume)
@@ -514,6 +541,17 @@ namespace scal
 		return impl_->Play();
 	}
 
+	bool Sound::PlayAgain(void)
+	{
+		if (!activated_)
+		{
+			OutputDebugStringA("SCAL_ERROR : Sound is not loaded\n");
+			return false;
+		}
+
+		return impl_->PlayAgain();
+	}
+
 	void Sound::SetPlaySegment(float begin, float length)
 	{
 		impl_->SetPlaySegment(begin, length);
@@ -527,6 +565,11 @@ namespace scal
 	void Sound::SetLoopCount(UINT32 count)
 	{
 		impl_->SetLoopCount(count);
+	}
+
+	void Sound::ExitLoop(void)
+	{
+		impl_->ExitLoop();
 	}
 
 	void Sound::SetVolume(float volume)
@@ -636,8 +679,11 @@ namespace scal
 		~Emitter_Impl();
 
 		void SetSound(Sound* sound);
+		Sound* GetSound(void);
 
 		void SetPosition(const Vector3& pos);
+
+		void SetRadius(float radius);
 
 		void EnableSoundCone(bool flag);
 		void SetSoundCone(const X3DAUDIO_CONE& cone);
@@ -721,9 +767,19 @@ namespace scal
 		Initialize();
 	}
 
+	Sound* SoundEmitter::Emitter_Impl::GetSound(void)
+	{
+		return sound_;
+	}
+
 	void SoundEmitter::Emitter_Impl::SetPosition(const Vector3& pos)
 	{
 		emitter_.Position = { pos.x, pos.y, pos.z };
+	}
+
+	void SoundEmitter::Emitter_Impl::SetRadius(float radius)
+	{
+		emitter_.InnerRadius = radius;
 	}
 
 	void SoundEmitter::Emitter_Impl::EnableSoundCone(bool flag)
@@ -850,7 +906,7 @@ namespace scal
 		{
 			auto&& mv = GetMasterVoice();
 
-			soundData_->sourceVoice_->SetOutputMatrix(mv, dsp_.SrcChannelCount,
+			soundData_->sourceVoice_->SetOutputMatrix(nullptr, dsp_.SrcChannelCount,
 				dsp_.DstChannelCount, dsp_.pMatrixCoefficients);
 		}
 		else
@@ -886,14 +942,19 @@ namespace scal
 		emitter_ = { 0 };
 
 		auto&& d = GetMasterDetails();
-		emitter_.ChannelCount = 1;
+		emitter_.ChannelCount = soundData_->waveFormat_.nChannels;
 		emitter_.CurveDistanceScaler = FLT_MIN;
+		emitter_.pChannelAzimuths = new float[2];
+		emitter_.pChannelAzimuths[0] = 0.0f;
+		emitter_.pChannelAzimuths[1] = 0.0f;
+		emitter_.InnerRadiusAngle = X3DAUDIO_PI / 4.0f;
+		emitter_.CurveDistanceScaler = 1.0f;
 		cone_ = new X3DAUDIO_CONE();
 
 		auto&& detail = GetMasterDetails();
 
-		dsp_ = {};
-		dsp_.SrcChannelCount = 1;
+		dsp_ = { 0 };
+		dsp_.SrcChannelCount = soundData_->waveFormat_.nChannels;
 		dsp_.DstChannelCount = detail.InputChannels;
 		dsp_.pMatrixCoefficients = new FLOAT32[dsp_.SrcChannelCount * dsp_.DstChannelCount];
 		dsp_.pDelayTimes = new FLOAT32[dsp_.DstChannelCount];
@@ -925,9 +986,19 @@ namespace scal
 		Initialize();
 	}
 
+	Sound* SoundEmitter::GetSound(void)
+	{
+		return impl_->GetSound();
+	}
+
 	void SoundEmitter::SetPosition(const Vector3& pos)
 	{
 		impl_->SetPosition(pos);
+	}
+
+	void SoundEmitter::SetRadius(float radius)
+	{
+		impl_->SetRadius(radius);
 	}
 
 	void SoundEmitter::EnableSoundCone(bool flag)

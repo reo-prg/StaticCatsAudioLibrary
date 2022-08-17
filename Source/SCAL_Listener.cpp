@@ -52,6 +52,8 @@ namespace scal
 		defaultFrontVector_ = { -1.0f, 0.0f, 0.0f };
 		defaultUpVector_ = { 0.0f, 1.0f, 0.0f };
 
+		listener_ = { };
+
 		listener_.OrientFront = { defaultFrontVector_.x, defaultFrontVector_.y, defaultFrontVector_.z };
 		listener_.OrientTop = { defaultUpVector_.x, defaultUpVector_.y, defaultUpVector_.z };
 
@@ -160,6 +162,7 @@ namespace scal
 
 	Listener::Listener()
 	{
+		impl_ = std::make_unique<Listener_Impl>();
 	}
 
 	Listener::~Listener()

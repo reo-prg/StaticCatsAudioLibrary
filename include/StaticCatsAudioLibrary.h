@@ -115,6 +115,10 @@ namespace scal
 	/// <param name="listener">リスナー</param>
 	void RegisterListener(Listener* listener);
 
+	void UnregisterEmitter(SoundEmitter* emitter);
+
+	void UnregisterListener(Listener* listener);
+
 	/// <summary>
 	/// 3Dサウンドを更新する
 	/// </summary>

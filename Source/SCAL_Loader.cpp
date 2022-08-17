@@ -10,10 +10,10 @@ namespace scal
 	{
 		if (!wav_.empty())
 		{
-			for (auto& w : wav_)
-			{
-				delete[] w.second.data_;
-			}
+			//for (auto& w : wav_)
+			//{
+			//	delete[] w.second.data_;
+			//}
 		}
 	}
 
