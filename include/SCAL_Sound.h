@@ -207,6 +207,10 @@ namespace scal
 		/// <returns>成功したらtrue</returns>
 		bool Stop(void);
 
+		bool Continue(void);
+
+		bool IsEnd(void);
+
 		/// <summary>
 		/// <para>所持しているサウンドのデータを破棄する</para>
 		/// <para>再び再生したい場合はLoadで読み込みなおす必要がある</para>

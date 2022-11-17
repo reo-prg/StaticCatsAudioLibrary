@@ -32,7 +32,10 @@ namespace scal
 		void AddOutputNode(Node* node, bool system_value_isCallingAnotherFunc);
 		void RemoveOutputNode(Node* node, bool system_value_isCallingAnotherFunc);
 		bool Stop(void);
+		bool Continue(void);
+		bool IsEnd(void);
 		void Destroy(void);
+
 
 		float GetProgress(void);
 
@@ -239,6 +242,27 @@ namespace scal
 		
 		vState_ = SoundState::Stop;
 		return true;
+	}
+
+	bool Sound::Sound_Impl::Continue(void)
+	{
+		if (vState_ == SoundState::Playing) { return true; }
+
+		HRESULT result;
+		result = sourceVoice_->Start();
+		if (FAILED(result)) { return false; }
+
+		vState_ = SoundState::Playing;
+
+		return true;
+	}
+
+	bool Sound::Sound_Impl::IsEnd(void)
+	{
+		XAUDIO2_VOICE_STATE sys_state;
+		sourceVoice_->GetState(&sys_state);
+
+		return sys_state.BuffersQueued == 0;
 	}
 
 	void Sound::Sound_Impl::Destroy(void)
@@ -509,7 +533,9 @@ namespace scal
 
 	Sound::Sound(const std::string& filepath)
 	{
-		impl_ = std::make_unique<Sound_Impl>(filepath);
+		impl_ = std::make_unique<Sound_Impl>();
+		activated_ = impl_->Load(filepath);
+
 		impl_->interface_ = this;
 	}
 
@@ -651,6 +677,16 @@ namespace scal
 	bool Sound::Stop(void)
 	{
 		return impl_->Stop();
+	}
+
+	bool Sound::Continue(void)
+	{
+		return impl_->Continue();
+	}
+
+	bool Sound::IsEnd(void)
+	{
+		return impl_->IsEnd();
 	}
 
 	void Sound::Destroy(void)

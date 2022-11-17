@@ -65,25 +65,27 @@ namespace scal
 
 	void Node::Node_Impl::Terminate()
 	{
-		for (auto& i : input_)
-		{
-			i->RemoveOutputNode(interface_);
-		}
-		for (auto& o : output_)
-		{
-			this->RemoveOutputNode(o);
-		}
-		for (auto& s : sources_)
-		{
-			this->RemoveInputSound(s, true);
-		}
-
-		send_.clear();
 		if (submixVoice_ != nullptr)
 		{
+			for (auto& i : input_)
+			{
+				i->RemoveOutputNode(interface_);
+			}
+			for (auto& o : output_)
+			{
+				this->RemoveOutputNode(o);
+			}
+			for (auto& s : sources_)
+			{
+				this->RemoveInputSound(s, true);
+			}
+
+			send_.clear();
+
 			submixVoice_->SetOutputVoices(nullptr);
 
 			submixVoice_->DestroyVoice();
+			submixVoice_ = nullptr;
 		}
 	}
 
@@ -98,7 +100,7 @@ namespace scal
 		output_.push_back(node);
 		node->impl_->AddInputNode(interface_);
 
-		stage_ = min(stage_, node->impl_->stage_);
+		stage_ = min(stage_, node->impl_->stage_ - 1);
 
 		send_.emplace_back(XAUDIO2_SEND_DESCRIPTOR{ 0, node->GetVoiceAddress()});
 	}
@@ -526,7 +528,7 @@ namespace scal
 	}
 	void Node::Destroy(void)
 	{
-		impl_->Destroy();
+		impl_->Terminate();
 	}
 	IXAudio2SubmixVoice*& Node::GetVoiceAddress(void)
 	{
