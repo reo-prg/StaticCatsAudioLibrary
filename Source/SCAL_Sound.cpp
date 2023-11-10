@@ -23,7 +23,9 @@ namespace scal
 		// Sound ----------------------------------------------------------
 		bool Load(const std::string& filepath);
 		bool Play(void);
+		bool Play(float playBegin);
 		bool PlayAgain(void);
+		bool PlayAgain(float playBegin);
 		void SetPlaySegment(float begin, float length);
 		void SetLoopSegment(float begin, float length);
 		void SetLoopCount(UINT32 count = -1);
@@ -38,6 +40,7 @@ namespace scal
 
 
 		float GetProgress(void);
+		float GetSoundLength(void);
 
 		int AddEffect(AudioEffectType type, bool active, int insertPosition);
 		bool RemoveEffect(int position);
@@ -68,6 +71,9 @@ namespace scal
 		SoundState vState_;
 
 		float volume_ = 1.0f;
+
+		float length_;
+
 
 		std::vector<XAUDIO2_SEND_DESCRIPTOR> send_;
 		std::vector<Node*> output_;
@@ -125,6 +131,8 @@ namespace scal
 		buffer_.LoopLength = 0;
 		buffer_.Flags = XAUDIO2_END_OF_STREAM;
 
+		length_ = buffer_.AudioBytes / waveFormat_.nAvgBytesPerSec;
+
 		auto&& core = GetXAudio2Core();
 
 		result = core->CreateSourceVoice(&sourceVoice_, &waveFormat_,
@@ -148,6 +156,23 @@ namespace scal
 		return true;
 	}
 
+	bool Sound::Sound_Impl::Play(float playBegin)
+	{
+		HRESULT result;
+
+		buffer_.PlayBegin = static_cast<UINT32>(waveFormat_.nSamplesPerSec * playBegin);
+		buffer_.PlayLength = static_cast<UINT32>(waveFormat_.nSamplesPerSec * (length_ - playBegin));
+
+		result = sourceVoice_->SubmitSourceBuffer(&buffer_);
+		if (FAILED(result)) { return false; }
+
+		vState_ = SoundState::Playing;
+		result = sourceVoice_->Start();
+		if (FAILED(result)) { return false; }
+
+		return true;
+	}
+
 	bool Sound::Sound_Impl::PlayAgain(void)
 	{
 		if (vState_ == SoundState::Playing)
@@ -155,6 +180,30 @@ namespace scal
 			sourceVoice_->Stop();
 		}
 		HRESULT result;
+
+		result = sourceVoice_->FlushSourceBuffers();
+		if (FAILED(result)) { return false; }
+		result = sourceVoice_->SubmitSourceBuffer(&buffer_);
+		if (FAILED(result)) { return false; }
+
+		result = sourceVoice_->Start();
+		if (FAILED(result)) { return false; }
+
+		vState_ = SoundState::Playing;
+
+		return true;
+	}
+
+	bool Sound::Sound_Impl::PlayAgain(float playBegin)
+	{
+		if (vState_ == SoundState::Playing)
+		{
+			sourceVoice_->Stop();
+		}
+		HRESULT result;
+
+		buffer_.PlayBegin = static_cast<UINT32>(waveFormat_.nSamplesPerSec * playBegin);
+
 		result = sourceVoice_->FlushSourceBuffers();
 		if (FAILED(result)) { return false; }
 		result = sourceVoice_->SubmitSourceBuffer(&buffer_);
@@ -287,6 +336,11 @@ namespace scal
 
 		return (static_cast<float>(sys_state.SamplesPlayed) / static_cast<float>(waveFormat_.nSamplesPerSec))
 			/ (static_cast<float>(buffer_.AudioBytes) / static_cast<float>(waveFormat_.nAvgBytesPerSec));
+	}
+
+	float Sound::Sound_Impl::GetSoundLength(void)
+	{
+		return length_;
 	}
 
 	int Sound::Sound_Impl::AddEffect(AudioEffectType type, bool active, int insertPosition)
@@ -558,13 +612,18 @@ namespace scal
 
 	bool Sound::Play(void)
 	{
+		return impl_->Play();
+	}
+
+	bool Sound::Play(float playBegin)
+	{
 		if (!activated_)
 		{
 			OutputDebugStringA("SCAL_ERROR : Sound is not loaded\n");
 			return false;
 		}
 
-		return impl_->Play();
+		return impl_->Play(playBegin);
 	}
 
 	bool Sound::PlayAgain(void)
@@ -576,6 +635,17 @@ namespace scal
 		}
 
 		return impl_->PlayAgain();
+	}
+
+	bool Sound::PlayAgain(float playBegin)
+	{
+		if (!activated_)
+		{
+			OutputDebugStringA("SCAL_ERROR : Sound is not loaded\n");
+			return false;
+		}
+
+		return impl_->PlayAgain(playBegin);
 	}
 
 	void Sound::SetPlaySegment(float begin, float length)
@@ -672,6 +742,11 @@ namespace scal
 	float Sound::GetProgress(void)
 	{
 		return impl_->GetProgress();
+	}
+
+	float Sound::GetSoundLength(void)
+	{
+		return impl_->GetSoundLength();
 	}
 
 	bool Sound::Stop(void)

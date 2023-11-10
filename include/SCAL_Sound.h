@@ -39,13 +39,23 @@ namespace scal
 		/// <returns>成功したらtrue</returns>
 		bool Load(const std::string& filepath);
 
+		bool Play(void);
+
 		/// <summary>
 		/// 再生する
 		/// </summary>
+		/// <param name="playBegin">再生開始位置</param>
 		/// <returns>成功したらtrue</returns>
-		bool Play(void);
+		bool Play(float playBegin);
 
 		bool PlayAgain(void);
+
+		/// <summary>
+		/// 再生する
+		/// </summary>
+		/// <param name="playBegin">再生開始位置</param>
+		/// <returns>成功したらtrue</returns>
+		bool PlayAgain(float playBegin);
 
 		/// <summary>
 		/// <para>再生範囲を設定する</para>
@@ -200,6 +210,13 @@ namespace scal
 		/// </summary>
 		/// <returns>進度(0.0 - 1.0)</returns>
 		float GetProgress(void);
+
+		/// <summary>
+		/// サウンドの長さを取得する
+		/// </summary>
+		/// <param name=""></param>
+		/// <returns></returns>
+		float GetSoundLength(void);
 
 		/// <summary>
 		/// 再生中の音を停止させる
